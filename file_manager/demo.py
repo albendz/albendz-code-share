@@ -1,0 +1,24 @@
+# Start the program watching a directory for new files and polling
+# Create a new file in location
+# Examine file header to create file
+# add file to file map
+# For demo purposes, do not auto process files
+# Call process next batch (batch size of 1)
+# Before process batch, query for status of tracked item
+# Call process
+# retrive state again
+# add another item
+# same demo as above
+# Print list of files shown in time received sequence
+# Add file for each and show difference between queue add and stack add
+# Process file and show list method "get files sent Monday" and BST "get file with data at 3 pm Monday"
+# Create graph and find most visited node
+from tracking_file import TrackingFile
+
+first_file = TrackingFile('Fluffy', 'fluffly_01.csv', '/tmp/')
+
+with open(first_file.get_path() + first_file.get_filename(), 'w') as f:
+    f.write('test')
+
+with open(first_file.get_path() + first_file.get_filename(), 'r') as f:
+    print(f.readline())
