@@ -1,5 +1,6 @@
 # Summary
-** CURRENT A WORK IN PROGRESS **
+**CURRENTLY A WORK IN PROGRESS**
+
 This collection of files is a learning exercise in using data structures and algorithms to manage set of files of incoming data.
 
 ## Application

@@ -14,11 +14,13 @@
 # Process file and show list method "get files sent Monday" and BST "get file with data at 3 pm Monday"
 # Create graph and find most visited node
 from tracking_file import TrackingFile
+from file_map import AnimalTracker
 
-first_file = TrackingFile('Fluffy', 'fluffly_01.csv', '/tmp/')
+fluffy_data = TrackingFile('Fluffy', 'file.csv', './')
 
-with open(first_file.get_path() + first_file.get_filename(), 'w') as f:
-    f.write('test')
+animal_data = AnimalTracker()
+animal_data.add_file(fluffy_data)
+animal_list = animal_data.get_animals()
 
-with open(first_file.get_path() + first_file.get_filename(), 'r') as f:
-    print(f.readline())
+for animal in animal_list:
+    print(animal)
