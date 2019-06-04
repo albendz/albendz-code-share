@@ -24,3 +24,14 @@ animal_list = animal_data.get_animals()
 
 for animal in animal_list:
     print(animal)
+
+# Watch for new files
+# Determine name by first line of file
+# add file
+# check list for processed vs unprocessed
+# process batch
+# check that processed file is now in list
+# add files
+# check where files are in relation to appearance in queue or stack
+# process files
+# binary search for set of files with range

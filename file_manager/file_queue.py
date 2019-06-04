@@ -7,25 +7,32 @@ from file_list import DoubleLinkedList
 class Queue:
     def __init__(self):
         self.linked_list = DoubleLinkedList()
-    
+
     def push(self):
-        return None
-    
+        self.linked_list.insert_last()
+
     def pop(self):
-        return None
-    
+        first = self.linked_list.get_first()
+        self.linked_list.remove_first()
+        return first
+
     def peek(self):
-        return None
+        return self.linked_list.get_first()
+
+    def get_count(self):
+        return linked_list.get_length()
 
 class Stack:
     def __init__(self):
         self.linked_list = DoubleLinkedList()
-    
+
     def push(self):
-        return None
-    
+        self.linked_list.insert_first()
+
     def pop(self):
-        return None
-    
+        first = self.linked_list.get_first()
+        self.linked_list.remove_first()
+        return first
+
     def peek(self):
-        return None
+        return self.linked_list.get_first()
