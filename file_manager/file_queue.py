@@ -36,3 +36,6 @@ class Stack:
 
     def peek(self):
         return self.linked_list.get_first()
+
+    def get_count(self):
+        return self.linked_list.get_length()

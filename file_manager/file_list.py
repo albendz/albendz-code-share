@@ -105,7 +105,7 @@ class DoubleLinkedList:
         last = self.get_last()
 
         if last == None:
-            return False
+            self.first_node = DoubleLinkedListNode(data)
         else:
             # Create a new node with no next node and add it to the end of the list
             new_node = DoubleLinkedListNode(data, last, None)
@@ -148,6 +148,9 @@ class DoubleLinkedList:
     def get_length(self):
         current = self.first_node
         length = 0
+
+        if current == None:
+            return 0
 
         while current != None and current.next != None:
             current = current.next
