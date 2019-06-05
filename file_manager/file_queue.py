@@ -8,8 +8,8 @@ class Queue:
     def __init__(self):
         self.linked_list = DoubleLinkedList()
 
-    def push(self):
-        self.linked_list.insert_last()
+    def push(self, item):
+        self.linked_list.insert_last(item)
 
     def pop(self):
         first = self.linked_list.get_first()
@@ -20,14 +20,14 @@ class Queue:
         return self.linked_list.get_first()
 
     def get_count(self):
-        return linked_list.get_length()
+        return self.linked_list.get_length()
 
 class Stack:
     def __init__(self):
         self.linked_list = DoubleLinkedList()
 
-    def push(self):
-        self.linked_list.insert_first()
+    def push(self, item):
+        self.linked_list.insert_first(item)
 
     def pop(self):
         first = self.linked_list.get_first()
