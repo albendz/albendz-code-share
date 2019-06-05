@@ -4,6 +4,10 @@ class TrackingFile:
         self.path = path
         self.subject_name = subject_name
 
+        # Make sure the path ends in a forward slash
+        if self.path[-1] != '/':
+            self.path = self.path + '/'
+
     def get_subject(self):
         return self.subject_name
 
@@ -18,6 +22,6 @@ class TrackingFile:
         line = None
 
         with open(self.path + self.filename, 'r') as f:
-            line = f.readline()
+            line = f.readline().strip()
 
         return line
