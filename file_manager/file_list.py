@@ -92,6 +92,8 @@ class DoubleLinkedList:
         if next != None:
             next.previous = previous
 
+        return delete_me
+
     def remove_first(self):
         return self.remove_at_index(0)
 
@@ -101,6 +103,8 @@ class DoubleLinkedList:
 
         if previous != None:
             previous.next = None
+
+        return last
 
     def get_length(self):
         current = self.first_node
