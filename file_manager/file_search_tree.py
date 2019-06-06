@@ -30,3 +30,38 @@ class BinarySearchNode:
         metadata[0] = date.fromtimestamp(metadata[0])
         metadata[1] = date.fromtimestamp(metadata[1])
         return metadata
+
+    def print_tree(self):
+        nodes = []
+        queue = []
+        root = self
+
+        if self.parent != None:
+            root = self.get_root()
+
+        queue.append(root)
+        nodes.append(root)
+        while len(queue) > 0:
+            next = queue.remove(0)
+
+            if next.right != None:
+                nodes.append(next.right)
+                queue.append(next.right)
+            if next.left != None:
+                nodes.append(next.left)
+                queue.append(next.left)
+
+        # nodes is now a list of all nodes
+        # This will print top to bottom, left to right
+        for node in nodes:
+            data = node.data
+            metadata = node.get_range_from_data()
+            print(file.get_subject() + " : " + str(metadata[0]) + " : " + str(metadata[1]))
+
+    def get_root(self):
+        node = self
+
+        while node != None and node.parent != None:
+            node = node.parent
+
+        return node
