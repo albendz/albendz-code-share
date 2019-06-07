@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 
 class BinarySearchNode:
     def __init__(self, file, parent = None, left = None, right = None):
@@ -7,28 +7,28 @@ class BinarySearchNode:
         self.left = None
         self.right = None
 
-    def find_file_with_timestamp(self, timestamp):
+    def find_node_with_timestamp(self, timestamp):
         """ get the file that contains the given timestamp """
 
         timestamps = self.get_range_from_data()
 
         if timestamp < timestamps[0] and self.left != None:
             # The search is for a file on the left of this node
-            return self.left.find_file_with_timestamp(timestamp)
+            return self.left.find_node_with_timestamp(timestamp)
         elif timestamp > timestamps[1] and self.right != None:
             # The search is for a file on the right of this node
-            return self.right.find_file_with_timestamp(timestamp)
-        else:
+            return self.right.find_node_with_timestamp(timestamp)
+        elif timestamp <= timestamps[1] and timestamp >= timestamps[0]:
             return self.data
-
-        # This will return None if the timestamp is not in the tree
-        return None
+        else:
+            return None
 
     def get_range_from_data(self):
         # None check would be nice
         metadata = self.data.get_first_line().split(',')
-        metadata[0] = date.fromtimestamp(metadata[0])
-        metadata[1] = date.fromtimestamp(metadata[1])
+
+        metadata[0] = datetime.fromisoformat(metadata[0])
+        metadata[1] = datetime.fromisoformat(metadata[1])
         return metadata
 
     def print_tree(self):
@@ -65,3 +65,24 @@ class BinarySearchNode:
             node = node.parent
 
         return node
+
+    def add_node(self, new_node):
+
+        data = self.get_range_from_data()
+        new_data = new_node.get_range_from_data()
+
+        # with no overlap, compare only the first timestamps
+        if data[0] < new_data[0]:
+            if self.right == None:
+                new_node.parent = self
+                self.right = new_node
+            else:
+                self.right.add_node(new_node)
+        else:
+            if self.left == None:
+                new_node.parent = self
+                self.left = new_node
+            else:
+                self.left.add_node(new_node)
+
+        return True

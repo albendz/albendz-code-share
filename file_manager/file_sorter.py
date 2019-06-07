@@ -6,7 +6,7 @@ class FileSort:
         lines = []
 
         with open(file.get_path() + file.get_filename(), 'r') as f:
-            lines = f.read().splitlines()
+            lines = f.readlines()
 
         for i in range(0, len(lines)):
             lines[i] = lines[i].split(',')
