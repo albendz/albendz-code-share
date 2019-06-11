@@ -32,8 +32,48 @@ class FileSort:
 
         return sorted
 
-    def merge_sort(file):
-        return None
+    def merge_sort(lines):
+        length = len(lines)
+
+        if length > 1:
+            left = lines[0:int(length / 2)]
+            right = lines[int(length / 2):]
+            left = FileSort.merge_sort(left)
+            right = FileSort.merge_sort(right)
+            return FileSort.merge(left, right)
+        else:
+            return lines
+
+    def merge(left, right):
+        result = [None] * (len(left) + len(right))
+        left_index = 0
+        right_index = 0
+        result_index = 0
+
+        # you can do this with nested while instead of this way
+        while left_index < len(left) and right_index < len(right) and result_index < len(result):
+            if(left[left_index][0] < right[right_index][0]):
+                result[result_index] = left[left_index]
+                result_index = result_index + 1
+                left_index = left_index + 1
+            else:
+                result[result_index] = right[right_index]
+                result_index = result_index + 1
+                right_index = right_index + 1
+
+        if left_index < len(left): # copy the rest of the left
+            while left_index < len(left):
+                result[result_index] = left[left_index]
+                result_index = result_index + 1
+                left_index = left_index + 1
+
+        if right_index < len(right): # copy the rest of the left
+            while right_index < len(right):
+                result[result_index] = right[right_index]
+                result_index = result_index + 1
+                right_index = right_index + 1
+
+        return result
 
     def quick_sort(file):
         return None

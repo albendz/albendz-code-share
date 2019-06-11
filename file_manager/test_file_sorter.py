@@ -8,12 +8,14 @@ class SortingTest(unittest.TestCase):
         self.assertEqual(self.sorted, result)
 
     def test_merge(self):
-        # print(FileSort.quick_sort(self.lines))
-        return True
+        split_lines = [None] * len(self.lines)
+        for i in range(0, len(self.lines)):
+            split_lines[i] = self.lines[i].strip().split(',')
+        result = FileSort.merge_sort(split_lines)
+        self.assertEqual(self.sorted, result)
 
     def test_quick(self):
-        # print(FileSort.merge_sort(self.lines))
-        return True
+        print(FileSort.quick_sort(self.lines))
 
     def setUp(self):
         self.lines = []
