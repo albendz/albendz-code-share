@@ -1,16 +1,8 @@
 # implement insertion sort and merge sort on a single file
 class FileSort:
-    def insertion_sort(lines):
-        split_lines = [None] * len(lines)
-        for i in range(0, len(lines)):
-            split_lines[i] = lines[i].strip().split(',')
-
-        # Now there is a list of list where the inner list is
-        # [timestamp, latitude, longitude]
-        # sort by timestamp
-
+    def insertion_sort(split_lines):
         # Note: this does duplicate space needed
-        sorted = [None] * len(lines)
+        sorted = [None] * len(split_lines)
         sorted[0] = split_lines[0]
         split_lines = split_lines[1:]
 
@@ -75,5 +67,20 @@ class FileSort:
 
         return result
 
-    def quick_sort(file):
-        return None
+    def quick_sort(lines):
+        if len(lines) <= 1:
+            return lines
+
+        # this will split into two new lists for undestandability
+        # this would be done in place normally
+        pivot = lines[-1]
+        less = []
+        greater = []
+
+        for i in range(0, len(lines) - 1):
+            if pivot[0] < lines[i][0]:
+                greater.append(lines[i])
+            else:
+                less.append(lines[i])
+
+        return FileSort.quick_sort(less) + [pivot] + FileSort.quick_sort(greater)
