@@ -1,9 +1,15 @@
 import unittest
+import data_graph as Graph
 
 class GraphTest(unittest.TestCase):
 
     def test(self):
-        return True
+        graph = Graph.Graph()
+        graph.add_data_from_file()
+
+        # Most visited
+        # To From DFS
+        # To From BFS
 
     def setUp(self):
         return True
