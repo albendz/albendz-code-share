@@ -45,6 +45,9 @@ class Graph:
         if source not in self.nodes or to not in self.nodes:
             return None
 
+        if source.data == to.data:
+            return [source]
+
         start = self.nodes[source]
         end = self.nodes[to]
 
@@ -84,6 +87,9 @@ class Graph:
         # If we don't know about either of these locations, return None
         if source not in self.nodes or to not in self.nodes:
             return None
+
+        if source.data == to.data:
+            return [source]
 
         start = self.nodes[source]
         end = self.nodes[to]
