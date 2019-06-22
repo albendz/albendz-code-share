@@ -4,9 +4,18 @@
 
 class Graph:
     def __init__(self):
+        # This is a map of long-lat to the node that holds that data
+        # Graphs don't have a 'start' or 'root' node so we need a way to get
+        # a specific node
         self.nodes = {}
 
     def add_occurrence(self, data, from_node=None):
+        """
+            This function will add a piece of data (i.e. long + lat) to the
+            graph given the node that it's coming from. If this data already
+            exists, connect the two nodes and increment the count of times
+            this location has been visited
+        """
         if data in self.nodes:
             node = self.nodes[data]
             node.count = node.count + 1
@@ -20,6 +29,7 @@ class Graph:
             self.nodes[data] = node
             if from_node != None:
                 from_node.neighbors.append(node)
+                node.neighbors.append(from_node)
             return node
 
     def add_data_from_file(self, file):
@@ -40,27 +50,35 @@ class Graph:
             node = self.add_occurrence(data, previous_node)
             previous_node = node
 
-    def path_from_to_bfs(self, source, to):
+    def path_from_to_bfs(self, source, target):
         # If we don't know about either of these locations, return None
         if source not in self.nodes or to not in self.nodes:
             return None
 
-        if source.data == to.data:
+        if source.data == target.data:
             return [source]
 
+        # Get the nodes for start and end
         start = self.nodes[source]
-        end = self.nodes[to]
+        end = self.nodes[target]
 
         ## BFS ##
         queue = []
         visited = []
         path = []
 
+        # Add our start node to the queue for exploration
         queue.append(start)
+        # Mark start as visited so we don't end up in a cycle when we see it
+        # again
         visited.append(start)
         while len(queue) > 0 and end.previous == None:
+            # get the next node to explore and remove it from the explore queue
             current_node = queue.pop(0)
 
+            # Get each neighbor and check if it is our goal
+            # if not, add it to the explore list but only if we haven't
+            # seen it before
             for neighbor in current_node.neighbors:
                 if neighbor == end:
                     # WHen you find the target, set it's path and exit
@@ -83,24 +101,28 @@ class Graph:
         path.reverse()
         return path
 
-    def path_from_to_dfs(self, source, to):
+    def path_from_to_dfs(self, source, target):
         # If we don't know about either of these locations, return None
         if source not in self.nodes or to not in self.nodes:
             return None
 
-        if source.data == to.data:
+        if source.data == target.data:
             return [source]
 
         start = self.nodes[source]
-        end = self.nodes[to]
+        end = self.nodes[target]
 
         stack = []
         visited = []
         path = []
+        # add start to the stack for exploration
         stack.append(start)
+        # mark the start as visited so we don't end up in a cycle if we see it
+        # again
         visited.append(start)
 
         while len(stack) > 0 and end.previous == None:
+            # get and remove the first node in our stack for exploration
             current_node = stack.pop()
 
             for neighbor in current_node.neighbors:
@@ -108,6 +130,8 @@ class Graph:
                     # WHen you find the target, set it's path and exit
                     end.previous = current_node
                     break
+                # add each neighbor to the exploration stack if we haven't seen
+                # it before
                 if neighbor not in visited:
                     neighbor.previous = current_node
                     stack.append(neighbor)
@@ -151,6 +175,11 @@ class Graph:
         return max
 
 class GraphNode:
+    """
+    The graph node contains data, lists its neighbors and counts times visited.
+    The "previous" member is a way to keep track of exploration path when
+    searching.
+    """
     def __init__(self, data):
         self.data = data
         self.neighbors = []

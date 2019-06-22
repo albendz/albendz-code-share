@@ -1,28 +1,31 @@
 from tracking_file import TrackingFile
 from file_map import AnimalTracker
 
-fluffy_data = TrackingFile('Fluffy', 'file.csv', './')
-brunswick_data = TrackingFile('Brunswick', 'file.csv', './')
+# Get some files for our Sharks
+thomas_data = TrackingFile('thomas', 'file.csv', './')
+brunswick_data = TrackingFile('brunswick', 'file.csv', './')
 
 # Add three files for two animals
 # One animal uses a stack and the other a queue
 animal_data = AnimalTracker()
-animal_data.add_file(fluffy_data)
-animal_data.add_file(fluffy_data)
-animal_data.add_file(fluffy_data)
+animal_data.add_file(TrackingFile('thomas', 'thomas_0.csv', './'))
+animal_data.add_file(TrackingFile('thomas', 'thomas_1.csv', './'))
+animal_data.add_file(TrackingFile('thomas', 'thomas_2.csv', './'))
 
-animal_data.add_file(brunswick_data)
-animal_data.add_file(brunswick_data)
-animal_data.add_file(brunswick_data)
+use_stack = False # false to say don't use a queue - this is a bit silly - don't
+# worry if it doesn't make sense
+animal_data.add_file(TrackingFile('brunswick', 'brunswick_0.csv', './'), use_stack)
+animal_data.add_file(TrackingFile('brunswick', 'brunswick_1.csv', './'), use_stack)
+animal_data.add_file(TrackingFile('brunswick', 'brunswick_2.csv', './'), use_stack)
 
-# list animals
+# list animals in our map
 animal_list = animal_data.get_animals()
 
 for animal in animal_list:
     print(animal)
 
 # Get queue for animal to check which data was just received
-brunswick = animal_data.get_animal("Brunswick")
+brunswick = animal_data.get_animal("brunswick")
 queue_node = brunswick.get_unprocessed().peek()
 
 # How do you traverse a linked list
@@ -32,11 +35,11 @@ print(queue_node.previous)
 print(queue_node.next.next)
 
 # Queues vs Stacks
-fluffy = animal_data.get_animal("Fluffy")
+thomas = animal_data.get_animal("thomas")
 
 # Note that this node is the last one added
 # the queue_node was the first one added
-stack_node = fluffy.get_unprocessed.peek()
+stack_node = thomas.get_unprocessed.peek()
 print(stack_node)
 
 # Sorting: sort a file contents and add it to processed
@@ -65,13 +68,13 @@ with open(sorted_file, 'w') as f:
     for line in sorted:
         f.write(line)
 
-sorted_file = TrackingFile("Brunswick", , queue_node.data.get_filename() + "_sorted", queue_node.data.get_path())
+sorted_file = TrackingFile("brunswick", , queue_node.data.get_filename() + "_sorted", queue_node.data.get_path())
 brunswick.get_processed().insert_last(sorted_file)
 
 # Add sorted files into binary search tree
-brunswick.get_search_tree().add_node(new BinarySearchNode(sorted_file))
-brunswick.get_search_tree().add_node(new BinarySearchNode(sorted_file))
-brunswick.get_search_tree().add_node(new BinarySearchNode(sorted_file))
+brunswick.get_search_tree().add_node(BinarySearchNode(sorted_file))
+brunswick.get_search_tree().add_node(BinarySearchNode(sorted_file))
+brunswick.get_search_tree().add_node(BinarySearchNode(sorted_file))
 
 # Search for the file for a specific time
 brunswick.get_search_tree().find_node_with_timestamp("")
