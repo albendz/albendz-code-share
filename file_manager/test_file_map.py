@@ -32,7 +32,7 @@ class MapTest(unittest.TestCase):
 
         tracker.add_file(file_two)
         self.assertEqual(tracker.get_animals(), ["turtle"])
-        self.assertEqual(tracker.get_animal("turtle").get_unprocessed().get_count(), 1)
+        self.assertEqual(tracker.get_animal("turtle").get_unprocessed().get_count(), 2)
 
         tracker.add_file(file_three)
         self.assertEqual(tracker.get_animals(), ["turtle", "octopus"])

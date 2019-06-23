@@ -52,10 +52,10 @@ class Graph:
 
     def path_from_to_bfs(self, source, target):
         # If we don't know about either of these locations, return None
-        if source not in self.nodes or to not in self.nodes:
+        if source not in self.nodes or target not in self.nodes:
             return None
 
-        if source.data == target.data:
+        if source == target:
             return [source]
 
         # Get the nodes for start and end
@@ -103,10 +103,10 @@ class Graph:
 
     def path_from_to_dfs(self, source, target):
         # If we don't know about either of these locations, return None
-        if source not in self.nodes or to not in self.nodes:
+        if source not in self.nodes or target not in self.nodes:
             return None
 
-        if source.data == target.data:
+        if source == target:
             return [source]
 
         start = self.nodes[source]

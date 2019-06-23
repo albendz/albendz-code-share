@@ -101,10 +101,6 @@ class DoubleLinkedList:
         # It will point to node's previous but use node as the next
         new_node = DoubleLinkedListNode(data, node.previous, node)
 
-        # We can't insert if the index doesn't exist
-        if new_node == None:
-            return False
-
         # The tricky part is updating references
         # If you have 1, 3, 4
         # You want to insert 2 at index 1

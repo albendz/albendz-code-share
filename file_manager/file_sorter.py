@@ -17,7 +17,7 @@ class FileSort:
         sorted_length = 1
 
         # For each unsorted piece of data
-        for data in split_lines:
+        for data in split_lines[1:]:
             # get the timestamp to sort by
             timestamp = data[0]
 
@@ -35,7 +35,6 @@ class FileSort:
             while last_sorted > timestamp and current_sorted_index >= 0:
                 # move up: 1, 2, 3 becomes 1, 2, None, 3
                 sorted[current_sorted_index + 1] = sorted[current_sorted_index]
-                sorted[current_sorted_index] = None
 
                 # move down
                 current_sorted_index = current_sorted_index - 1

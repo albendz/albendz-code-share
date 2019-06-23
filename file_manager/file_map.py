@@ -27,12 +27,11 @@ class AnimalTracker:
 
         # If we already have this member, just add a new file to the
         # unprocessed list. Otherwise, create a new tuple
-        if(animal in self.animal_map):
-            files = self.animal_map[animal]
-            files.add_new_file(file)
-        else:
+        if(animal not in self.animal_map):
             # use the provided queue parameter to decide priority or processing
             self.animal_map[animal] = FileTuple(queue)
+        files = self.animal_map[animal]
+        files.add_new_file(file)
 
     def get_animals(self):
         return list(self.animal_map.keys())
