@@ -91,7 +91,10 @@ class DoubleLinkedList:
 
     def insert_at_index(self, index, data):
         if index == 0:
-            return self.insert_first()
+            return self.insert_first(data)
+            
+        if index == self.get_length():
+            return self.insert_last(data)
 
         node = self.get_at_index(index)
         if node == None:
