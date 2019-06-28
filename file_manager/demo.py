@@ -1,3 +1,5 @@
+''' This is pseudocode and doesn't work yet '''
+
 from tracking_file import TrackingFile
 from file_map import AnimalTracker
 
