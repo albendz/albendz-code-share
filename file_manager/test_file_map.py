@@ -1,5 +1,5 @@
 import unittest
-from file_map import AnimalTracker, FileTuple
+from AnimalTracker import AnimalTracker, FileTuple
 from file_queue import Queue, Stack
 from tracking_file import TrackingFile
 
