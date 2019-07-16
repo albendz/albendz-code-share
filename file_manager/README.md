@@ -1,5 +1,4 @@
 # Summary
-**CURRENTLY A WORK IN PROGRESS**
 
 This collection of files is a learning exercise in using data structures and algorithms to manage set of files of incoming data.
 
@@ -15,6 +14,7 @@ You are receving data file with GPS coordinates and timestamps showing where ani
 * Stacks
 * Sorting
 * Graphs
+* Search
 
 # Disclaimer
 This is not meant to be prescriptive or even practical. I'm hoping to only show how data structures can be used in combination instead of in isolation as in traditional coding interview questions.
