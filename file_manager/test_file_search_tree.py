@@ -1,12 +1,12 @@
 import unittest
 from file_search_tree import BinarySearchNode
-from tracking_file import TrackingFile
+from datafile import DataFile
 from datetime import datetime
 
 class TreeTest(unittest.TestCase):
 
     def test_search_node(self):
-        file = TrackingFile('Brunswick', 'processed_file.csv', './')
+        file = DataFile('Brunswick', 'processed_file.csv', './')
         node = BinarySearchNode(file)
         start = '2019-06-07 06:28:22.897527'
         end = '2019-06-10 06:28:22.897527'
@@ -26,12 +26,12 @@ class TreeTest(unittest.TestCase):
         return True
 
     def test_find_present_root(self):
-        file = TrackingFile('Brunswick', 'processed_root.csv', './')
+        file = DataFile('Brunswick', 'processed_root.csv', './')
         root = BinarySearchNode(file)
-        node_left = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootleft.csv', './'))
-        node_right = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootright.csv', './'))
-        node_right_left = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootrightleft.csv', './'))
-        node_right_right = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootrightright.csv', './'))
+        node_left = BinarySearchNode(DataFile('Brunswick', 'processed_rootleft.csv', './'))
+        node_right = BinarySearchNode(DataFile('Brunswick', 'processed_rootright.csv', './'))
+        node_right_left = BinarySearchNode(DataFile('Brunswick', 'processed_rootrightleft.csv', './'))
+        node_right_right = BinarySearchNode(DataFile('Brunswick', 'processed_rootrightright.csv', './'))
 
         root.add_node(node_left)
         root.add_node(node_right)
@@ -42,12 +42,12 @@ class TreeTest(unittest.TestCase):
         self.assertEqual(root.data, found)
 
     def test_find_present_leaf(self):
-        file = TrackingFile('Brunswick', 'processed_root.csv', './')
+        file = DataFile('Brunswick', 'processed_root.csv', './')
         root = BinarySearchNode(file)
-        node_left = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootleft.csv', './'))
-        node_right = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootright.csv', './'))
-        node_right_left = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootrightleft.csv', './'))
-        node_right_right = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootrightright.csv', './'))
+        node_left = BinarySearchNode(DataFile('Brunswick', 'processed_rootleft.csv', './'))
+        node_right = BinarySearchNode(DataFile('Brunswick', 'processed_rootright.csv', './'))
+        node_right_left = BinarySearchNode(DataFile('Brunswick', 'processed_rootrightleft.csv', './'))
+        node_right_right = BinarySearchNode(DataFile('Brunswick', 'processed_rootrightright.csv', './'))
 
         root.add_node(node_left)
         root.add_node(node_right)
@@ -58,12 +58,12 @@ class TreeTest(unittest.TestCase):
         self.assertEqual(node_right_left.data, found)
 
     def test_find_present_inner(self):
-        file = TrackingFile('Brunswick', 'processed_root.csv', './')
+        file = DataFile('Brunswick', 'processed_root.csv', './')
         root = BinarySearchNode(file)
-        node_left = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootleft.csv', './'))
-        node_right = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootright.csv', './'))
-        node_right_left = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootrightleft.csv', './'))
-        node_right_right = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootrightright.csv', './'))
+        node_left = BinarySearchNode(DataFile('Brunswick', 'processed_rootleft.csv', './'))
+        node_right = BinarySearchNode(DataFile('Brunswick', 'processed_rootright.csv', './'))
+        node_right_left = BinarySearchNode(DataFile('Brunswick', 'processed_rootrightleft.csv', './'))
+        node_right_right = BinarySearchNode(DataFile('Brunswick', 'processed_rootrightright.csv', './'))
 
         root.add_node(node_left)
         root.add_node(node_right)
@@ -74,12 +74,12 @@ class TreeTest(unittest.TestCase):
         self.assertEqual(node_right.data, found)
 
     def test_find_not_present(self):
-        file = TrackingFile('Brunswick', 'processed_root.csv', './')
+        file = DataFile('Brunswick', 'processed_root.csv', './')
         root = BinarySearchNode(file)
-        node_left = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootleft.csv', './'))
-        node_right = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootright.csv', './'))
-        node_right_left = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootrightleft.csv', './'))
-        node_right_right = BinarySearchNode(TrackingFile('Brunswick', 'processed_rootrightright.csv', './'))
+        node_left = BinarySearchNode(DataFile('Brunswick', 'processed_rootleft.csv', './'))
+        node_right = BinarySearchNode(DataFile('Brunswick', 'processed_rootright.csv', './'))
+        node_right_left = BinarySearchNode(DataFile('Brunswick', 'processed_rootrightleft.csv', './'))
+        node_right_right = BinarySearchNode(DataFile('Brunswick', 'processed_rootrightright.csv', './'))
 
         root.add_node(node_left)
         root.add_node(node_right)

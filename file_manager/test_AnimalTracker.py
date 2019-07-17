@@ -1,7 +1,7 @@
 import unittest
 from AnimalTracker import AnimalTracker, FileTuple
 from file_queue import Queue, Stack
-from tracking_file import TrackingFile
+from datafile import DataFile
 
 class MapTest(unittest.TestCase):
 
@@ -21,9 +21,9 @@ class MapTest(unittest.TestCase):
 
     def test_add_file(self):
         tracker = AnimalTracker()
-        file_one = TrackingFile("turtle", "/tmp/", "turtle_file")
-        file_two = TrackingFile("turtle", "/tmp/", "turtle_file2")
-        file_three = TrackingFile("octopus", "/tmp", "octo_file")
+        file_one = DataFile("turtle", "/tmp/", "turtle_file")
+        file_two = DataFile("turtle", "/tmp/", "turtle_file2")
+        file_three = DataFile("octopus", "/tmp", "octo_file")
 
         tracker.add_file(file_one)
 

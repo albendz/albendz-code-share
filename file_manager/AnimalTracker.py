@@ -1,4 +1,4 @@
-from tracking_file import TrackingFile
+from datafile import DataFile
 from file_list import DoubleLinkedList
 from file_queue import Stack, Queue
 
@@ -23,7 +23,7 @@ class AnimalTracker:
     # internal implementation but for the exercise, we want to be explicit
     # about describing behavior so it's okay here.
     def add_file(self, file, queue=True):
-        animal = file.get_subject()
+        animal = file.get_name()
 
         # If we already have this member, just add a new file to the
         # unprocessed list. Otherwise, create a new tuple

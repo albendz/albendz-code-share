@@ -1,6 +1,6 @@
 ''' This is pseudocode and doesn't work yet '''
 
-from tracking_file import TrackingFile
+from datafile import DataFile
 from AnimalTracker import AnimalTracker
 from file_sorter import FileSort
 from file_search_tree import BinarySearchNode
@@ -8,21 +8,21 @@ from datetime import datetime
 from data_graph import Graph
 
 # Get some files for our Sharks
-thomas_data = TrackingFile('thomas', 'file.csv')
-brunswick_data = TrackingFile('brunswick', 'file.csv')
+thomas_data = DataFile('thomas', 'file.csv')
+brunswick_data = DataFile('brunswick', 'file.csv')
 
 # Add three files for two animals
 # One animal uses a stack and the other a queue
 animal_data = AnimalTracker()
-animal_data.add_file(TrackingFile('thomas', 'thomas_0.csv'))
-animal_data.add_file(TrackingFile('thomas', 'thomas_1.csv'))
-animal_data.add_file(TrackingFile('thomas', 'thomas_2.csv'))
+animal_data.add_file(DataFile('thomas', 'thomas_0.csv'))
+animal_data.add_file(DataFile('thomas', 'thomas_1.csv'))
+animal_data.add_file(DataFile('thomas', 'thomas_2.csv'))
 
 use_stack = False # false to say don't use a queue - this is a bit silly - don't
 # worry if it doesn't make sense
-animal_data.add_file(TrackingFile('brunswick', 'brunswick_0.csv'), use_stack)
-animal_data.add_file(TrackingFile('brunswick', 'brunswick_1.csv'), use_stack)
-animal_data.add_file(TrackingFile('brunswick', 'brunswick_2.csv'), use_stack)
+animal_data.add_file(DataFile('brunswick', 'brunswick_0.csv'), use_stack)
+animal_data.add_file(DataFile('brunswick', 'brunswick_1.csv'), use_stack)
+animal_data.add_file(DataFile('brunswick', 'brunswick_2.csv'), use_stack)
 
 # list animals in our map
 animal_list = animal_data.get_animals()
@@ -53,7 +53,7 @@ print(brunswick.get_unprocessed().get_count())
 queue_node = brunswick.get_unprocessed().pop()
 print(brunswick.get_unprocessed().get_count())
 
-with open(queue_node.data.get_full_path_name(), 'r') as f:
+with open(queue_node.data.get_full_path(), 'r') as f:
     lines = f.readlines()
 
 split_lines = []
@@ -67,14 +67,14 @@ print(sorted)
 start_range = sorted[0][0]
 end_range = sorted[-1][0]
 
-sorted_file_name = queue_node.data.get_full_path_name() + "_sorted"
+sorted_file_name = queue_node.data.get_full_path() + "_sorted"
 
 with open(sorted_file_name, 'w') as f:
     f.write(start_range + ',' + end_range + '\n')
     for line in sorted:
         f.write(','.join(line) + '\n')
 
-sorted_file = TrackingFile("brunswick", queue_node.data.get_filename() + "_sorted", queue_node.data.get_path())
+sorted_file = DataFile("brunswick", queue_node.data.get_filename() + "_sorted", queue_node.data.get_path())
 brunswick.get_processed().insert_last(sorted_file)
 
 # Add sorted files into binary search tree

@@ -71,7 +71,7 @@ class BinarySearchNode:
         for node in nodes:
             data = node.data
             metadata = node.get_range_from_data()
-            print(file.get_subject() + " : " + str(metadata[0]) + " : " + str(metadata[1]))
+            print(file.get_name() + " : " + str(metadata[0]) + " : " + str(metadata[1]))
 
     def get_root(self):
         node = self
