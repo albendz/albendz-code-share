@@ -15,8 +15,8 @@ Let's build a serverless solution for these features.
 
 There is a lot of setup for this project but you can do it in pieces and focus on the part you're most interested in.
 
-* Android Studio can be downloaded [here](https://developer.android.com/studio/)
-* Xcode can be downloaded [here](https://developer.apple.com/xcode/)
+* Android Studio can be downloaded here: https://developer.android.com/studio/
+* Xcode can be downloaded here: https://developer.apple.com/xcode/
 * Create a Github account [here](https://github.com/)
 * Create a free Google Cloud Platform account [here](https://cloud.google.com/free/)
 
@@ -31,7 +31,7 @@ There is a lot of setup for this project but you can do it in pieces and focus o
     * Enable Firestore
     * Allow Firestore email authentication
 * Create a Firestore app for your mobile application
-    * When in the guide, fill out the package field with TODO
+    * When in the guide, fill out the package field with `com.google.firebase.example.fireeats`
 
 # Android Setup
 
@@ -47,26 +47,36 @@ For this workshop, I've added contact info to the default restaurant information
 If you do not have the mobile app running and still want to trigger the Cloud Functions, you can follow these instructions to create data in Firestore.
 1. Go to the Firebase console
 2. Go to the Firestore console
-3. Add a new collection called restaurants
-4. Add the following data: TODO
-5. To trigger the function, add a new collection called ratings if it isn't already there and add a rating document with the following data: TODO
+3. Add a new collection called `restaurants`
+4. Add the following data in a new document (with any name or default name):
+    * avgRating: <any number 1 - 5>
+    * category: <any String>
+    * contact: <any String>
+    * name: <any String>
+    * numRatings: <any integer>
+    * photo: `https://storage.googleapis.com/firestorequickstarts.appspot.com/food_1.png` or any image link you have available
+    * price: <any integer 1 - 3>
+5. To trigger the function, add a new collection called ratings if it isn't already there and add a rating document with the following data:
+    * rating: <any number 1 - 5>
+    * text: <any String>
+    * timestamp: Fill in any date and a time like `3:47:50 PM` with timestamp type
+    * userId: <any String>
+    * userName: <any String>
 
 # Cloud Function: Email the Restaurant
 The code for this cloud function is written here:
 
-You can copy paste the main.py and requirements.txt into a new cloud function in the GCP console to run the code. Make sure to set the function to execute as TODO, the trigger as TODO, the resourced as TODO.
+You can copy paste the main.py and requirements.txt into a new cloud function in the GCP console to run the code. Make sure to set the function to execute as `email_restaurant`, the trigger as Cloud Firestore trigger and event type `create`, and the resource as `restaurants/{restaurant}/ratings/{rating}`.
 
 # Cloud Function: Get the Reviews via HTTP
 The code for this cloud function is written here:
 
-You can copy paste the main.py and requirements.txt into a new cloud function in the GCP console to run the code. Make sure to set the function to execute as TODO, the trigger as TODO, the resourced as TODO.
-
-When asked for permissions, you can either leave this as all external or make it private. We can change this later.
+You can copy paste the main.py and requirements.txt into a new cloud function in the GCP console to run the code. Make sure to set the function to execute as `get_reviews` and the trigger as HTTP. When asked for allow unauthenticated invocations, we'll need this checked for the workshop but this can be changed later if you'd like to turn it off. Generally, having allow all is risky because then anyone on the internet can run your function.
 
 # Additional Information
 ## Deploying via gcloud command line tools
 Instead of deploying by hand, you can deploy cloud functions through two different command line tools.
-* (Recommended) Firebase CLI can be downloaded [here](https://firebase.google.com/docs/cli/)
+* (Recommended) Firebase CLI can be downloaded here: https://firebase.google.com/docs/cli/
 * gcloud CLI can be downloaded [here](https://cloud.google.com/sdk/gcloud/)
 ## Cloud Function Configuration
 Here's a bit more info about the configuration of the Cloud Functions:
