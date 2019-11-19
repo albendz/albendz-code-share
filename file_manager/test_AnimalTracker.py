@@ -1,18 +1,18 @@
 import unittest
-from AnimalTracker import AnimalTracker, FileTuple
-from file_queue import Queue, Stack
+from AnimalTracker import AnimalTracker, AnimalData
+from file_queue import QueueStack
 from datafile import DataFile
 
 class MapTest(unittest.TestCase):
 
     def test_file_tuple(self):
-        queue_tuple_default = FileTuple()
-        queue_tuple = FileTuple(True)
-        stack_tuple = FileTuple(False)
+        queue_tuple = AnimalData()
+        stack_tuple = AnimalData()
+        stack_tuple.set_urgent(True)
+        queue_tuple.set_urgent(False)
 
-        self.assertEqual(type(queue_tuple_default.get_unprocessed()), type(Queue()))
-        self.assertEqual(type(queue_tuple.get_unprocessed()), type(Queue()))
-        self.assertEqual(type(stack_tuple.get_unprocessed()), type(Stack()))
+        self.assertEqual(queue_tuple.is_urgent(), False)
+        self.assertEqual(stack_tuple.is_urgent(), True)
 
     def test_tracker(self):
         tracker = AnimalTracker()
@@ -28,11 +28,11 @@ class MapTest(unittest.TestCase):
         tracker.add_file(file_one)
 
         self.assertEqual(tracker.get_animals(), ["turtle"])
-        self.assertEqual(tracker.get_animal("turtle").get_unprocessed().get_count(), 1)
+        self.assertEqual(tracker.get_animal("turtle").get_raw().get_length(), 1)
 
         tracker.add_file(file_two)
         self.assertEqual(tracker.get_animals(), ["turtle"])
-        self.assertEqual(tracker.get_animal("turtle").get_unprocessed().get_count(), 2)
+        self.assertEqual(tracker.get_animal("turtle").get_raw().get_length(), 2)
 
         tracker.add_file(file_three)
         self.assertEqual(tracker.get_animals(), ["turtle", "octopus"])

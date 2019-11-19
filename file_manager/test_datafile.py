@@ -5,7 +5,6 @@ from datafile import DataFile
 
 class FileTest(unittest.TestCase):
 
-
     def test_tracking_file(self):
 
         test_file = DataFile(self.animal_name, self.filename, self.path)

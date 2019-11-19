@@ -1,4 +1,5 @@
 class DoubleLinkedListNode:
+    # TODO change from node to element
     # Node is a graphy term
     # DoubleLinkedListElement is also a good way to name this class
     def __init__(self, file, previous=None, next=None):
@@ -92,7 +93,7 @@ class DoubleLinkedList:
     def insert_at_index(self, index, data):
         if index == 0:
             return self.insert_first(data)
-            
+
         if index == self.get_length():
             return self.insert_last(data)
 

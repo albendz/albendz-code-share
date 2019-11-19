@@ -18,11 +18,11 @@ animal_data.add_file(DataFile('thomas', 'thomas_0.csv'))
 animal_data.add_file(DataFile('thomas', 'thomas_1.csv'))
 animal_data.add_file(DataFile('thomas', 'thomas_2.csv'))
 
-use_stack = False # false to say don't use a queue - this is a bit silly - don't
-# worry if it doesn't make sense
-animal_data.add_file(DataFile('brunswick', 'brunswick_0.csv'), use_stack)
-animal_data.add_file(DataFile('brunswick', 'brunswick_1.csv'), use_stack)
-animal_data.add_file(DataFile('brunswick', 'brunswick_2.csv'), use_stack)
+animal_data.add_file(DataFile('brunswick', 'brunswick_0.csv'))
+animal_data.add_file(DataFile('brunswick', 'brunswick_1.csv'))
+animal_data.add_file(DataFile('brunswick', 'brunswick_2.csv'))
+
+animal_data.get('brunswick').set_urgent(true) # set this to use a stack or LIFO
 
 # list animals in our map
 animal_list = animal_data.get_animals()

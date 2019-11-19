@@ -1,0 +1,3 @@
+google-cloud-firestore>=0.4.7
+sendgrid>=6.1.0
+google-auth>=1.7.1
