@@ -12,6 +12,7 @@ def email_restaurant(event, context=None):
     google.auth.default()
     
     # Get the restaurant id
+    # like: projects/wwcproject-493a1/databases/(default)/documents/restaurants/2tWYV7x7dsCkHZrMyqXf/ratings/a8stXTWj7PwOA05q57ci
     restaurant_id = "/".join(event['value']['name'].split('/')[6:7])
 
     # Get the restaurant data

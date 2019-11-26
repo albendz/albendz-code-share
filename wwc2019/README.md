@@ -30,12 +30,15 @@ There is a lot of setup for this project but you can do it in pieces and focus o
 * Firestore:
     * Enable Firestore
     * Allow Firestore email authentication
+    * Set Security rules for authenticated users (https://firebase.google.com/docs/firestore/security/get-started)
 * Create a Firestore app for your mobile application
     * When in the guide, fill out the package field with `com.google.firebase.example.fireeats`
 
 # Android Setup
 
 * You can follow the tutorial here https://codelabs.developers.google.com/codelabs/firestore-android/#0 or you can clone my repo with most of the code already written here https://github.com/albendz/friendlyeats-android
+* The diff for adding Firestore code to write reviews is here: https://github.com/albendz/friendlyeats-android/commit/c20392e32dbaa7f27e416b66db828fe484f0737d
+* The diff to add contact info is here: https://github.com/albendz/friendlyeats-android/commit/ec68d8b014219e67d9d284996e599d38176f78f1
 
 # iOS Setup
 Unfortunately, I don't have the iOS code ready so you'll need to follow the tutorial here https://codelabs.developers.google.com/codelabs/firestore-ios/#0
@@ -78,6 +81,7 @@ You can copy paste the main.py and requirements.txt into a new cloud function in
 Instead of deploying by hand, you can deploy cloud functions through two different command line tools.
 * (Recommended) Firebase CLI can be downloaded here: https://firebase.google.com/docs/cli/
 * gcloud CLI can be downloaded [here](https://cloud.google.com/sdk/gcloud/)
+
 ## Cloud Function Configuration
 Here's a bit more info about the configuration of the Cloud Functions:
 * Source Code: You can upload source code through a few different methods depending on your workflow. We've used the inline editor but for automated deployments you can use zip upload, zip from cloud storage, or cloud source repository (GCP hosted code repo). Using Cloud Storage can allow you to keep a history of your deployments. Otherwise, the old code is deleted and you won't be able to restore old versions.
@@ -88,6 +92,7 @@ Here's a bit more info about the configuration of the Cloud Functions:
 * Retry on failure: This will cause the failed executions to retry infinitely for 7 days. Don't use this.
 * Networking: Allow access to resources in private VPCs.
 * Environment variables: Set environment variables to access in your code. I've had issues with these so use carefully.
+
 ## Firestore Security Rules
 * The codelab and Firestore setup shows how to set rules to only allow authenticated users to  access Firestore. These can be expanded to be collection or document specific, authentication type specific, and you can add custom rules as well. More information can be found on this here: https://firebase.google.com/docs/firestore/security/rules-structure
 ## Logging, Metrics, and Alerting
