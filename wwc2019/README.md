@@ -79,7 +79,7 @@ You can copy paste the main.py and requirements.txt into a new cloud function in
 # Additional Information
 ## Deploying via gcloud command line tools
 Instead of deploying by hand, you can deploy cloud functions through two different command line tools.
-* (Recommended) Firebase CLI can be downloaded here: https://firebase.google.com/docs/cli/
+* (Recommended but JS only) Firebase CLI can be downloaded here: https://firebase.google.com/docs/cli/
 * gcloud CLI can be downloaded [here](https://cloud.google.com/sdk/gcloud/)
 
 ## Cloud Function Configuration
