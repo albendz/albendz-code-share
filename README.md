@@ -6,3 +6,6 @@ So far this has a function called contactMe.py which is an AWS Lambda function t
 
 ## File Manager
 A collection of examples for data structures and algorithms.
+
+## Women Who Code Connect NYC 2019
+A presentation for a workshop showing how to extend mobile apps with serverless using Firebase Firestore.
