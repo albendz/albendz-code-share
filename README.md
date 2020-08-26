@@ -9,3 +9,6 @@ A collection of examples for data structures and algorithms.
 
 ## Women Who Code Connect NYC 2019
 A presentation for a workshop showing how to extend mobile apps with serverless using Firebase Firestore.
+
+## Kotlin Playground
+Setting up a Kotlin JVM project with IntelliJ to run a bit of Kotlin code.
