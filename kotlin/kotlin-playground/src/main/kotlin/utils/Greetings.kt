@@ -10,6 +10,6 @@ fun goodbye() : String = "Goodbye!"
 fun hour() : String = instantToHour(Instant.now())
 
 fun instantToHour(i : Instant): String {
-    var formatter = DateTimeFormatter.ofPattern("hh:mm a").withZone(ZoneId.systemDefault())
-    return "It is " + formatter.format(i)
+    val formatter = DateTimeFormatter.ofPattern("hh:mm a").withZone(ZoneId.systemDefault())
+    return "It is ${formatter.format(i)}"
 }
