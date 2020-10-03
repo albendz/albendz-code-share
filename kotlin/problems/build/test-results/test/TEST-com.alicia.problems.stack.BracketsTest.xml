@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.alicia.problems.stack.BracketsTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-10-03T15:39:43" hostname="DESKTOP-IV3AVVE" time="0.023">
+  <properties/>
+  <testcase name="Empty brackets string returns true()" classname="com.alicia.problems.stack.BracketsTest" time="0.017"/>
+  <testcase name="Unmatched bracket string returns false for only closed()" classname="com.alicia.problems.stack.BracketsTest" time="0.002"/>
+  <testcase name="Unmatched bracket string returns false for only open()" classname="com.alicia.problems.stack.BracketsTest" time="0.001"/>
+  <testcase name="Matched bracket string returns true()" classname="com.alicia.problems.stack.BracketsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
