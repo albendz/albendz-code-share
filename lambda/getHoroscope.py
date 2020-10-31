@@ -44,7 +44,7 @@ def getHoroscope(sign):
 
 def publish_to_sns(sign):
     sns = boto3.client(service_name="sns")
-    topicArn = 'arn:aws:sns:us-west-2:068306185445:horoscope'
+    topicArn = 'arn:aws:sns:us-west-2:<account#>:horoscope'
  
     sns.publish(
         TopicArn = topicArn,

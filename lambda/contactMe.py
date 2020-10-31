@@ -20,7 +20,7 @@ def lambda_handler(event, context):
 
 def publish_to_sns(message, contact, date):
     sns = boto3.client(service_name="sns")
-    topicArn = 'arn:aws:sns:us-west-2:068306185445:contact'
+    topicArn = 'arn:aws:sns:us-west-2:<account#>:contact'
  
     sns.publish(
         TopicArn = topicArn,
@@ -30,7 +30,7 @@ def publish_to_sns(message, contact, date):
 
 def save_to_dynamo(message):
     ddb = boto3.client(service_name="dynamodb")
-    table = "arn:aws:dynamodb:us-west-2:068306185445:table/contactRequests"
+    table = "arn:aws:dynamodb:us-west-2:<account#>:table/contactRequests"
     
     ddb.putItem(table, message);
     return
