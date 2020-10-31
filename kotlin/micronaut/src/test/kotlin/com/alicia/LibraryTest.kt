@@ -12,8 +12,7 @@ class LibraryTest {
     lateinit var application: EmbeddedApplication<*>
 
     @Test
-    fun testItWorks() {
+    fun `WHEN application is started THEN application is running`() {
         Assertions.assertTrue(application.isRunning)
     }
-
 }

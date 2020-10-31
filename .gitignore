@@ -1,0 +1,13 @@
+**/build
+**/.gradle
+
+*.bin
+kotlin/micronaut/.gradle/6.7/executionHistory/executionHistory.lock
+kotlin/micronaut/.gradle/6.7/executionHistory/executionHistory.lock
+kotlin/micronaut/.gradle/6.7/gc.properties
+kotlin/micronaut/.gradle/6.7/fileChanges/last-build.bin
+kotlin/micronaut/.gradle/6.7/fileHashes/fileHashes.bin
+kotlin/micronaut/.gradle/6.7/fileHashes/fileHashes.lock
+kotlin/micronaut/.gradle/6.7/fileHashes/resourceHashesCache.bin
+*.bin
+*.lock
