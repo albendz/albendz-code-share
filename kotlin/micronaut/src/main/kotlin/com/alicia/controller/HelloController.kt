@@ -8,5 +8,6 @@ import io.micronaut.http.annotation.QueryValue
 class HelloController {
 
     @Get("/hello")
-    fun sayHello(@QueryValue name: String?): String = if (name == null) "Hello" else "Hello, $name!"
+    fun sayHello(@QueryValue name: String?): String =
+            name?.let { n -> "Hello, $n!" } ?: "Hello"
 }
