@@ -38,6 +38,7 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.sql:micronaut-hibernate-jpa")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation ('org.apache.commons:commons-csv:1.1')
 
     runtimeOnly("com.h2database:h2")
     runtimeOnly("ch.qos.logback:logback-classic")
