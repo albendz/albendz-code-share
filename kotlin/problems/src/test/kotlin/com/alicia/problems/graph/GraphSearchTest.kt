@@ -1,15 +1,25 @@
 package com.alicia.problems.graph
 
+import com.alicia.problems.com.alicia.problems.graph.GraphSearch
 import com.alicia.problems.com.alicia.problems.graph.Node
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class GraphSearchTest {
 
     @Test
-    fun `WHEN search with BFS THEN get shortest path`() {}
+    fun `WHEN search with BFS THEN get shortest path`() {
+        val path = GraphSearch.bfs(getExampleGraph(), "G")?.joinToString(", ")
+
+        assertEquals("A: [B, D, F], B: [A, C], C: [B, E, G], G: [C]", path)
+    }
 
     @Test
-    fun `WHEN search with DFS THEN get a path`() {}
+    fun `WHEN search with DFS THEN get a path`() {
+        val path = GraphSearch.dfs(getExampleGraph(), "G")?.joinToString(", ")
+
+        assertEquals("A: [B, D, F], F: [A, D, E], E: [F, C], C: [B, E, G], G: [C]", path)
+    }
 
 
     private fun getExampleGraph(): Node {
@@ -45,4 +55,5 @@ class GraphSearchTest {
         g.neighbours.add(c)
 
         return a
+    }
 }
