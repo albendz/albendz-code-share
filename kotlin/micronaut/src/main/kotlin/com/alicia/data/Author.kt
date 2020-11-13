@@ -1,28 +1,35 @@
 package com.alicia.data
 
+import com.alicia.model.AuthorResponse
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.persistence.*
 
 @Entity
 @Table(name = "author")
 data class Author (
+    @EmbeddedId
+    val authorName: Name,
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var authorId: UUID? = null,
-
-    @Column
-    var firstName: String? = null,
-
-    @Column
-    var lastName: String? = null,
-
-    @Column
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "birth_date")
     var birthDate: Date? = null,
 
-    @Column
+    @Temporal(value = TemporalType.DATE)
+    @Column(name = "death_date")
     var deathDate: Date? = null,
 
     @Lob
+    @Column(name = "biography")
     var biography: ByteArray? = null,
-)
+) {
+    fun toAuthorResponse(): AuthorResponse =
+            AuthorResponse(
+                    firstName = authorName.firstName,
+                    lastName = authorName.lastName,
+                    dob = birthDate?.let { DateTimeFormatter.ISO_DATE.format(it.toInstant()) },
+                    dod = deathDate?.let { DateTimeFormatter.ISO_DATE.format(it.toInstant()) },
+                    biography = "$biography",
+            )
+}

@@ -1,6 +1,7 @@
 package com.alicia.data
 
 import com.alicia.model.BookResponse
+import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.persistence.*
 
@@ -8,30 +9,29 @@ import javax.persistence.*
 @Table(name = "book")
 data class Book (
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var bookId: UUID? = null,
-
-    @Column(name = "title")
-    var  title: String? = null,
-
-    var publicationDate: Date? = null,
-
-    var genre: String? = null,
-
-    var status: String? = null, // Available, checked out, unavailable
-
+    @Column(name = "isbn")
     var isbn: String? = null,
 
     @ManyToOne
+    @Column(name = "author")
     var author: Author? = null,
+
+    @ManyToOne
+    @Column(name = "genre")
+    var genre: Genre? = null,
+
+    @Column(name = "publication_date")
+    var publicationDate: Date? = null,
+
+    @Column(name = "title")
+    var  title: String? = null,
 ) {
-    fun toBookResponse(): BookResponse = BookResponse(
-            id = bookId,
-            title = title,
-            author = "${author?.lastName}, ${author?.firstName}",
-            publicationDate = publicationDate?.toInstant()?.toEpochMilli(),
-            genre = genre,
-            status = status,
-            isbn = isbn,
-    )
+    fun toBookResponse(): BookResponse =
+            BookResponse(
+                author = "${author?.authorName?.lastName}, ${author?.authorName?.firstName}",
+                genre = genre?.toGenreResponse(),
+                isbn = isbn,
+                publicationDate = publicationDate?.let { DateTimeFormatter.ISO_DATE.format(it.toInstant()) },
+                title = title,
+            )
 }
