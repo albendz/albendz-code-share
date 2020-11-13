@@ -1,11 +1,10 @@
 package com.alicia.repositories
 
-import com.alicia.data.Book
+import com.alicia.data.Loan
 import io.micronaut.data.annotation.Repository
-import java.util.*
-import javax.inject.Singleton
 import io.micronaut.data.repository.CrudRepository
+import java.util.*
 
 @Repository
-abstract class BookRepository: CrudRepository<Book, String> {
+abstract class LoanRepository: CrudRepository<Loan, UUID> {
 }
