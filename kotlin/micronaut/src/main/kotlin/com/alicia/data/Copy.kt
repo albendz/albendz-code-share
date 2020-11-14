@@ -33,4 +33,4 @@ data class Copy (
     )
 }
 
-class MetadataTypeReference: TypeReference<Map<String, List<String>>>()
+private class MetadataTypeReference: TypeReference<Map<String, List<String>>>()

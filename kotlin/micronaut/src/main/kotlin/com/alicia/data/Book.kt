@@ -19,6 +19,7 @@ data class Book (
     @ManyToOne
     var genre: Genre? = null,
 
+    @Temporal(value = TemporalType.DATE)
     @Column(name = "publication_date")
     var publicationDate: Date? = null,
 
@@ -30,7 +31,7 @@ data class Book (
                 author = "${author?.lastName}, ${author?.firstName}",
                 genre = genre?.toGenreResponse(),
                 isbn = isbn,
-                publicationDate = publicationDate?.let { DateTimeFormatter.ISO_DATE.withZone( ZoneId.of("UTC")).format(it.toInstant()) },
+                publicationDate = null,
                 title = title,
             )
 }

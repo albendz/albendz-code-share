@@ -7,4 +7,7 @@ import java.util.*
 
 @Repository
 abstract class AuthorRepository: CrudRepository<Author, UUID> {
+
+    abstract fun findFirstByFirstNameAndLastName(firstName: String?, lastName: String?): Author?
+
 }
