@@ -1,36 +1,27 @@
 package com.alicia.controller
 
 import com.alicia.constants.Availabilities
+import com.alicia.model.AddAuthorRequest
 import com.alicia.model.AddBookRequest
+import com.alicia.model.AuthorResponse
 import com.alicia.model.BookResponse
-import com.alicia.services.BookService
+import com.alicia.services.AuthorService
 import io.micronaut.http.annotation.*
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import java.util.*
 import javax.inject.Inject
 
-@Controller("/book")
-class BookController {
+@Controller("/author")
+class AuthorController {
 
     @Inject
-    lateinit var bookService: BookService
-
-    @Get
-    @ApiResponses(
-            ApiResponse(
-                    description = "Return books from search",
-                    responseCode = "200"
-            )
-    )
-    fun searchBooks(
-            @QueryValue availability: Availabilities
-    ): String = "Unimplemented: $availability"
+    lateinit var authorService: AuthorService
 
     @Post(consumes = ["application/json"], produces = ["application/json"])
     @ApiResponses(
             ApiResponse(
-                    description = "Create a book",
+                    description = "Create an author",
                     responseCode = "201"
             ),
             ApiResponse(
@@ -38,25 +29,18 @@ class BookController {
                     responseCode = "400"
             )
     )
-    fun addBook(book: AddBookRequest): BookResponse = bookService.addBook(book)
+    fun addBook(author: AddAuthorRequest): AuthorResponse = authorService.addAuthor(author)
 
-    @Get("/{isbn}")
+    @Get("/{id}")
     @ApiResponses(
             ApiResponse(
-                    description = "Return book with ID",
+                    description = "Return author with ID",
                     responseCode = "200"
             ),
             ApiResponse(
-                    description = "Book with ID not found",
+                    description = "Author with ID not found",
                     responseCode = "404"
             )
     )
-    fun getBook(@PathVariable isbn: String): BookResponse = bookService.getBook(isbn)
-
-    // Search
-    //  Get book info
-
-    // Checkout
-    // Checkin
-    // Place hold
+    fun getBook(@PathVariable id: UUID): AuthorResponse = authorService.findAuthor(id)
 }

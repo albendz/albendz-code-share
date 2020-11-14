@@ -7,5 +7,7 @@ import javax.inject.Singleton
 import io.micronaut.data.repository.CrudRepository
 
 @Repository
-abstract class BookRepository: CrudRepository<Book, UUID> {
+abstract class BookRepository: CrudRepository<Book, String> {
+
+    abstract fun findFirstByIsbn(isbn: String): Book?
 }
