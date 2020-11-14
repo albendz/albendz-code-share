@@ -4,7 +4,10 @@ import com.alicia.constants.Availabilities
 import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.services.BookService
+import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
+import io.micronaut.http.multipart.CompletedFileUpload
+import io.micronaut.http.server.multipart.MultipartBody
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import java.util.*
@@ -53,9 +56,23 @@ class BookController {
     )
     fun getBook(@PathVariable isbn: String): BookResponse = bookService.getBook(isbn)
 
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Post("/upload")
+    @ApiResponses(
+            ApiResponse(
+                    description = "Created all books",
+                    responseCode = "201"
+            ),
+            ApiResponse(
+                    description = "Invalid book data provided",
+                    responseCode = "400"
+            )
+    )
+    fun bulkCreate(csv: CompletedFileUpload): List<BookResponse> = bookService.bulkUpload(csv)
+
+
     // Search
     //  Get book info
-
     // Checkout
     // Checkin
     // Place hold
