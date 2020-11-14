@@ -1,11 +1,11 @@
 package com.alicia.services
 
-import com.alicia.data.Book
+import com.alicia.data.Genre
 import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.repositories.BookRepository
+import com.alicia.repositories.GenreRepository
 import org.slf4j.LoggerFactory
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,18 +17,25 @@ class BookService {
     @Inject
     lateinit var bookRepository: BookRepository
 
-    fun getBook(id: UUID): BookResponse {
-        return bookRepository.findById(id).let { book ->
-            if (book.isEmpty) {
-                logger.info("Book not found with ID $id")
-                throw Exception("Book not found") // TODO: not a generic exception
+    @Inject
+    lateinit var genreRepository: GenreRepository
+
+    fun getBook(isbn: String): BookResponse =
+        bookRepository.findFirstByIsbn(isbn).let { book ->
+            if (book != null) {
+                book.toBookResponse()
+            } else {
+                logger.debug("Book not found with ISBN: $isbn")
+                throw Exception("Book not found") // TODO: fix exceptions
             }
-            book.get().toBookResponse()
         }
-    }
 
     fun addBook(addBookRequest: AddBookRequest): BookResponse {
-        val book = bookRepository.save(addBookRequest.toBook())
+        val genre = addBookRequest.genre?.let {
+            genreRepository.findFirstByName(it)  ?: genreRepository.save(Genre(name = it))
+        }
+
+        val book = bookRepository.save(addBookRequest.toBook(genre))
         return book.toBookResponse()
     }
 }

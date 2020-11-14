@@ -1,6 +1,7 @@
 package com.alicia.data
 
 import com.alicia.model.HoldResponse
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.persistence.*
@@ -13,7 +14,7 @@ data class Hold (
         @Column(name = "id")
         val id: UUID? = null,
 
-        @Column(name = "book")
+        @ManyToOne
         val book: Book? = null,
 
         @Temporal(value = TemporalType.DATE)
@@ -21,14 +22,13 @@ data class Hold (
         val holdDate: Date? = null,
 
         @ManyToOne
-        @Column(name =  "member")
         val member: Member? = null,
 ) {
         fun toHoldResponse(): HoldResponse =
                 HoldResponse(
                         id = id,
                         isbn = book?.isbn,
-                        holdDate = holdDate?.let { DateTimeFormatter.ISO_DATE.format(it.toInstant()) },
-                        member = "${member?.memberName}",
+                        holdDate = holdDate?.let { DateTimeFormatter.ISO_DATE.withZone( ZoneId.of("UTC")).format(it.toInstant()) },
+                        member = "${member?.lastName}, ${member?.firstName}",
                 )
 }

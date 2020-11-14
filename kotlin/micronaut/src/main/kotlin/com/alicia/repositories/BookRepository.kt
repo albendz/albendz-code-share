@@ -8,4 +8,6 @@ import io.micronaut.data.repository.CrudRepository
 
 @Repository
 abstract class BookRepository: CrudRepository<Book, String> {
+
+    abstract fun findFirstByIsbn(isbn: String): Book?
 }

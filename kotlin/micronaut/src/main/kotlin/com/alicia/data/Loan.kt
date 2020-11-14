@@ -1,6 +1,7 @@
 package com.alicia.data
 
 import com.alicia.model.LoanResponse
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.persistence.*
@@ -13,7 +14,7 @@ data class Loan(
         @Column(name = "id")
         val id: UUID? = null,
 
-        @Column(name = "copy")
+        @OneToOne
         val copy: Copy? = null,
 
         @Temporal(value = TemporalType.DATE)
@@ -24,15 +25,14 @@ data class Loan(
         val lengthDays: Int? = null,
 
         @ManyToOne
-        @Column(name =  "member")
         val member: Member? = null,
 ) {
         fun toLoanResponse(): LoanResponse =
                 LoanResponse(
                         id = id,
                         copyId = copy?.copyId,
-                        loanDate = loanDate?.let { DateTimeFormatter.ISO_DATE.format(it.toInstant()) },
+                        loanDate = loanDate?.let { DateTimeFormatter.ISO_DATE.withZone( ZoneId.of("UTC")).format(it.toInstant()) },
                         loanLength = lengthDays,
-                        member = "${member?.memberName}",
+                        member = "${member?.lastName}, ${member?.firstName}",
                 )
 }

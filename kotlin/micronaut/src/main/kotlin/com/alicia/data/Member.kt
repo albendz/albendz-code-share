@@ -7,15 +7,23 @@ import javax.persistence.*
 @Entity
 @Table(name = "member")
 data class Member(
-        @EmbeddedId
-        val memberName: Name,
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        @Column(name = "id")
+        val id: UUID? = null,
+
+        @Column(name = "first_name")
+        val firstName: String? = null,
+
+        @Column(name = "last_name")
+        val lastName: String? = null,
 
         @Column(name = "overdue_fees")
         val overdueFees: Int? = null,
 ) {
         fun toMemberResponse(): MemberResponse =
                 MemberResponse(
-                        name = "$memberName",
+                        name = "$lastName, $firstName",
                         overdueFees = overdueFees,
                 )
 }

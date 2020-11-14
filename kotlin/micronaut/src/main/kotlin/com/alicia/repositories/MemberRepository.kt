@@ -1,10 +1,10 @@
 package com.alicia.repositories
 
 import com.alicia.data.Member
-import com.alicia.data.Name
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.repository.CrudRepository
+import java.util.*
 
 @Repository
-abstract class MemberRepository: CrudRepository<Member, Name> {
+abstract class MemberRepository: CrudRepository<Member, UUID> {
 }

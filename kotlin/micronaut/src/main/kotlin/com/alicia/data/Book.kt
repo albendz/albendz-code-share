@@ -1,6 +1,7 @@
 package com.alicia.data
 
 import com.alicia.model.BookResponse
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.persistence.*
@@ -13,11 +14,9 @@ data class Book (
     var isbn: String? = null,
 
     @ManyToOne
-    @Column(name = "author")
     var author: Author? = null,
 
     @ManyToOne
-    @Column(name = "genre")
     var genre: Genre? = null,
 
     @Column(name = "publication_date")
@@ -28,10 +27,10 @@ data class Book (
 ) {
     fun toBookResponse(): BookResponse =
             BookResponse(
-                author = "${author?.authorName?.lastName}, ${author?.authorName?.firstName}",
+                author = "${author?.lastName}, ${author?.firstName}",
                 genre = genre?.toGenreResponse(),
                 isbn = isbn,
-                publicationDate = publicationDate?.let { DateTimeFormatter.ISO_DATE.format(it.toInstant()) },
+                publicationDate = publicationDate?.let { DateTimeFormatter.ISO_DATE.withZone( ZoneId.of("UTC")).format(it.toInstant()) },
                 title = title,
             )
 }

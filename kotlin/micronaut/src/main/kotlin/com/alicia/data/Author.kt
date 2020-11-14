@@ -2,6 +2,7 @@ package com.alicia.data
 
 import com.alicia.model.AuthorResponse
 import java.time.Instant
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.persistence.*
@@ -9,8 +10,17 @@ import javax.persistence.*
 @Entity
 @Table(name = "author")
 data class Author (
-    @EmbeddedId
-    val authorName: Name,
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    val id: UUID? = null,
+
+    @Column(name = "first_name")
+    val firstName: String? = null,
+
+    @Column(name = "last_name")
+    val lastName: String? = null,
 
     @Temporal(value = TemporalType.DATE)
     @Column(name = "birth_date")
@@ -26,10 +36,11 @@ data class Author (
 ) {
     fun toAuthorResponse(): AuthorResponse =
             AuthorResponse(
-                    firstName = authorName.firstName,
-                    lastName = authorName.lastName,
-                    dob = birthDate?.let { DateTimeFormatter.ISO_DATE.format(it.toInstant()) },
-                    dod = deathDate?.let { DateTimeFormatter.ISO_DATE.format(it.toInstant()) },
-                    biography = "$biography",
+                    id = id,
+                    firstName = firstName,
+                    lastName = lastName,
+                    dob = birthDate?.let { DateTimeFormatter.ISO_DATE.withZone( ZoneId.of("UTC")).format(it.toInstant()) },
+                    dod = deathDate?.let { DateTimeFormatter.ISO_DATE.withZone( ZoneId.of("UTC")).format(it.toInstant()) },
+                    biography = biography?.let { String(it) },
             )
 }

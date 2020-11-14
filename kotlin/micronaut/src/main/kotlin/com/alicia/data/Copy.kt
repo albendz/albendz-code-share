@@ -16,7 +16,6 @@ data class Copy (
     var copyId: UUID? = null,
 
     @ManyToOne
-    @Column(name = "book")
     var book: Book? = null,
 
     @Column(name = "status")

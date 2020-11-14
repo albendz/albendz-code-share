@@ -32,6 +32,7 @@ data class AuthorResponse(
         val dob: String?,
         val dod: String?,
         val biography: String?,
+        val id: UUID?,
 )
 
 @JsonInclude(JsonInclude.Include.ALWAYS)

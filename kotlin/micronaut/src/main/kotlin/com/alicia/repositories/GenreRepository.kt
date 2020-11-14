@@ -7,4 +7,7 @@ import java.util.*
 
 @Repository
 abstract class GenreRepository: CrudRepository<Genre, UUID> {
+
+    abstract fun findFirstByName(name: String): Genre?
+
 }
