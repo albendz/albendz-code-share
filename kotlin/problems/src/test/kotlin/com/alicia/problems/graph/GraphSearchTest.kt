@@ -3,6 +3,7 @@ package com.alicia.problems.graph
 import com.alicia.problems.com.alicia.problems.graph.GraphSearch
 import com.alicia.problems.com.alicia.problems.graph.Node
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 
 class GraphSearchTest {
@@ -19,6 +20,48 @@ class GraphSearchTest {
         val path = GraphSearch.dfs(getExampleGraph(), "G")?.joinToString(", ")
 
         assertEquals("A: [B, D, F], F: [A, D, E], E: [F, C], C: [B, E, G], G: [C]", path)
+    }
+
+    @Test
+    fun `WHEN search with BFS no solution THEN return null`() {
+        val path = GraphSearch.bfs(getExampleGraph(), "W")?.joinToString(", ")
+
+        assertNull(path)
+    }
+
+    @Test
+    fun `WHEN search with DFS no solution THEN return null`() {
+        val path = GraphSearch.dfs(getExampleGraph(), "W")?.joinToString(", ")
+
+        assertNull(path)
+    }
+
+    @Test
+    fun `WHEN search BFS root is target THEN return list of target`() {
+        val path = GraphSearch.bfs(getExampleGraph(), "A")?.joinToString(", ")
+
+        assertEquals("A: [B, D, F]", path)
+    }
+
+    @Test
+    fun `WHEN search DFS root is target THEN return list of target`() {
+        val path = GraphSearch.dfs(getExampleGraph(), "A")?.joinToString(", ")
+
+        assertEquals("A: [B, D, F]", path)
+    }
+
+    @Test
+    fun `WHEN search BFS root only node THEN return null`() {
+        val path = GraphSearch.bfs(Node("A", mutableListOf()), "G")?.joinToString(", ")
+
+        assertNull(path)
+    }
+
+    @Test
+    fun `WHEN search DFS root is only node THEN return null`() {
+        val path = GraphSearch.dfs(Node("A", mutableListOf()), "G")?.joinToString(", ")
+
+        assertNull(path)
     }
 
 

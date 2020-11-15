@@ -3,6 +3,7 @@ package com.alicia.problems.com.alicia.problems.graph
 import java.util.*
 
 object GraphSearch {
+
     fun bfs(start: Node, target: String): List<Node>? {
         val next: Queue<Node> = LinkedList<Node>()
         val visited: MutableList<Node> = mutableListOf()
@@ -14,7 +15,7 @@ object GraphSearch {
             val current = next.remove()
             println(current)
 
-            if (current.data.equals(target)) {
+            if (current.data == target) {
                 println("Found!")
                 return getPathFromNode(current)
             }
@@ -31,20 +32,6 @@ object GraphSearch {
         return null
     }
 
-    fun getPathFromNode(node: Node): List<Node> {
-        val path = mutableListOf<Node>()
-
-        var current: Node? = node
-        while (current != null) {
-            path.add(current)
-            current = current.source
-        }
-
-        path.reverse()
-
-        return path
-    }
-
     fun dfs(start: Node, target: String): List<Node>? {
         val next: Stack<Node> = Stack()
         val visited: MutableList<Node> = mutableListOf()
@@ -56,7 +43,7 @@ object GraphSearch {
             val current = next.pop()
             println(current)
 
-            if (current.data.equals(target)) {
+            if (current.data == target) {
                 println("Found!")
                 return getPathFromNode(current)
             }
@@ -71,5 +58,19 @@ object GraphSearch {
         }
 
         return null
+    }
+
+    private fun getPathFromNode(node: Node): List<Node> {
+        val path = mutableListOf<Node>()
+
+        var current: Node? = node
+        while (current != null) {
+            path.add(current)
+            current = current.source
+        }
+
+        path.reverse()
+
+        return path
     }
 }
