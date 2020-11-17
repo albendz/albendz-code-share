@@ -4,6 +4,7 @@ plugins {
     id "org.jetbrains.kotlin.plugin.allopen" version "1.4.10"
     id "com.github.johnrengelman.shadow" version "6.0.0"
     id "io.micronaut.application" version '1.0.5'
+    id "jacoco"
 }
 
 version "0.1"
@@ -50,6 +51,11 @@ java {
     sourceCompatibility = JavaVersion.toVersion('11')
 }
 
+jacoco {
+    toolVersion = "0.8.6"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
 compileKotlin {
     kotlinOptions {
         jvmTarget = '11'
@@ -61,5 +67,28 @@ compileTestKotlin {
     }
 }
 
+check.dependsOn jacocoTestCoverageVerification
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = 'CLASS'
+            // White list
+            limit {
+                minimum = 0.70
+            }
+        }
+    }
+}
 
+jacocoTestReport {
+    dependsOn test
+    description 'Generates Code coverage report. Fails build if it does not meet minimum coverage.'
 
+    reports {
+        xml.enabled = true    //XML required by coveralls and for the     below coverage checks
+        html.enabled = true
+        csv.enabled = false
+    }
+}
+
+test.finalizedBy jacocoTestReport
