@@ -1,5 +1,6 @@
 package com.alicia.services
 
+import com.alicia.exceptions.AuthorNotFoundException
 import com.alicia.model.AddAuthorRequest
 import com.alicia.model.AuthorResponse
 import com.alicia.repositories.AuthorRepository
@@ -27,7 +28,7 @@ class AuthorService {
             return author.get().toAuthorResponse()
         } else {
             logger.info("Author not found by ID: $id")
-            throw Exception("Author not found")
+            throw AuthorNotFoundException(id)
         }
     }
 }
