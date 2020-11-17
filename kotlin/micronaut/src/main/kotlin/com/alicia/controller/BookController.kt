@@ -3,6 +3,7 @@ package com.alicia.controller
 import com.alicia.constants.Availabilities
 import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
+import com.alicia.model.BulkUploadResponse
 import com.alicia.services.BookService
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
@@ -68,7 +69,7 @@ class BookController {
                     responseCode = "400"
             )
     )
-    fun bulkCreate(csv: CompletedFileUpload): List<BookResponse> = bookService.bulkUpload(csv)
+    fun bulkCreate(csv: CompletedFileUpload): BulkUploadResponse = bookService.bulkUpload(csv)
 
 
     // Search
