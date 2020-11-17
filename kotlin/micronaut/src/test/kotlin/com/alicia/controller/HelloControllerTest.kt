@@ -1,4 +1,4 @@
-package com.alicia.controllers
+package com.alicia.controller
 
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
