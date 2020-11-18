@@ -8,11 +8,11 @@ class WordLadderTest {
 
     @Test
     fun `WHEN find word ladder THEN return word ladder path`() {
-        val expected = listOf("HEAD", "TEAL", "TELL", "TALL", "TAIL")
+        val expected = listOf("HEAD", "HEAL", "TEAL", "TELL", "TALL", "TAIL")
         val result = WordLadder.findWordLadder("HEAD", "TAIL")
 
         assertEquals(expected.size, result?.size)
-        for(i in 0..expected.size) {
+        for(i in expected.indices) {
             assertEquals(expected[i], result!![i], "Expected ${expected[i]} but was ${result[i]}")
         }
     }
