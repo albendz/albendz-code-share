@@ -2,7 +2,7 @@ package com.alicia.controller
 
 import io.micronaut.http.annotation.Controller
 
-@Controller("/members")
+@Controller("/member")
 class MemberController {
 
     // Get user
