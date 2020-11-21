@@ -25,11 +25,11 @@ class AuthorController {
                     responseCode = "201"
             ),
             ApiResponse(
-                    description = "Invalid book data provided",
+                    description = "Invalid author data provided",
                     responseCode = "400"
             )
     )
-    fun addBook(author: AddAuthorRequest): AuthorResponse = authorService.addAuthor(author)
+    fun addAuthor(author: AddAuthorRequest): AuthorResponse = authorService.addAuthor(author)
 
     @Get("/{id}")
     @ApiResponses(

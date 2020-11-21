@@ -22,7 +22,7 @@ class LibraryExceptionHandler :  ExceptionHandler<LibraryApiException, HttpRespo
 
 @Produces
 @Singleton
-@Requires(classes = [LibraryApiException::class, ExceptionHandler::class])
+@Requires(classes = [ExceptionHandler::class])
 class DatabaseExceptionHandler :  ExceptionHandler<HibernateException, HttpResponse<String>> {
 
     override fun handle(request: HttpRequest<*>?, exception: HibernateException?): HttpResponse<String>? =
