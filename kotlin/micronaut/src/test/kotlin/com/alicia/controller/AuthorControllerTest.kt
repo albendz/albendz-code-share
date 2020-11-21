@@ -8,19 +8,19 @@ import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.runtime.server.EmbeddedServer
+import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito
+import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import java.util.*
 import javax.inject.Inject
 
 @MicronautTest
 class AuthorControllerTests {
-
-    @Inject
-    lateinit var server: EmbeddedServer
 
     @Inject
     @field:Client("/author")
@@ -30,14 +30,14 @@ class AuthorControllerTests {
     lateinit var authorService: AuthorService
 
     @Inject
-    lateinit var authorRepository: AuthorRepository
-
-    @Inject
     lateinit var authorController: AuthorController
+
+    @MockBean(AuthorService::class)
+    fun authorService(): AuthorService = mock(AuthorService::class.java)
 
     @BeforeEach
     fun setup() {
-        MockitoAnnotations.initMocks(this)
+        MockitoAnnotations.openMocks(this)
     }
 
     @Test
@@ -61,21 +61,24 @@ class AuthorControllerTests {
         val request = HttpRequest.POST("", addAuthorRequest)
 
         // Mocks
+        Mockito.`when`(authorService.addAuthor(addAuthorRequest)).thenReturn(expectedResponse)
 
         // Action
         val actualResponse = client.toBlocking()
                 .retrieve(request, AuthorResponse::class.java)
 
         // Verify
-        assertEquals(expectedResponse, actualResponse.copy(id = id))
+        assertEquals(expectedResponse, actualResponse)
     }
 
     @Test
-    fun `WHEN creating invalid author THEN return 400`() {}
+    fun `WHEN creating invalid author THEN return 400`() {
+        // TODO: Unimplemented
+    }
 
     @Test
     fun `WHEN get existing author THEN return existing author`() {}
 
     @Test
-    fun `WHEN get  non-extant author THEN return 404`() {}
+    fun `WHEN get non-extant author THEN return 404`() {}
 }

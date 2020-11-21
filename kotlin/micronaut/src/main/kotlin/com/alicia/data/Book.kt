@@ -5,6 +5,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.persistence.*
+import kotlin.jvm.Transient
 
 @Entity
 @Table(name = "book")
@@ -27,6 +28,7 @@ data class Book (
     var  title: String? = null,
 ) {
 
+    @Transient
     var copies: List<Copy> = emptyList()
 
     fun toBookResponse(): BookResponse =
