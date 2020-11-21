@@ -5,13 +5,12 @@ import com.alicia.model.AddAuthorRequest
 import com.alicia.model.AuthorResponse
 import com.alicia.repositories.AuthorRepository
 import org.slf4j.LoggerFactory
-import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AuthorService {
+open class AuthorService {
 
     private val logger = LoggerFactory.getLogger(AuthorService::class.java)
 
@@ -19,6 +18,7 @@ class AuthorService {
     lateinit var authorRepository: AuthorRepository
 
     fun addAuthor(request: AddAuthorRequest): AuthorResponse =
+            // TODO: validation
             authorRepository.save(request.toAuthor()).toAuthorResponse()
 
     fun findAuthor(id: UUID): AuthorResponse {

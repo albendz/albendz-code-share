@@ -20,7 +20,7 @@ class LibraryController {
             Location(
                     city = libraryInfoConfiguration.city,
                     address = libraryInfoConfiguration.address,
-                    zipcode = libraryInfoConfiguration.zipcode,
+                    zipcode = libraryInfoConfiguration.zipCode,
                     state = libraryInfoConfiguration.state,
                     country = libraryInfoConfiguration.country
             )

@@ -28,6 +28,7 @@ dependencies {
     kapt("io.micronaut.openapi:micronaut-openapi:2.1.1")
     kapt("io.micronaut.data:micronaut-data-processor:2.1.0")
 
+
     implementation("io.micronaut:micronaut-validation")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
@@ -44,6 +45,11 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    // Tests
+    implementation("org.mockito:mockito-core:3.6.0")
+    implementation("junit:junit:4.13.1")
+    
 }
 
 mainClassName = "com.alicia.Application"

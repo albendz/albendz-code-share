@@ -7,8 +7,8 @@ data class AddAuthorRequest (
         val firstName: String?,
         val lastName: String?,
         val dob: Long?,
-        val dod: Long?,
-        val biography: String?,
+        val dod: Long? = null,
+        val biography: String? = null,
 ) {
     fun toAuthor(): Author =
         Author(

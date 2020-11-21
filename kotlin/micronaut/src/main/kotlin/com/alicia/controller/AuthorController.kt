@@ -42,5 +42,5 @@ class AuthorController {
                     responseCode = "404"
             )
     )
-    fun getBook(@PathVariable id: UUID): AuthorResponse = authorService.findAuthor(id)
+    fun getAuthor(@PathVariable id: UUID): AuthorResponse = authorService.findAuthor(id)
 }

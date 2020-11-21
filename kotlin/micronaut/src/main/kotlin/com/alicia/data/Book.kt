@@ -26,6 +26,9 @@ data class Book (
     @Column(name = "title")
     var  title: String? = null,
 ) {
+
+    var copies: List<Copy> = emptyList()
+
     fun toBookResponse(): BookResponse =
             BookResponse(
                 author = "${author?.lastName}, ${author?.firstName}",
