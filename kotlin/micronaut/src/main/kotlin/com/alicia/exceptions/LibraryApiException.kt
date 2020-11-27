@@ -17,3 +17,6 @@ class FailureToReadImportCsvException:
 
 class EmptyImportCsvException:
         LibraryApiException("Empty CSV provided for bulk upload", HttpStatus.BAD_REQUEST)
+
+class InvalidRequestException(errors: List<String>):
+        LibraryApiException("Invalid request: [${errors.joinToString()}]", HttpStatus.BAD_REQUEST)

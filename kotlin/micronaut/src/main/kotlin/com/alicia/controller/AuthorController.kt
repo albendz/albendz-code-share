@@ -1,10 +1,7 @@
 package com.alicia.controller
 
-import com.alicia.constants.Availabilities
 import com.alicia.model.AddAuthorRequest
-import com.alicia.model.AddBookRequest
 import com.alicia.model.AuthorResponse
-import com.alicia.model.BookResponse
 import com.alicia.services.AuthorService
 import io.micronaut.http.annotation.*
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -29,7 +26,10 @@ class AuthorController {
                     responseCode = "400"
             )
     )
-    fun addAuthor(author: AddAuthorRequest): AuthorResponse = authorService.addAuthor(author)
+    fun addAuthor(addAuthorRequest: AddAuthorRequest): AuthorResponse {
+        addAuthorRequest.validate()
+        return authorService.addAuthor(addAuthorRequest)
+    }
 
     @Get("/{id}")
     @ApiResponses(

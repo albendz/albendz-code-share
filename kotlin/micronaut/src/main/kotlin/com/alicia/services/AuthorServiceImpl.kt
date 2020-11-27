@@ -18,9 +18,9 @@ class AuthorServiceImpl: AuthorService {
     lateinit var authorRepository: AuthorRepository
 
     override fun addAuthor(request: AddAuthorRequest): AuthorResponse =
-            // TODO: validation
             authorRepository.save(request.toAuthor()).toAuthorResponse()
 
+    @Throws(AuthorNotFoundException::class)
     override  fun findAuthor(id: UUID): AuthorResponse {
         val author = authorRepository.findById(id)
 
