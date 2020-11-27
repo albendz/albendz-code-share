@@ -1,17 +1,16 @@
 package com.alicia.controller
 
-import com.alicia.constants.Availabilities
+import com.alicia.constants.Availability
 import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.model.BulkUploadResponse
+import com.alicia.model.PaginatedBookResponse
 import com.alicia.services.BookService
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
 import io.micronaut.http.multipart.CompletedFileUpload
-import io.micronaut.http.server.multipart.MultipartBody
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
-import java.util.*
 import javax.inject.Inject
 
 @Controller("/book")
@@ -20,7 +19,7 @@ class BookController {
     @Inject
     lateinit var bookService: BookService
 
-    @Get
+    @Get("/search")
     @ApiResponses(
             ApiResponse(
                     description = "Return books from search",
@@ -28,8 +27,10 @@ class BookController {
             )
     )
     fun searchBooks(
-            @QueryValue availability: Availabilities
-    ): String = "Unimplemented: $availability"
+            @QueryValue(defaultValue = "AVAILABLE,UNAVAILABLE") availability: List<Availability>,
+            @QueryValue(defaultValue = "0") pageNumber: Int,
+            @QueryValue(defaultValue = "10") itemsPerPage: Int,
+    ): PaginatedBookResponse = bookService.search(availability, pageNumber, itemsPerPage)
 
     @Post(consumes = ["application/json"], produces = ["application/json"])
     @ApiResponses(
@@ -42,7 +43,10 @@ class BookController {
                     responseCode = "400"
             )
     )
-    fun addBook(book: AddBookRequest): BookResponse = bookService.addBook(book)
+    fun addBook(book: AddBookRequest): BookResponse {
+        book.validate()
+        return bookService.addBook(book)
+    }
 
     @Get("/{isbn}")
     @ApiResponses(
@@ -61,7 +65,7 @@ class BookController {
     @Post("/upload")
     @ApiResponses(
             ApiResponse(
-                    description = "Created all books",
+                    description = "All books attempted to import or record errors",
                     responseCode = "201"
             ),
             ApiResponse(
@@ -69,7 +73,7 @@ class BookController {
                     responseCode = "400"
             )
     )
-    fun bulkCreate(csv: CompletedFileUpload): BulkUploadResponse = bookService.bulkUpload(csv)
+    fun bulkCreate(@Body csv: CompletedFileUpload): BulkUploadResponse = bookService.bulkUpload(csv)
 
 
     // Search

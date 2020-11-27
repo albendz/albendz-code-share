@@ -87,6 +87,7 @@ class AuthorControllerTest {
         try {
             client.toBlocking()
                     .retrieve(request, AuthorResponse::class.java)
+            fail<Unit>()
         } catch (e: HttpClientResponseException) {
             assertEquals(HttpStatus.BAD_REQUEST, e.status)
         }
@@ -125,6 +126,7 @@ class AuthorControllerTest {
         try {
             client.toBlocking()
                     .retrieve(request, AuthorResponse::class.java)
+            fail<Unit>()
         } catch (e: HttpClientResponseException) {
             assertEquals(HttpStatus.NOT_FOUND, e.status)
         }

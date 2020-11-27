@@ -1,5 +1,6 @@
 package com.alicia.services
 
+import com.alicia.constants.Availability
 import com.alicia.constants.BookImportHeader
 import com.alicia.data.Author
 import com.alicia.data.Book
@@ -10,6 +11,7 @@ import com.alicia.exceptions.FailureToReadImportCsvException
 import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.model.BulkUploadResponse
+import com.alicia.model.PaginatedBookResponse
 import com.alicia.repositories.BookRepository
 import com.alicia.repositories.GenreRepository
 import io.micronaut.http.multipart.CompletedFileUpload
@@ -36,6 +38,10 @@ class BookServiceImpl: BookService {
 
     @Inject
     lateinit var genreRepository: GenreRepository
+
+    override fun search(availabilities: List<Availability>, pageNumber: Int, itemsPerPage: Int): PaginatedBookResponse {
+        TODO("Not yet implemented")
+    }
 
     override fun getBook(isbn: String): BookResponse =
         bookRepository.findFirstByIsbn(isbn).let { book ->

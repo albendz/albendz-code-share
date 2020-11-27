@@ -31,4 +31,4 @@ libraryInfo:
   state: "NY"
   address: "11  W 53rd St."
   country: "USA"
-  zipcode:  "10019"
+  zipCode:  "10019"

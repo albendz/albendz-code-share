@@ -1,11 +1,19 @@
 package com.alicia.services
 
+import com.alicia.constants.Availability
 import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.model.BulkUploadResponse
+import com.alicia.model.PaginatedBookResponse
 import io.micronaut.http.multipart.CompletedFileUpload
 
 interface BookService {
+
+    fun search(
+            availabilities: List<Availability>,
+            pageNumber: Int,
+            itemsPerPage: Int
+    ): PaginatedBookResponse
 
     fun getBook(isbn: String): BookResponse
 
