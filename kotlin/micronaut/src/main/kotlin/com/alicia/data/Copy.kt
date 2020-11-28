@@ -1,6 +1,5 @@
 package com.alicia.data
 
-import com.alicia.model.BookResponse
 import com.alicia.model.CopyResponse
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper

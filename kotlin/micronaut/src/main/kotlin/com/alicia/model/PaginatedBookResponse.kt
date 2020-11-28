@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 data class PaginatedBookResponse(
         val numberOfPages: Int,
         val currentPage: Int,
-        val itemsPerPage: Int,
+        val itemsOnPage: Int,
+        val totalItems: Long,
         val books: List<BookResponse>,
 )

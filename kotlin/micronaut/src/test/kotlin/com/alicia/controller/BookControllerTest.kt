@@ -47,7 +47,7 @@ class BookControllerTest {
     fun `WHEN search for books with default availability THEN return books`() {
         val isbn = "0451529065"
         val expectedResponse = PaginatedBookResponse(
-                itemsPerPage = 10,
+                itemsOnPage = 10,
                 currentPage = 0,
                 numberOfPages = 100,
                 books = listOf(
@@ -82,7 +82,7 @@ class BookControllerTest {
     fun `WHEN search for books with non-default availability THEN return books`() {
         val isbn = "0451529065"
         val expectedResponse = PaginatedBookResponse(
-                itemsPerPage = 10,
+                itemsOnPage = 10,
                 currentPage = 0,
                 numberOfPages = 100,
                 books = listOf(

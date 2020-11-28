@@ -14,8 +14,8 @@ import com.alicia.model.BulkUploadResponse
 import com.alicia.model.PaginatedBookResponse
 import com.alicia.repositories.BookRepository
 import com.alicia.repositories.GenreRepository
+import io.micronaut.data.model.Pageable
 import io.micronaut.http.multipart.CompletedFileUpload
-import io.micronaut.http.server.multipart.MultipartBody
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVRecord
@@ -40,7 +40,16 @@ class BookServiceImpl: BookService {
     lateinit var genreRepository: GenreRepository
 
     override fun search(availabilities: List<Availability>, pageNumber: Int, itemsPerPage: Int): PaginatedBookResponse {
-        TODO("Not yet implemented")
+        val pageable = Pageable.from(pageNumber, itemsPerPage)
+        val page = bookRepository.findBooks(pageable)
+
+        return PaginatedBookResponse(
+                numberOfPages = page.totalPages,
+                currentPage = page.pageNumber,
+                itemsOnPage = page.numberOfElements,
+                totalItems = page.totalSize,
+                books = page.content.map { it.toBookResponse() },
+        )
     }
 
     override fun getBook(isbn: String): BookResponse =
