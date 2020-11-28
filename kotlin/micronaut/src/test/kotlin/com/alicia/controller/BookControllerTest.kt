@@ -50,6 +50,7 @@ class BookControllerTest {
                 itemsOnPage = 10,
                 currentPage = 0,
                 numberOfPages = 100,
+                totalItems = 10001,
                 books = listOf(
                     BookResponse(
                             author = "Charles Darwin",
@@ -85,6 +86,7 @@ class BookControllerTest {
                 itemsOnPage = 10,
                 currentPage = 0,
                 numberOfPages = 100,
+                totalItems = 10001,
                 books = listOf(
                         BookResponse(
                                 author = "Charles Darwin",
