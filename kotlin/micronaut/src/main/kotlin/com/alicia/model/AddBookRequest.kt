@@ -11,7 +11,7 @@ data class AddBookRequest(
         val publicationDate: Long? = null,
         val genre: String? = null,
         val isbn: String,
-) {
+): ValidatableRequest() {
     fun toBook(genre: Genre?): Book =
             Book(
                     author = Author(id = authorId),
@@ -20,4 +20,18 @@ data class AddBookRequest(
                     publicationDate = publicationDate?.let { Date(publicationDate) },
                     isbn = isbn,
             )
+
+    override fun getErrors(): List<String> {
+        val errors = mutableListOf<String>()
+
+        if (authorId == null) {
+            errors.add("Author ID")
+        }
+
+        if (title.isBlank()) {
+            errors.add("Title")
+        }
+
+        return  errors
+    }
 }

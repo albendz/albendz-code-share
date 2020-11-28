@@ -11,6 +11,6 @@ class LibraryInfoConfiguration {
     lateinit var state: String
     lateinit var address: String
     lateinit var country: String
-    lateinit var zipcode: String
+    lateinit var zipCode: String
 
 }

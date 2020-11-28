@@ -3,32 +3,12 @@ package com.alicia.services
 import com.alicia.exceptions.AuthorNotFoundException
 import com.alicia.model.AddAuthorRequest
 import com.alicia.model.AuthorResponse
-import com.alicia.repositories.AuthorRepository
-import org.slf4j.LoggerFactory
-import java.lang.Exception
 import java.util.*
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class AuthorService {
+interface AuthorService {
 
-    private val logger = LoggerFactory.getLogger(AuthorService::class.java)
+    fun addAuthor(request: AddAuthorRequest): AuthorResponse
 
-    @Inject
-    lateinit var authorRepository: AuthorRepository
-
-    fun addAuthor(request: AddAuthorRequest): AuthorResponse =
-            authorRepository.save(request.toAuthor()).toAuthorResponse()
-
-    fun findAuthor(id: UUID): AuthorResponse {
-        val author = authorRepository.findById(id)
-
-        if (author.isPresent) {
-            return author.get().toAuthorResponse()
-        } else {
-            logger.info("Author not found by ID: $id")
-            throw AuthorNotFoundException(id)
-        }
-    }
+    @Throws(AuthorNotFoundException::class)
+    fun findAuthor(id: UUID): AuthorResponse
 }

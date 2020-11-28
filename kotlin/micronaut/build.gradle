@@ -4,6 +4,7 @@ plugins {
     id "org.jetbrains.kotlin.plugin.allopen" version "1.4.10"
     id "com.github.johnrengelman.shadow" version "6.0.0"
     id "io.micronaut.application" version '1.0.5'
+    id "jacoco"
 }
 
 version "0.1"
@@ -27,6 +28,7 @@ dependencies {
     kapt("io.micronaut.openapi:micronaut-openapi:2.1.1")
     kapt("io.micronaut.data:micronaut-data-processor:2.1.0")
 
+
     implementation("io.micronaut:micronaut-validation")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
@@ -43,11 +45,21 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    // Tests
+    implementation("org.mockito:mockito-core:3.6.0")
+    implementation("junit:junit:4.13.1")
+    
 }
 
 mainClassName = "com.alicia.Application"
 java {
     sourceCompatibility = JavaVersion.toVersion('11')
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+    reportsDir = file("$buildDir/reports/jacoco")
 }
 
 compileKotlin {
@@ -61,5 +73,28 @@ compileTestKotlin {
     }
 }
 
+check.dependsOn jacocoTestCoverageVerification
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = 'CLASS'
+            // White list
+            limit {
+                minimum = 0.70
+            }
+        }
+    }
+}
 
+jacocoTestReport {
+    dependsOn test
+    description 'Generates Code coverage report. Fails build if it does not meet minimum coverage.'
 
+    reports {
+        xml.enabled = true    //XML required by coveralls and for the     below coverage checks
+        html.enabled = true
+        csv.enabled = false
+    }
+}
+
+test.finalizedBy jacocoTestReport

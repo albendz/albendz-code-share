@@ -1,6 +1,6 @@
 package com.alicia.constants
 
-enum class Availabilities {
+enum class Availability {
     AVAILABLE,
     UNAVAILABLE
 }

@@ -1,10 +1,7 @@
 package com.alicia.controller
 
-import com.alicia.constants.Availabilities
 import com.alicia.model.AddAuthorRequest
-import com.alicia.model.AddBookRequest
 import com.alicia.model.AuthorResponse
-import com.alicia.model.BookResponse
 import com.alicia.services.AuthorService
 import io.micronaut.http.annotation.*
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -25,11 +22,14 @@ class AuthorController {
                     responseCode = "201"
             ),
             ApiResponse(
-                    description = "Invalid book data provided",
+                    description = "Invalid author data provided",
                     responseCode = "400"
             )
     )
-    fun addBook(author: AddAuthorRequest): AuthorResponse = authorService.addAuthor(author)
+    fun addAuthor(addAuthorRequest: AddAuthorRequest): AuthorResponse {
+        addAuthorRequest.validate()
+        return authorService.addAuthor(addAuthorRequest)
+    }
 
     @Get("/{id}")
     @ApiResponses(
@@ -42,5 +42,5 @@ class AuthorController {
                     responseCode = "404"
             )
     )
-    fun getBook(@PathVariable id: UUID): AuthorResponse = authorService.findAuthor(id)
+    fun getAuthor(@PathVariable id: UUID): AuthorResponse = authorService.findAuthor(id)
 }

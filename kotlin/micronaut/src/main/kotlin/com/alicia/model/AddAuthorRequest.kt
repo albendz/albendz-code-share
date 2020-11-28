@@ -7,9 +7,9 @@ data class AddAuthorRequest (
         val firstName: String?,
         val lastName: String?,
         val dob: Long?,
-        val dod: Long?,
-        val biography: String?,
-) {
+        val dod: Long? = null,
+        val biography: String? = null,
+): ValidatableRequest() {
     fun toAuthor(): Author =
         Author(
             firstName = firstName,
@@ -18,4 +18,18 @@ data class AddAuthorRequest (
             deathDate = dod?.let {  Date(dod) },
             biography = biography?.toByteArray(),
         )
+
+    override fun getErrors(): List<String> {
+        val errors = mutableListOf<String>()
+
+        if(firstName.isNullOrEmpty()) {
+            errors.add("Author first name")
+        }
+
+        if(lastName.isNullOrEmpty()) {
+            errors.add("Author last name")
+        }
+
+        return errors
+    }
 }
