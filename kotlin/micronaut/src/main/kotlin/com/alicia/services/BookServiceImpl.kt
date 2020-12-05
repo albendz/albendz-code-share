@@ -19,6 +19,7 @@ import io.micronaut.http.multipart.CompletedFileUpload
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVRecord
+import org.junit.internal.runners.statements.Fail
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
 import java.io.IOException
@@ -27,6 +28,7 @@ import java.lang.NumberFormatException
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.jvm.Throws
 
 @Singleton
 class BookServiceImpl: BookService {
@@ -70,6 +72,7 @@ class BookServiceImpl: BookService {
         return bookRepository.save(addBookRequest.toBook(genre)).toBookResponse()
     }
 
+    @Throws(EmptyImportCsvException::class, FailureToReadImportCsvException::class)
     override fun bulkUpload(csv: CompletedFileUpload): BulkUploadResponse {
         logger.info("Received file with name: ${csv.filename}")
         val books: MutableList<Book> = mutableListOf()

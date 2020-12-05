@@ -1,11 +1,14 @@
 package com.alicia.services
 
 import com.alicia.constants.Availability
+import com.alicia.exceptions.EmptyImportCsvException
+import com.alicia.exceptions.FailureToReadImportCsvException
 import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.model.BulkUploadResponse
 import com.alicia.model.PaginatedBookResponse
 import io.micronaut.http.multipart.CompletedFileUpload
+import kotlin.jvm.Throws
 
 interface BookService {
 
@@ -19,6 +22,7 @@ interface BookService {
 
     fun addBook(addBookRequest: AddBookRequest): BookResponse
 
+    @Throws(EmptyImportCsvException::class, FailureToReadImportCsvException::class)
     fun bulkUpload(csv: CompletedFileUpload): BulkUploadResponse
 }
 
