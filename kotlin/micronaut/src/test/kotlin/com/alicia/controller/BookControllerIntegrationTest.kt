@@ -1,5 +1,6 @@
 package com.alicia.controller
 
+import com.alicia.fixtures.BookFixtures
 import com.alicia.model.*
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpStatus
@@ -54,14 +55,7 @@ class BookControllerIntegrationTest {
                 currentPage = 0,
                 numberOfPages = 100,
                 totalItems = 10001,
-                books = listOf(
-                        BookResponse(
-                                author = "Charles Darwin",
-                                title = "Origin of Species",
-                                genre = GenreResponse("Science"),
-                                isbn = isbn,
-                        )
-                )
+                books = listOf(BookFixtures.defaultResponse)
         )
         val request = HttpRequest.GET<PaginatedBookResponse>("/search")
 
@@ -80,14 +74,7 @@ class BookControllerIntegrationTest {
                 currentPage = 0,
                 numberOfPages = 100,
                 totalItems = 10001,
-                books = listOf(
-                        BookResponse(
-                                author = "Charles Darwin",
-                                title = "Origin of Species",
-                                genre = GenreResponse("Science"),
-                                isbn = isbn,
-                        )
-                )
+                books = listOf(BookFixtures.defaultResponse)
         )
         val request = HttpRequest.GET<PaginatedBookResponse>(
                 "/search?availability=UNAVAILABLE&pageNumber=5&itemsPerPage=6"
@@ -102,12 +89,7 @@ class BookControllerIntegrationTest {
     fun `WHEN create book THEN return created book`() {
         val isbn = "0451529065"
         val id = UUID.randomUUID()
-        val expectedResponse = BookResponse(
-                author = "Charles Darwin",
-                title = "Origin of Species",
-                genre = GenreResponse("Science"),
-                isbn = isbn,
-        )
+        val expectedResponse = BookFixtures.defaultResponse
         val addBookRequest = AddBookRequest(
                 authorId = id,
                 title = "Origin of Species",
@@ -150,12 +132,7 @@ class BookControllerIntegrationTest {
     @Test
     fun `WHEN get existing book THEN return book`(){
         val isbn = "0451529065"
-        val expectedResponse = BookResponse(
-                author = "Charles Darwin",
-                title = "Origin of Species",
-                genre = GenreResponse("Science"),
-                isbn = isbn,
-        )
+        val expectedResponse = BookFixtures.defaultResponse
         val request = HttpRequest.GET<BookResponse>("/$isbn")
 
         val actualResponse = client.toBlocking()

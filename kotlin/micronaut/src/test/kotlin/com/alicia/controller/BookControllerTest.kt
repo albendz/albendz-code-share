@@ -3,6 +3,7 @@ package com.alicia.controller
 import com.alicia.constants.Availability
 import com.alicia.exceptions.EmptyImportCsvException
 import com.alicia.exceptions.FailureToReadImportCsvException
+import com.alicia.fixtures.BookFixtures
 import com.alicia.model.*
 import com.alicia.services.BookService
 import io.micronaut.http.HttpRequest
@@ -48,20 +49,12 @@ class BookControllerTest {
 
     @Test
     fun `WHEN search for books with default availability THEN return books`() {
-        val isbn = "0451529065"
         val expectedResponse = PaginatedBookResponse(
                 itemsOnPage = 10,
                 currentPage = 0,
                 numberOfPages = 100,
                 totalItems = 10001,
-                books = listOf(
-                    BookResponse(
-                            author = "Charles Darwin",
-                            title = "Origin of Species",
-                            genre = GenreResponse("Science"),
-                            isbn = isbn,
-                    )
-                )
+                books = listOf(BookFixtures.defaultResponse)
         )
         val request = HttpRequest.GET<PaginatedBookResponse>("/search")
 
@@ -90,14 +83,7 @@ class BookControllerTest {
                 currentPage = 0,
                 numberOfPages = 100,
                 totalItems = 10001,
-                books = listOf(
-                        BookResponse(
-                                author = "Charles Darwin",
-                                title = "Origin of Species",
-                                genre = GenreResponse("Science"),
-                                isbn = isbn,
-                        )
-                )
+                books = listOf(BookFixtures.defaultResponse)
         )
         val request = HttpRequest.GET<PaginatedBookResponse>(
                 "/search?availability=UNAVAILABLE&pageNumber=5&itemsPerPage=6"
@@ -124,12 +110,7 @@ class BookControllerTest {
     fun `WHEN create book THEN return created book`() {
         val isbn = "0451529065"
         val id = UUID.randomUUID()
-        val expectedResponse = BookResponse(
-                author = "Charles Darwin",
-                title = "Origin of Species",
-                genre = GenreResponse("Science"),
-                isbn = isbn,
-        )
+        val expectedResponse = BookFixtures.defaultResponse
         val addBookRequest = AddBookRequest(
                 authorId = id,
                 title = "Origin of Species",
@@ -172,12 +153,7 @@ class BookControllerTest {
     @Test
     fun `WHEN get existing book THEN return book`(){
         val isbn = "0451529065"
-        val expectedResponse = BookResponse(
-                author = "Charles Darwin",
-                title = "Origin of Species",
-                genre = GenreResponse("Science"),
-                isbn = isbn,
-        )
+        val expectedResponse = BookFixtures.defaultResponse
         val request = HttpRequest.GET<BookResponse>("/$isbn")
 
         Mockito.`when`(bookService.getBook(isbn)).thenReturn(expectedResponse)

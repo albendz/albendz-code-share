@@ -16,6 +16,8 @@ object BookFixtures {
         title = "Origin of Species",
         genre = GenreResponse("Science"),
         isbn = defaultIsbn,
+        totalCopies = 0,
+        availableCopies = 0,
     )
 
     val defaultBook = Book(

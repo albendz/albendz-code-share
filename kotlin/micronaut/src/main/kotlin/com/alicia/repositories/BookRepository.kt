@@ -1,6 +1,7 @@
 package com.alicia.repositories
 
 import com.alicia.data.Book
+import com.alicia.data.Copy
 import io.micronaut.data.annotation.Query
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.model.Page
@@ -18,6 +19,9 @@ abstract class BookRepository: CrudRepository<Book, String>, PageableRepository<
 
     @Inject
     lateinit var genreRepository: GenreRepository
+
+    @Inject
+    lateinit var copyRepository: CopyRepository
 
     abstract fun findFirstByIsbn(isbn: String): Book?
 
@@ -41,11 +45,17 @@ abstract class BookRepository: CrudRepository<Book, String>, PageableRepository<
 
         save(book)
 
+        book.copies = book.copies.map { copy ->
+            copy.book = book
+            copyRepository.save(copy)
+        }
+
         return book
     }
 
-    @Query(value = "SELECT b FROM Book b",
-            countQuery = "SELECT count(b) FROM Book b"
+    @Query(value = "SELECT b FROM Book b WHERE (SELECT count(*) FROM Copy c WHERE c.book = b AND status in :status) > :count",
+            countQuery = "SELECT count(b) FROM Book b WHERE (SELECT count(*) FROM Copy c WHERE c.book = b AND status in :status) > :count"
     )
-    abstract fun findBooks(pageable: Pageable): Page<Book>
+    abstract fun findBooks(pageable: Pageable, status: List<String> = listOf("AVAILABLE"), count: Long = 0): Page<Book>
+
 }

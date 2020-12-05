@@ -1,16 +1,27 @@
 package com.alicia.model
 
+import com.alicia.constants.Availability
 import com.fasterxml.jackson.annotation.JsonInclude
 import java.util.*
 
 @JsonInclude(JsonInclude.Include.ALWAYS)
 data class BookResponse(
         val author: String?,
-        val title: String?,
-        val publicationDate: String? = null,
+        val availableCopies: Int?,
         val genre: GenreResponse? = null,
         val isbn: String?,
-)
+        val publicationDate: String? = null,
+        val title: String?,
+        val totalCopies: Int?,
+) {
+    val availablity: Availability by lazy {
+        if (availableCopies?.let { it > 0 } == true) {
+            Availability.AVAILABLE
+        } else {
+            Availability.UNAVAILABLE
+        }
+    }
+}
 
 @JsonInclude(JsonInclude.Include.ALWAYS)
 data class GenreResponse(

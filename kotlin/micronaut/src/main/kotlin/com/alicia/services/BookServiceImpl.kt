@@ -4,6 +4,7 @@ import com.alicia.constants.Availability
 import com.alicia.constants.BookImportHeader
 import com.alicia.data.Author
 import com.alicia.data.Book
+import com.alicia.data.Copy
 import com.alicia.data.Genre
 import com.alicia.exceptions.BookNotFoundException
 import com.alicia.exceptions.EmptyImportCsvException
@@ -43,7 +44,11 @@ class BookServiceImpl: BookService {
 
     override fun search(availabilities: List<Availability>, pageNumber: Int, itemsPerPage: Int): PaginatedBookResponse {
         val pageable = Pageable.from(pageNumber, itemsPerPage)
-        val page = bookRepository.findBooks(pageable)
+        var count: Long = 0L
+        if (availabilities.size == 2) {
+            count = -1L
+        }
+        val page = bookRepository.findBooks(pageable, availabilities.map { it.name }, count)
 
         return PaginatedBookResponse(
                 numberOfPages = page.totalPages,
@@ -69,6 +74,7 @@ class BookServiceImpl: BookService {
             genreRepository.findFirstByName(it)  ?: genreRepository.save(Genre(name = it))
         }
 
+        // TODO: add copies
         return bookRepository.save(addBookRequest.toBook(genre)).toBookResponse()
     }
 
@@ -83,27 +89,27 @@ class BookServiceImpl: BookService {
         try {
             InputStreamReader(ByteArrayInputStream(csv.bytes)).use { reader ->
                 CSVParser(reader, CSVFormat.EXCEL.withFirstRecordAsHeader()).use { parser ->
-                    val records = parser.records
-                    for (index in 0 until records.size) {
-                        val csvRecord = records[index]
-
+                    parser.records.forEachIndexed { index, csvRecord ->
                         if (!validateCsvRecord(csvRecord)) {
                             logger.info("Invalid record at row $index")
                             errors.add("Invalid record at row $index")
-                            continue
-                        }
-                        val book = Book(
-                                title = csvRecord.get(BookImportHeader.TITLE.headerValue),
-                                isbn = csvRecord.get(BookImportHeader.ISBN.headerValue),
-                                publicationDate = Date(csvRecord.get(BookImportHeader.PUBLICATION_DATE.headerValue).toLong()),
-                                genre = Genre(name = csvRecord.get(BookImportHeader.GENRE.headerValue)),
-                                author = Author(
-                                        firstName = csvRecord.get(BookImportHeader.AUTHOR_FIRST_NAME.headerValue),
-                                        lastName = csvRecord.get(BookImportHeader.AUTHOR_LAST_NAME.headerValue)
-                                ),
-                        )
+                        } else {
+                            val book = Book(
+                                    title = csvRecord.get(BookImportHeader.TITLE.headerValue),
+                                    isbn = csvRecord.get(BookImportHeader.ISBN.headerValue),
+                                    publicationDate = Date(csvRecord.get(BookImportHeader.PUBLICATION_DATE.headerValue).toLong()),
+                                    genre = Genre(name = csvRecord.get(BookImportHeader.GENRE.headerValue)),
+                                    author = Author(
+                                            firstName = csvRecord.get(BookImportHeader.AUTHOR_FIRST_NAME.headerValue),
+                                            lastName = csvRecord.get(BookImportHeader.AUTHOR_LAST_NAME.headerValue)
+                                    ),
+                                    copies = List(csvRecord.get(BookImportHeader.COPIES.headerValue).toInt()) {
+                                        Copy(status = Availability.AVAILABLE.name)
+                                    },
+                            )
 
-                        books.add(book)
+                            books.add(book)
+                        }
                     }
                 }
             }
@@ -122,15 +128,18 @@ class BookServiceImpl: BookService {
 
     private fun validateCsvRecord(csvRecord: CSVRecord): Boolean {
         val valid =
-        csvRecord.isSet(BookImportHeader.TITLE.headerValue) &&
-        csvRecord.isSet(BookImportHeader.ISBN.headerValue) &&
-        csvRecord.isSet(BookImportHeader.PUBLICATION_DATE.headerValue) &&
-        csvRecord.isSet(BookImportHeader.GENRE.headerValue) &&
-        csvRecord.isSet(BookImportHeader.AUTHOR_FIRST_NAME.headerValue) &&
-        csvRecord.isSet(BookImportHeader.AUTHOR_LAST_NAME.headerValue)
+            csvRecord.isSet(BookImportHeader.TITLE.headerValue) &&
+            csvRecord.isSet(BookImportHeader.ISBN.headerValue) &&
+            csvRecord.isSet(BookImportHeader.PUBLICATION_DATE.headerValue) &&
+            csvRecord.isSet(BookImportHeader.GENRE.headerValue) &&
+            csvRecord.isSet(BookImportHeader.AUTHOR_FIRST_NAME.headerValue) &&
+            csvRecord.isSet(BookImportHeader.AUTHOR_LAST_NAME.headerValue) &&
+            csvRecord.isSet(BookImportHeader.COPIES.headerValue)
 
         try {
             csvRecord.get(BookImportHeader.PUBLICATION_DATE.headerValue).toLong()
+            // TODO: maybe not max int number of copies
+            csvRecord.get(BookImportHeader.COPIES.headerValue).toInt()
         } catch (nfe: NumberFormatException) {
             return false
         }

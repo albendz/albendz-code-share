@@ -53,11 +53,11 @@ class BookServiceImplTest {
                 totalItems = page.totalSize,
                 books = page.content.map { it.toBookResponse() },
         )
-        Mockito.`when`(bookRepository.findBooks(expectedPageable)).thenReturn(page)
+        Mockito.`when`(bookRepository.findBooks(expectedPageable, emptyList())).thenReturn(page)
 
         val response = bookService.search(emptyList(), 5, 10)
 
-        Mockito.verify(bookRepository).findBooks(expectedPageable)
+        Mockito.verify(bookRepository).findBooks(expectedPageable, emptyList(), 0L)
         assertEquals(expectedResponse, response)
     }
 }
