@@ -1,11 +1,10 @@
 package com.alicia.data
 
+import com.alicia.constants.Availability
 import com.alicia.model.BookResponse
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
+import io.micronaut.data.annotation.Join
 import java.util.*
 import javax.persistence.*
-import kotlin.jvm.Transient
 
 @Entity
 @Table(name = "book")
@@ -26,10 +25,11 @@ data class Book (
 
     @Column(name = "title")
     var  title: String? = null,
-) {
 
-    @Transient
-    var copies: List<Copy> = emptyList()
+    @Join(value = "copy", type = Join.Type.FETCH)
+    @OneToMany(fetch = FetchType.EAGER)
+    var copies: List<Copy> = emptyList(),
+) {
 
     fun toBookResponse(): BookResponse =
             BookResponse(
@@ -38,5 +38,7 @@ data class Book (
                 isbn = isbn,
                 publicationDate = null,
                 title = title,
+                availableCopies = copies.filter { it.status == Availability.AVAILABLE.name }.size,
+                totalCopies = copies.size,
             )
 }

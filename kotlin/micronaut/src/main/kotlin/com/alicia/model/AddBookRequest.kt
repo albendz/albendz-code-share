@@ -19,6 +19,7 @@ data class AddBookRequest(
                     genre = null,
                     publicationDate = publicationDate?.let { Date(publicationDate) },
                     isbn = isbn,
+                    copies = emptyList()
             )
 
     override fun getErrors(): List<String> {
