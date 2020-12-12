@@ -53,8 +53,10 @@ abstract class BookRepository: CrudRepository<Book, String>, PageableRepository<
         return book
     }
 
-    @Query(value = "SELECT b FROM Book b WHERE (SELECT count(*) FROM Copy c WHERE c.book = b AND status in :status) > :count",
-            countQuery = "SELECT count(b) FROM Book b WHERE (SELECT count(*) FROM Copy c WHERE c.book = b AND status in :status) > :count"
+    @Query(value = "SELECT b FROM Book b WHERE (SELECT count(*) FROM Copy c " +
+            "WHERE c.book = b AND status in :status) > :count",
+            countQuery = "SELECT count(b) FROM Book b " +
+                    "WHERE (SELECT count(*) FROM Copy c WHERE c.book = b AND status in :status) > :count"
     )
     abstract fun findBooks(pageable: Pageable, status: List<String> = listOf("AVAILABLE"), count: Long = 0): Page<Book>
 

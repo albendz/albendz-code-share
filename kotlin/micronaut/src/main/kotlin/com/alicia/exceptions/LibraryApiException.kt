@@ -20,3 +20,9 @@ class EmptyImportCsvException:
 
 class InvalidRequestException(errors: List<String>):
         LibraryApiException("Invalid request: [${errors.joinToString()}]", HttpStatus.BAD_REQUEST)
+
+class MemberNotFoundException:
+        LibraryApiException("Member not found",  HttpStatus.BAD_REQUEST)
+
+class GenericBadRequestException:
+        LibraryApiException("Bad request", HttpStatus.BAD_REQUEST)

@@ -75,10 +75,7 @@ class BookController {
     )
     fun bulkCreate(@Body csv: CompletedFileUpload): BulkUploadResponse = bookService.bulkUpload(csv)
 
-
-    // Search
-    //  Get book info
     // Checkout
-    // Checkin
+    // Check in
     // Place hold
 }

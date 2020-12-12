@@ -87,16 +87,8 @@ class BookControllerIntegrationTest {
     @Disabled
     @Test
     fun `WHEN create book THEN return created book`() {
-        val isbn = "0451529065"
-        val id = UUID.randomUUID()
         val expectedResponse = BookFixtures.defaultResponse
-        val addBookRequest = AddBookRequest(
-                authorId = id,
-                title = "Origin of Species",
-                isbn = isbn,
-                genre = "Science",
-        )
-        val request = HttpRequest.POST("", addBookRequest)
+        val request = HttpRequest.POST("", BookFixtures.addBookRequest)
 
         // Action
         val actualResponse = client.toBlocking()
@@ -108,16 +100,7 @@ class BookControllerIntegrationTest {
     @Disabled
     @Test
     fun `WHEN creating invalid book THEN return 400`() {
-        val isbn = "0451529065"
-        val id = UUID.randomUUID()
-        val addBookRequest = AddBookRequest(
-                authorId = id,
-                title = "",
-                isbn = isbn,
-                genre = "Science",
-        )
-
-        val request = HttpRequest.POST("", addBookRequest)
+        val request = HttpRequest.POST("", BookFixtures.addBookRequest)
 
         try {
             client.toBlocking()
