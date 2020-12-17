@@ -29,6 +29,10 @@ data class AddBookRequest(
             errors.add("Author ID")
         }
 
+        if (isbn.isBlank()) {
+            errors.add("ISBN")
+        }
+
         if (title.isBlank()) {
             errors.add("Title")
         }

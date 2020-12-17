@@ -13,7 +13,7 @@ object BookFixtures {
     private val defaultUuid = UUID.randomUUID()
 
     val defaultResponse = BookResponse(
-        author = "Charles Darwin",
+        author = "Darwin, Charles",
         title = "Origin of Species",
         genre = GenreResponse("Science"),
         isbn = defaultIsbn,

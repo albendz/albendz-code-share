@@ -2,16 +2,15 @@ package com.alicia.services
 
 import com.alicia.model.AddMemberRequest
 import com.alicia.model.MemberResponse
-import kotlin.jvm.Throws
+import java.util.*
 
 class MemberServiceImpl: MemberService {
 
-    @Throws()
     override fun addMember(member: AddMemberRequest): MemberResponse {
         TODO("Not yet implemented")
     }
 
-    override fun getMember(email: String): MemberResponse {
+    override fun getMember(id: UUID): MemberResponse {
         TODO("Not yet implemented")
     }
 }

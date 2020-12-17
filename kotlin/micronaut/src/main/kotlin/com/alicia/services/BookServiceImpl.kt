@@ -75,7 +75,9 @@ class BookServiceImpl: BookService {
         }
 
         // TODO: add copies
-        return bookRepository.save(addBookRequest.toBook(genre)).toBookResponse()
+        return bookRepository.save(addBookRequest.toBook(genre)).let { book ->
+            book.isbn?.let { bookRepository.findFirstByIsbn(it)?.toBookResponse() } ?: book.toBookResponse()
+        }
     }
 
     @Throws(EmptyImportCsvException::class, FailureToReadImportCsvException::class)

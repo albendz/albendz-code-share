@@ -1,7 +1,5 @@
 package com.alicia.model
 
-import java.util.regex.Pattern
-
 data class AddMemberRequest(
         val email: String,
         val firstName: String,
@@ -10,13 +8,7 @@ data class AddMemberRequest(
 
     companion object {
         const val EMAIL_ADDRESS =
-                "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
-                        "\\@" +
-                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-                        "(" +
-                        "\\." +
-                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-                        ")+"
+                "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}"
     }
 
     override fun getErrors(): List<String> {
@@ -29,10 +21,9 @@ data class AddMemberRequest(
             errors.add("Last Name")
         }
 
-        // TODO
-        //if (!Regex.fromLiteral(EMAIL_ADDRESS).matches(email)) {
-        //    errors.add("Email")
-       //}
+        if (!EMAIL_ADDRESS.toRegex().matches(email)) {
+            errors.add("Email")
+       }
 
         return errors
     }

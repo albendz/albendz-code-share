@@ -13,7 +13,7 @@ data class Book (
     @Column(name = "isbn")
     var isbn: String? = null,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     var author: Author? = null,
 
     @ManyToOne
