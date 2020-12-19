@@ -12,6 +12,7 @@ data class AddBookRequest(
         val genre: String? = null,
         val isbn: String,
 ): ValidatableRequest() {
+
     fun toBook(genre: Genre?): Book =
             Book(
                     author = Author(id = authorId),
@@ -27,6 +28,10 @@ data class AddBookRequest(
 
         if (authorId == null) {
             errors.add("Author ID")
+        }
+
+        if (isbn.isBlank()) {
+            errors.add("ISBN")
         }
 
         if (title.isBlank()) {

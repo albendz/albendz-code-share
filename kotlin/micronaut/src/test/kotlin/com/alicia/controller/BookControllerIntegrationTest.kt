@@ -22,18 +22,21 @@ class BookControllerIntegrationTest {
 
     @Inject
     @field:Client("/book")
-    lateinit var client: HttpClient
+    lateinit var bookClient: HttpClient
 
-    @Disabled
+    @Inject
+    @field:Client("/author")
+    lateinit var authorClient: HttpClient
+
     @Test
-    fun `WHEN search for books with default availability THEN return books`() {
+    fun `GIVEN an author and a book WHEN search for books THEN return created book`() {
         val addAuthorRequest = AddAuthorRequest(
                 firstName = "Charles",
                 lastName = "Darwin",
                 dob = 0L,
         )
         val authorRequest = HttpRequest.POST("", addAuthorRequest)
-        val authorResponse = client.toBlocking()
+        val authorResponse = authorClient.toBlocking()
                 .retrieve(authorRequest, AuthorResponse::class.java)
 
         val isbn = "0451529065"
@@ -47,85 +50,22 @@ class BookControllerIntegrationTest {
         val createRequest = HttpRequest.POST("", addBookRequest)
 
         // Create book
-        client.toBlocking()
+        val book = bookClient.toBlocking()
                 .retrieve(createRequest, BookResponse::class.java)
 
         val expectedResponse = PaginatedBookResponse(
-                itemsOnPage = 10,
+                itemsOnPage = 1,
                 currentPage = 0,
-                numberOfPages = 100,
-                totalItems = 10001,
-                books = listOf(BookFixtures.defaultResponse)
+                numberOfPages = 1,
+                totalItems = 1,
+                books = listOf(book)
         )
         val request = HttpRequest.GET<PaginatedBookResponse>("/search")
 
-        val response = client.toBlocking()
+        val response = bookClient.toBlocking()
                 .retrieve(request, PaginatedBookResponse::class.java)
 
         Assertions.assertEquals(expectedResponse, response)
-    }
-
-    @Disabled
-    @Test
-    fun `WHEN search for books with non-default availability THEN return books`() {
-        val isbn = "0451529065"
-        val expectedResponse = PaginatedBookResponse(
-                itemsOnPage = 10,
-                currentPage = 0,
-                numberOfPages = 100,
-                totalItems = 10001,
-                books = listOf(BookFixtures.defaultResponse)
-        )
-        val request = HttpRequest.GET<PaginatedBookResponse>(
-                "/search?availability=UNAVAILABLE&pageNumber=5&itemsPerPage=6"
-        )
-
-        val response = client.toBlocking()
-                .retrieve(request, PaginatedBookResponse::class.java)
-    }
-
-    @Disabled
-    @Test
-    fun `WHEN create book THEN return created book`() {
-        val isbn = "0451529065"
-        val id = UUID.randomUUID()
-        val expectedResponse = BookFixtures.defaultResponse
-        val addBookRequest = AddBookRequest(
-                authorId = id,
-                title = "Origin of Species",
-                isbn = isbn,
-                genre = "Science",
-        )
-        val request = HttpRequest.POST("", addBookRequest)
-
-        // Action
-        val actualResponse = client.toBlocking()
-                .retrieve(request, BookResponse::class.java)
-
-        Assertions.assertEquals(expectedResponse, actualResponse)
-    }
-
-    @Disabled
-    @Test
-    fun `WHEN creating invalid book THEN return 400`() {
-        val isbn = "0451529065"
-        val id = UUID.randomUUID()
-        val addBookRequest = AddBookRequest(
-                authorId = id,
-                title = "",
-                isbn = isbn,
-                genre = "Science",
-        )
-
-        val request = HttpRequest.POST("", addBookRequest)
-
-        try {
-            client.toBlocking()
-                    .retrieve(request, BookResponse::class.java)
-            Assertions.fail<Unit>()
-        } catch (e: HttpClientResponseException) {
-            Assertions.assertEquals(HttpStatus.BAD_REQUEST, e.status)
-        }
     }
 
     @Disabled
@@ -135,25 +75,10 @@ class BookControllerIntegrationTest {
         val expectedResponse = BookFixtures.defaultResponse
         val request = HttpRequest.GET<BookResponse>("/$isbn")
 
-        val actualResponse = client.toBlocking()
+        val actualResponse = bookClient.toBlocking()
                 .retrieve(request, BookResponse::class.java)
 
         Assertions.assertEquals(expectedResponse, actualResponse)
-    }
-
-    @Disabled
-    @Test
-    fun `WHEN get non-existing book THEN throw not found`() {
-        val isbn = "0451529065"
-        val request = HttpRequest.GET<BookResponse>("/$isbn")
-
-        try {
-            client.toBlocking()
-                    .retrieve(request, BookResponse::class.java)
-            Assertions.fail<Unit>()
-        } catch (e: HttpClientResponseException) {
-            Assertions.assertEquals(HttpStatus.NOT_FOUND, e.status)
-        }
     }
 
     @Disabled
@@ -170,7 +95,7 @@ class BookControllerIntegrationTest {
                 listOf()
         )
 
-        val response = client.toBlocking()
+        val response = bookClient.toBlocking()
                 .retrieve(request, BulkUploadResponse::class.java)
 
         Assertions.assertEquals(expectedResponse, response)

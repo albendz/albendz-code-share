@@ -3,6 +3,7 @@ package com.alicia.fixtures
 import com.alicia.data.Author
 import com.alicia.data.Book
 import com.alicia.data.Genre
+import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.model.GenreResponse
 import java.util.*
@@ -12,7 +13,7 @@ object BookFixtures {
     private val defaultUuid = UUID.randomUUID()
 
     val defaultResponse = BookResponse(
-        author = "Charles Darwin",
+        author = "Darwin, Charles",
         title = "Origin of Species",
         genre = GenreResponse("Science"),
         isbn = defaultIsbn,
@@ -25,5 +26,12 @@ object BookFixtures {
             title = "Origin of Species",
             genre = Genre(defaultUuid, "Science"),
             isbn = defaultIsbn,
+    )
+
+    val addBookRequest = AddBookRequest(
+            authorId = defaultUuid,
+            title = "Origin of Species",
+            isbn = defaultIsbn,
+            genre = "Science",
     )
 }
