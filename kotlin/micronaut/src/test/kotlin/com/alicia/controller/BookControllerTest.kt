@@ -77,7 +77,6 @@ class BookControllerTest {
 
     @Test
     fun `WHEN search for books with non-default availability THEN return books`() {
-        val isbn = "0451529065"
         val expectedResponse = PaginatedBookResponse(
                 itemsOnPage = 10,
                 currentPage = 0,

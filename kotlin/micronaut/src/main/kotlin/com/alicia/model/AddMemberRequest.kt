@@ -1,5 +1,7 @@
 package com.alicia.model
 
+import com.alicia.data.Member
+
 data class AddMemberRequest(
         val email: String,
         val firstName: String,
@@ -27,4 +29,6 @@ data class AddMemberRequest(
 
         return errors
     }
+
+    fun toMember(): Member = Member(firstName = firstName, lastName = lastName, email = email)
 }

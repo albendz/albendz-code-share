@@ -62,10 +62,3 @@ data class HoldResponse(
         val holdDate: String?,
         val member: String?,
 )
-
-@JsonInclude(JsonInclude.Include.ALWAYS)
-data class MemberResponse(
-        val email: String,
-        val name: String?,
-        val overdueFees: Int? = null,
-)

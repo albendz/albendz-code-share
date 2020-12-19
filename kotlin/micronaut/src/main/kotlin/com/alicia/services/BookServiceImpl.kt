@@ -20,19 +20,18 @@ import io.micronaut.http.multipart.CompletedFileUpload
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVRecord
-import org.junit.internal.runners.statements.Fail
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.InputStreamReader
 import java.lang.NumberFormatException
-import java.util.*
+import java.util.Date
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.jvm.Throws
 
 @Singleton
-class BookServiceImpl: BookService {
+class BookServiceImpl : BookService {
 
     private val logger = LoggerFactory.getLogger(BookServiceImpl::class.java)
 
@@ -51,11 +50,11 @@ class BookServiceImpl: BookService {
         val page = bookRepository.findBooks(pageable, availabilities.map { it.name }, count)
 
         return PaginatedBookResponse(
-                numberOfPages = page.totalPages,
-                currentPage = page.pageNumber,
-                itemsOnPage = page.numberOfElements,
-                totalItems = page.totalSize,
-                books = page.content.map { it.toBookResponse() },
+            numberOfPages = page.totalPages,
+            currentPage = page.pageNumber,
+            itemsOnPage = page.numberOfElements,
+            totalItems = page.totalSize,
+            books = page.content.map { it.toBookResponse() },
         )
     }
 
@@ -71,7 +70,7 @@ class BookServiceImpl: BookService {
 
     override fun addBook(addBookRequest: AddBookRequest): BookResponse {
         val genre = addBookRequest.genre?.let {
-            genreRepository.findFirstByName(it)  ?: genreRepository.save(Genre(name = it))
+            genreRepository.findFirstByName(it) ?: genreRepository.save(Genre(name = it))
         }
 
         // TODO: add copies
@@ -97,17 +96,19 @@ class BookServiceImpl: BookService {
                             errors.add("Invalid record at row $index")
                         } else {
                             val book = Book(
-                                    title = csvRecord.get(BookImportHeader.TITLE.headerValue),
-                                    isbn = csvRecord.get(BookImportHeader.ISBN.headerValue),
-                                    publicationDate = Date(csvRecord.get(BookImportHeader.PUBLICATION_DATE.headerValue).toLong()),
-                                    genre = Genre(name = csvRecord.get(BookImportHeader.GENRE.headerValue)),
-                                    author = Author(
-                                            firstName = csvRecord.get(BookImportHeader.AUTHOR_FIRST_NAME.headerValue),
-                                            lastName = csvRecord.get(BookImportHeader.AUTHOR_LAST_NAME.headerValue)
-                                    ),
-                                    copies = List(csvRecord.get(BookImportHeader.COPIES.headerValue).toInt()) {
-                                        Copy(status = Availability.AVAILABLE.name)
-                                    },
+                                title = csvRecord.get(BookImportHeader.TITLE.headerValue),
+                                isbn = csvRecord.get(BookImportHeader.ISBN.headerValue),
+                                publicationDate = Date(
+                                    csvRecord.get(BookImportHeader.PUBLICATION_DATE.headerValue).toLong()
+                                ),
+                                genre = Genre(name = csvRecord.get(BookImportHeader.GENRE.headerValue)),
+                                author = Author(
+                                    firstName = csvRecord.get(BookImportHeader.AUTHOR_FIRST_NAME.headerValue),
+                                    lastName = csvRecord.get(BookImportHeader.AUTHOR_LAST_NAME.headerValue)
+                                ),
+                                copies = List(csvRecord.get(BookImportHeader.COPIES.headerValue).toInt()) {
+                                    Copy(status = Availability.AVAILABLE.name)
+                                },
                             )
 
                             books.add(book)
@@ -117,10 +118,10 @@ class BookServiceImpl: BookService {
             }
 
             return BulkUploadResponse(
-                    books.map { book ->
-                        bookRepository.saveWithAuthorAndGenre(book).toBookResponse()
-                    },
-                    errors
+                books.map { book ->
+                    bookRepository.saveWithAuthorAndGenre(book).toBookResponse()
+                },
+                errors
             )
         } catch (ioe: IOException) {
             logger.error("Failure to read csv ${csv.filename}: ${ioe.message}")
@@ -131,12 +132,12 @@ class BookServiceImpl: BookService {
     private fun validateCsvRecord(csvRecord: CSVRecord): Boolean {
         val valid =
             csvRecord.isSet(BookImportHeader.TITLE.headerValue) &&
-            csvRecord.isSet(BookImportHeader.ISBN.headerValue) &&
-            csvRecord.isSet(BookImportHeader.PUBLICATION_DATE.headerValue) &&
-            csvRecord.isSet(BookImportHeader.GENRE.headerValue) &&
-            csvRecord.isSet(BookImportHeader.AUTHOR_FIRST_NAME.headerValue) &&
-            csvRecord.isSet(BookImportHeader.AUTHOR_LAST_NAME.headerValue) &&
-            csvRecord.isSet(BookImportHeader.COPIES.headerValue)
+                    csvRecord.isSet(BookImportHeader.ISBN.headerValue) &&
+                    csvRecord.isSet(BookImportHeader.PUBLICATION_DATE.headerValue) &&
+                    csvRecord.isSet(BookImportHeader.GENRE.headerValue) &&
+                    csvRecord.isSet(BookImportHeader.AUTHOR_FIRST_NAME.headerValue) &&
+                    csvRecord.isSet(BookImportHeader.AUTHOR_LAST_NAME.headerValue) &&
+                    csvRecord.isSet(BookImportHeader.COPIES.headerValue)
 
         try {
             csvRecord.get(BookImportHeader.PUBLICATION_DATE.headerValue).toLong()

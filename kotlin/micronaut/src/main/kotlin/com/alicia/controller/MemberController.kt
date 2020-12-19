@@ -1,8 +1,6 @@
 package com.alicia.controller
 
 import com.alicia.model.AddMemberRequest
-import com.alicia.model.BookResponse
-import com.alicia.model.GetMemberRequest
 import com.alicia.model.MemberResponse
 import com.alicia.services.MemberService
 import io.micronaut.http.annotation.Controller
@@ -11,7 +9,7 @@ import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.Post
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
-import java.util.*
+import java.util.UUID
 import javax.inject.Inject
 
 @Controller("/member")

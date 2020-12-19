@@ -1,7 +1,7 @@
 package com.alicia.exceptions
 
 import io.micronaut.http.HttpStatus
-import java.util.*
+import java.util.UUID
 
 open class LibraryApiException(override val message: String, val httpStatus: HttpStatus):
         Exception("${httpStatus.code}: $message")
@@ -22,7 +22,10 @@ class InvalidRequestException(errors: List<String>):
         LibraryApiException("Invalid request: [${errors.joinToString()}]", HttpStatus.BAD_REQUEST)
 
 class MemberNotFoundException:
-        LibraryApiException("Member not found",  HttpStatus.BAD_REQUEST)
+        LibraryApiException("Member not found",  HttpStatus.NOT_FOUND)
 
 class GenericBadRequestException:
         LibraryApiException("Bad request", HttpStatus.BAD_REQUEST)
+
+class MemberAlreadyExistsWithEmailException:
+        LibraryApiException("Member already exists with email", HttpStatus.BAD_REQUEST)
