@@ -20,7 +20,6 @@ data class Loan(
 
         @Temporal(value = TemporalType.DATE)
         @Column(name = "loan_date")
-        @DateCreated
         val loanDate: Date? = null,
 
         @Column(name = "length_days")

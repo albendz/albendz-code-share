@@ -12,6 +12,7 @@ import io.micronaut.data.model.Page
 import io.micronaut.data.model.Pageable
 import io.micronaut.data.repository.CrudRepository
 import io.micronaut.data.repository.PageableRepository
+import java.util.Date
 import java.util.UUID
 import javax.inject.Inject
 import javax.transaction.Transactional
@@ -81,7 +82,8 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
                 Loan(
                     copy = copy,
                     member = member,
-                    lengthDays = lengthDays
+                    lengthDays = lengthDays,
+                    loanDate = Date(),
                 )
             )
         } ?: throw NoCopyAvailableForBookException(isbn)
