@@ -1,10 +1,7 @@
 package com.alicia.controller
 
 import com.alicia.constants.Availability
-import com.alicia.model.AddBookRequest
-import com.alicia.model.BookResponse
-import com.alicia.model.BulkUploadResponse
-import com.alicia.model.PaginatedBookResponse
+import com.alicia.model.*
 import com.alicia.services.BookService
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
@@ -75,7 +72,26 @@ class BookController {
     )
     fun bulkCreate(@Body csv: CompletedFileUpload): BulkUploadResponse = bookService.bulkUpload(csv)
 
-    // Checkout
+    @Post("/{isbn}/checkout")
+    @ApiResponses(
+        ApiResponse(
+            description = "Loan for book by member is successfully created or updated",
+            responseCode = "201"
+        ),
+        ApiResponse(
+            description = "Book not found to create loan, member not found, or copy not found",
+            responseCode = "404"
+        ),
+        ApiResponse(
+            description = "Book has no available copies or copy specified is unavailable",
+            responseCode = "400"
+        )
+    )
+    fun checkoutBook(@PathVariable isbn: String, checkoutRequest: CheckoutRequest): LoanResponse =
+        checkoutRequest.validate().run {
+            bookService.checkoutBook(isbn, checkoutRequest)
+        }
+
     // Check in
     // Place hold
 }

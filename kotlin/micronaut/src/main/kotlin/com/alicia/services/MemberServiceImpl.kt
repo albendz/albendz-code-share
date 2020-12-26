@@ -1,5 +1,6 @@
 package com.alicia.services
 
+import com.alicia.data.Member
 import com.alicia.exceptions.MemberAlreadyExistsWithEmailException
 import com.alicia.exceptions.MemberNotFoundException
 import com.alicia.exceptions.NonUniqueMemberEmailException
@@ -18,17 +19,17 @@ class MemberServiceImpl : MemberService {
     lateinit var memberRepository: MemberRepository
 
     @Throws(MemberAlreadyExistsWithEmailException::class)
-    override fun addMember(addMemberRequest: AddMemberRequest): MemberResponse =
+    override fun addMember(addMemberRequest: AddMemberRequest): Member =
         addMemberRequest.toMember().let { member ->
             try {
-                memberRepository.saveMember(member).toMemberResponse()
+                memberRepository.saveMember(member)
             } catch (e: NonUniqueMemberEmailException) {
                 throw MemberAlreadyExistsWithEmailException()
             }
         }
 
     @Throws(MemberNotFoundException::class)
-    override fun getMember(uuid: UUID): MemberResponse =
-        memberRepository.findFirstById(uuid)?.toMemberResponse() ?: throw MemberNotFoundException()
+    override fun getMember(uuid: UUID): Member =
+        memberRepository.findFirstById(uuid) ?: throw MemberNotFoundException()
 
 }

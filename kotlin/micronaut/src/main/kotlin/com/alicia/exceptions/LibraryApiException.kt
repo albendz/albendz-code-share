@@ -29,3 +29,6 @@ class GenericBadRequestException:
 
 class MemberAlreadyExistsWithEmailException:
         LibraryApiException("Member already exists with email", HttpStatus.BAD_REQUEST)
+
+class NoCopyAvailableException(isbn: String):
+        LibraryApiException("No copy available for book: $isbn", HttpStatus.BAD_REQUEST)

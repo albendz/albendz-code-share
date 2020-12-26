@@ -1,5 +1,6 @@
 package com.alicia.services
 
+import com.alicia.configuration.BookConfiguration
 import com.alicia.constants.Availability
 import com.alicia.constants.BookImportHeader
 import com.alicia.data.Author
@@ -9,10 +10,8 @@ import com.alicia.data.Genre
 import com.alicia.exceptions.BookNotFoundException
 import com.alicia.exceptions.EmptyImportCsvException
 import com.alicia.exceptions.FailureToReadImportCsvException
-import com.alicia.model.AddBookRequest
-import com.alicia.model.BookResponse
-import com.alicia.model.BulkUploadResponse
-import com.alicia.model.PaginatedBookResponse
+import com.alicia.exceptions.MemberNotFoundException
+import com.alicia.model.*
 import com.alicia.repositories.BookRepository
 import com.alicia.repositories.GenreRepository
 import io.micronaut.data.model.Pageable
@@ -40,6 +39,12 @@ class BookServiceImpl : BookService {
 
     @Inject
     lateinit var genreRepository: GenreRepository
+
+    @Inject
+    lateinit var memberService: MemberService
+
+    @Inject
+    lateinit var bookConfiguration: BookConfiguration
 
     override fun search(availabilities: List<Availability>, pageNumber: Int, itemsPerPage: Int): PaginatedBookResponse {
         val pageable = Pageable.from(pageNumber, itemsPerPage)
@@ -128,6 +133,16 @@ class BookServiceImpl : BookService {
             throw FailureToReadImportCsvException()
         }
     }
+
+    override fun checkoutBook(isbn: String, checkoutRequest: CheckoutRequest): LoanResponse =
+        memberService.getMember(checkoutRequest.memberId).let { member ->
+            bookRepository.checkoutBook(
+                member,
+                isbn,
+                bookConfiguration.loanDurationDays,
+                checkoutRequest.copyId
+            ).toLoanResponse()
+        }
 
     private fun validateCsvRecord(csvRecord: CSVRecord): Boolean {
         val valid =

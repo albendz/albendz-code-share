@@ -16,15 +16,12 @@ import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.fail
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import java.util.*
 import javax.inject.Inject
+import org.junit.jupiter.api.*
 
 @MicronautTest
 class BookControllerTest {
@@ -232,6 +229,24 @@ class BookControllerTest {
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.code, exception.status.code)
     }
+
+    @Test
+    fun `WHEN checkout loan for member and book THEN return loan result as 200`() {}
+
+    @Test
+    fun `WHEN checkout loan for member not found THEN return 404`() {}
+
+    @Test
+    fun `WHEN checkout loan for book not found THEN return 404`() {}
+
+    @Test
+    fun `WHEN checkout loan for copy ID not found THEN return 404`() {}
+
+    @Test
+    fun `WHEN checkout loan for book with no copies THEN 400`() {}
+
+    @Test
+    fun `WHEN checkout loan for copy unavailable THEN 400`() {}
 
     private fun <T> any(): T {
         Mockito.any<T>()

@@ -31,7 +31,7 @@ class MemberController {
     )
     fun addMember(member: AddMemberRequest): MemberResponse {
         member.validate()
-        return memberService.addMember(member)
+        return memberService.addMember(member).toMemberResponse()
     }
 
     @Get("/{id}")
@@ -45,7 +45,7 @@ class MemberController {
             responseCode = "404"
         )
     )
-    fun getMember(@PathVariable id: UUID): MemberResponse = memberService.getMember(id)
+    fun getMember(@PathVariable id: UUID): MemberResponse = memberService.getMember(id).toMemberResponse()
 
     // Later:
     // Edit user info

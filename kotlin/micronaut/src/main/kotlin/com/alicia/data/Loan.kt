@@ -1,6 +1,7 @@
 package com.alicia.data
 
 import com.alicia.model.LoanResponse
+import io.micronaut.data.annotation.DateCreated
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -19,6 +20,7 @@ data class Loan(
 
         @Temporal(value = TemporalType.DATE)
         @Column(name = "loan_date")
+        @DateCreated
         val loanDate: Date? = null,
 
         @Column(name = "length_days")

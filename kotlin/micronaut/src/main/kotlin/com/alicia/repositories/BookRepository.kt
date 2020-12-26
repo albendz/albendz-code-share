@@ -1,18 +1,23 @@
 package com.alicia.repositories
 
+import com.alicia.constants.Availability
 import com.alicia.data.Book
 import com.alicia.data.Copy
+import com.alicia.data.Loan
+import com.alicia.data.Member
+import com.alicia.exceptions.NoCopyAvailableForBookException
 import io.micronaut.data.annotation.Query
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.model.Page
 import io.micronaut.data.model.Pageable
 import io.micronaut.data.repository.CrudRepository
 import io.micronaut.data.repository.PageableRepository
+import java.util.UUID
 import javax.inject.Inject
 import javax.transaction.Transactional
 
 @Repository
-abstract class BookRepository: CrudRepository<Book, String>, PageableRepository<Book, String> {
+abstract class BookRepository : CrudRepository<Book, String>, PageableRepository<Book, String> {
 
     @Inject
     lateinit var authorRepository: AuthorRepository
@@ -22,6 +27,9 @@ abstract class BookRepository: CrudRepository<Book, String>, PageableRepository<
 
     @Inject
     lateinit var copyRepository: CopyRepository
+
+    @Inject
+    lateinit var loanRepository: LoanRepository
 
     abstract fun findFirstByIsbn(isbn: String): Book?
 
@@ -33,7 +41,7 @@ abstract class BookRepository: CrudRepository<Book, String>, PageableRepository<
 
         val author = book.author?.let { author ->
             authorRepository.findFirstByFirstNameAndLastName(author.firstName, author.lastName)
-                    ?: authorRepository.save(author)
+                ?: authorRepository.save(author)
         }
 
         val genre = book.genre?.let { genre ->
@@ -53,11 +61,29 @@ abstract class BookRepository: CrudRepository<Book, String>, PageableRepository<
         return book
     }
 
-    @Query(value = "SELECT b FROM Book b WHERE (SELECT count(*) FROM Copy c " +
-            "WHERE c.book = b AND status in :status) > :count",
-            countQuery = "SELECT count(b) FROM Book b " +
-                    "WHERE (SELECT count(*) FROM Copy c WHERE c.book = b AND status in :status) > :count"
+    @Query(
+        value = "SELECT b FROM Book b WHERE (SELECT count(*) FROM Copy c " +
+                "WHERE c.book = b AND status in :status) > :count",
+        countQuery = "SELECT count(b) FROM Book b " +
+                "WHERE (SELECT count(*) FROM Copy c WHERE c.book = b AND status in :status) > :count"
     )
     abstract fun findBooks(pageable: Pageable, status: List<String> = listOf("AVAILABLE"), count: Long = 0): Page<Book>
+
+    @Transactional
+    fun checkoutBook(member: Member, isbn: String, lengthDays: Int, copyId: UUID? = null): Loan =
+    // 1. get available copies of book, checkout one of them
+    // 2. get specific copy and checkout if available
+    // 3. renew loan if already exists
+
+        // SELECT c FROM Copy c WHERE c.isbn = :isbn AND status = available LIMIT 1
+        copyRepository.findFirstByIsbnAndStatus(isbn, Availability.AVAILABLE.name)?.let { copy ->
+            loanRepository.save(
+                Loan(
+                    copy = copy,
+                    member = member,
+                    lengthDays = lengthDays
+                )
+            )
+        } ?: throw NoCopyAvailableForBookException(isbn)
 
 }
