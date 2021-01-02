@@ -72,20 +72,36 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
 
     @Transactional
     fun checkoutBook(member: Member, isbn: String, lengthDays: Int, copyId: UUID? = null): Loan =
-    // 1. get available copies of book, checkout one of them
-    // 2. get specific copy and checkout if available
-    // 3. renew loan if already exists
-
-        // SELECT c FROM Copy c WHERE c.isbn = :isbn AND status = available LIMIT 1
-        copyRepository.findFirstByIsbnAndStatus(isbn, Availability.AVAILABLE.name)?.let { copy ->
-            loanRepository.save(
-                Loan(
-                    copy = copy,
-                    member = member,
-                    lengthDays = lengthDays,
-                    loanDate = Date(),
-                )
-            )
+        getAvailableCopyByIsbnOrCopyId(isbn, copyId)?.let { copy ->
+            when (copy.status) {
+                Availability.AVAILABLE.name ->
+                    loanRepository.save(
+                        Loan(
+                            copy = copy,
+                            member = member,
+                            lengthDays = lengthDays,
+                            loanDate = Date(),
+                        )
+                    )
+                Availability.UNAVAILABLE.name ->
+                    loanRepository.findFirstByCopy(copy)?.takeIf { loan -> loan.member == member }?.let { loan ->
+                        loanRepository.update(
+                            loan.apply { loanDate = Date() }
+                        )
+                    }
+                else -> null
+            }
         } ?: throw NoCopyAvailableForBookException(isbn)
+
+    private fun getAvailableCopyByIsbnOrCopyId(isbn: String, copyId: UUID?): Copy? =
+        if (copyId != null)
+            copyRepository.findFirstByCopyId(copyId)
+        else {
+            copyRepository.findFirstByIsbnAndStatus(isbn, Availability.AVAILABLE.name)
+        }
+
+    // TODOs
+    // Make exceptions internal -> API
+    // Write tests
 
 }

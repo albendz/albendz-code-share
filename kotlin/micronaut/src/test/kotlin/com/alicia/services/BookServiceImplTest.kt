@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import javax.inject.Inject
+import org.junit.jupiter.api.Assertions.fail
+import org.junit.jupiter.api.Disabled
 
 @MicronautTest
 class BookServiceImplTest {
@@ -59,5 +61,20 @@ class BookServiceImplTest {
 
         Mockito.verify(bookRepository).findBooks(expectedPageable, emptyList(), 0L)
         assertEquals(expectedResponse, response)
+    }
+
+    @Test
+    fun `WHEN checkout book with valid member and valid loan THEN return loan`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN checkout book with non-existing member THEN throw exception`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN checkout book with valid member and no loan available THEN throw no copy exception`() {
+        TODO("Unimplemented")
     }
 }

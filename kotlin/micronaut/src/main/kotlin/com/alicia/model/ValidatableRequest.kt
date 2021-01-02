@@ -14,3 +14,4 @@ abstract class ValidatableRequest {
         }
     }
 }
+

@@ -7,10 +7,7 @@ import com.alicia.data.Author
 import com.alicia.data.Book
 import com.alicia.data.Copy
 import com.alicia.data.Genre
-import com.alicia.exceptions.BookNotFoundException
-import com.alicia.exceptions.EmptyImportCsvException
-import com.alicia.exceptions.FailureToReadImportCsvException
-import com.alicia.exceptions.MemberNotFoundException
+import com.alicia.exceptions.*
 import com.alicia.model.*
 import com.alicia.repositories.BookRepository
 import com.alicia.repositories.GenreRepository
@@ -48,7 +45,7 @@ class BookServiceImpl : BookService {
 
     override fun search(availabilities: List<Availability>, pageNumber: Int, itemsPerPage: Int): PaginatedBookResponse {
         val pageable = Pageable.from(pageNumber, itemsPerPage)
-        var count: Long = 0L
+        var count = 0L
         if (availabilities.size == 2) {
             count = -1L
         }
@@ -136,12 +133,16 @@ class BookServiceImpl : BookService {
 
     override fun checkoutBook(isbn: String, checkoutRequest: CheckoutRequest): LoanResponse =
         memberService.getMember(checkoutRequest.memberId).let { member ->
-            bookRepository.checkoutBook(
-                member,
-                isbn,
-                bookConfiguration.loanDurationDays,
-                checkoutRequest.copyId
-            ).toLoanResponse()
+            try {
+                bookRepository.checkoutBook(
+                    member,
+                    isbn,
+                    bookConfiguration.loanDurationDays,
+                    checkoutRequest.copyId
+                ).toLoanResponse()
+            } catch (e: NoCopyAvailableForBookException) {
+                throw NoCopyAvailableException(isbn)
+            }
         }
 
     private fun validateCsvRecord(csvRecord: CSVRecord): Boolean {
