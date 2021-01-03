@@ -1,5 +1,6 @@
 package com.alicia.repositories
 
+import com.alicia.configuration.CalendarManager
 import com.alicia.constants.Availability
 import com.alicia.data.Book
 import com.alicia.data.Copy
@@ -12,6 +13,9 @@ import io.micronaut.data.model.Page
 import io.micronaut.data.model.Pageable
 import io.micronaut.data.repository.CrudRepository
 import io.micronaut.data.repository.PageableRepository
+import java.time.Instant
+import java.time.temporal.TemporalAccessor
+import java.util.Calendar
 import java.util.Date
 import java.util.UUID
 import javax.inject.Inject
@@ -31,6 +35,9 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
 
     @Inject
     lateinit var loanRepository: LoanRepository
+
+    @Inject
+    lateinit var calendarManager: CalendarManager
 
     abstract fun findFirstByIsbn(isbn: String): Book?
 
@@ -80,7 +87,7 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
                             copy = copy,
                             member = member,
                             lengthDays = lengthDays,
-                            loanDate = Date(),
+                            loanDate = calendarManager.getToday(),
                         )
                     )
                 Availability.UNAVAILABLE.name ->
