@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import org.mockito.Mockito.verifyNoInteractions
 
 @MicronautTest
@@ -78,6 +80,8 @@ class BookRepositoryTest {
         )
 
         assertEquals(loan, actualLoan)
+        assertEquals(Availability.UNAVAILABLE.name, copy.status)
+        verify(copyRepository, times(1)).update(copy)
     }
 
     @Test
@@ -119,6 +123,8 @@ class BookRepositoryTest {
         )
 
         assertEquals(loan, actualLoan)
+        assertEquals(Availability.UNAVAILABLE.name, copy.status)
+        verify(copyRepository, times(1)).update(copy)
     }
 
     @Test

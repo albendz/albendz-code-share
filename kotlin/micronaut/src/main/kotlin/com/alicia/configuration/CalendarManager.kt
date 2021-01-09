@@ -19,7 +19,7 @@ class CalendarManager {
     @Scheduled(cron = "0 0 * * *")
     fun updateCalendar() {
         val now = LocalDate.now(ZoneId.of("UTC"))
-        todayCalendar.clear()
+        todayCalendar.clear() // TODO: could negatively interact with getToday()
         todayCalendar.set(now.year, now.month.value - 1, now.dayOfMonth)
     }
 }

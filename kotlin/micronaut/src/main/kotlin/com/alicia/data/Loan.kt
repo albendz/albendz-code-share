@@ -35,6 +35,6 @@ data class Loan(
                         DateTimeFormatter.ISO_DATE.withZone(ZoneId.of("UTC")).format(it.toInstant())
                 },
                 loanLength = lengthDays,
-                member = "${member?.lastName}, ${member?.firstName}",
+                member = member?.id,
         )
 }

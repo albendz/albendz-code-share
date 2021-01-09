@@ -50,7 +50,7 @@ data class AuthorResponse(
 data class LoanResponse(
         val id: UUID?,
         val copyId: UUID?,
-        val member: String?,
+        val member: UUID?,
         val loanDate: String?,
         val loanLength: Int?,
 )

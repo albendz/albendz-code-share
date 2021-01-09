@@ -90,7 +90,9 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
                             lengthDays = lengthDays,
                             loanDate = calendarManager.getToday(),
                         )
-                    )
+                    ).also {
+                        copyRepository.update(copy.apply { status = Availability.UNAVAILABLE.name })
+                    }
                 Availability.UNAVAILABLE.name ->
                     loanRepository.findFirstByCopy(copy)?.takeIf { loan -> loan.member == member }?.let { loan ->
                         loanRepository.update(
@@ -107,9 +109,5 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
         else {
             copyRepository.findFirstByIsbnAndStatus(isbn, Availability.AVAILABLE.name)
         }
-
-    // TODOs
-    // Make exceptions internal -> API
-    // Write tests
 
 }
