@@ -77,6 +77,7 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
     )
     abstract fun findBooks(pageable: Pageable, status: List<String> = listOf("AVAILABLE"), count: Long = 0): Page<Book>
 
+    @Throws(NoCopyAvailableForBookException::class)
     @Transactional
     fun checkoutBook(member: Member, isbn: String, lengthDays: Int, copyId: UUID? = null): Loan =
         getAvailableCopyByIsbnOrCopyId(isbn, copyId)?.let { copy ->
@@ -93,7 +94,7 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
                 Availability.UNAVAILABLE.name ->
                     loanRepository.findFirstByCopy(copy)?.takeIf { loan -> loan.member == member }?.let { loan ->
                         loanRepository.update(
-                            loan.apply { loanDate = Date() }
+                            loan.apply { loanDate = calendarManager.getToday() }
                         )
                     }
                 else -> null

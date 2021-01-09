@@ -20,6 +20,6 @@ class CalendarManager {
     fun updateCalendar() {
         val now = LocalDate.now(ZoneId.of("UTC"))
         todayCalendar.clear()
-        todayCalendar.set(now.year, now.monthValue, now.dayOfMonth)
+        todayCalendar.set(now.year, now.month.value - 1, now.dayOfMonth)
     }
 }
