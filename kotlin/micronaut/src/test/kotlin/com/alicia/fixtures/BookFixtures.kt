@@ -9,7 +9,7 @@ import com.alicia.model.GenreResponse
 import java.util.*
 
 object BookFixtures {
-    private const val defaultIsbn = "DEFAULT_ISBN"
+    const val defaultIsbn = "DEFAULT_ISBN"
     private val defaultUuid = UUID.randomUUID()
 
     val defaultResponse = BookResponse(

@@ -6,8 +6,8 @@ import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import java.sql.SQLException
 import javax.inject.Inject
-import junit.framework.Assert.assertEquals
 import org.hibernate.exception.ConstraintViolationException
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito

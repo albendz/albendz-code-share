@@ -41,15 +41,15 @@ class MemberControllerTest {
             firstName = "Jane",
             lastName = "Doe",
         )
-        val expectedResponse = MemberFixtures.memberResponse
+        val expectedMember = MemberFixtures.member
         val request = HttpRequest.POST("", addMemberRequest)
 
-        Mockito.`when`(memberService.addMember(addMemberRequest)).thenReturn(expectedResponse)
+        Mockito.`when`(memberService.addMember(addMemberRequest)).thenReturn(expectedMember)
 
-        val actualResponse = client.toBlocking()
+        val actualMember = client.toBlocking()
             .retrieve(request, MemberResponse::class.java)
 
-        assertEquals(expectedResponse, actualResponse)
+        assertEquals(MemberFixtures.memberResponse, actualMember)
     }
 
     @Test
@@ -90,15 +90,15 @@ class MemberControllerTest {
 
     @Test
     fun `WHEN get existing member THEN return member`() {
-        val expectedResponse = MemberFixtures.memberResponse
+        val expectedMember = MemberFixtures.member
         val request = HttpRequest.GET<MemberResponse>("/${MemberFixtures.defaultUuid}")
 
-        Mockito.`when`(memberService.getMember(MemberFixtures.defaultUuid)).thenReturn(expectedResponse)
+        Mockito.`when`(memberService.getMember(MemberFixtures.defaultUuid)).thenReturn(expectedMember)
 
-        val actualResponse = client.toBlocking()
+        val actualMember = client.toBlocking()
             .retrieve(request, MemberResponse::class.java)
 
-        assertEquals(expectedResponse, actualResponse)
+        assertEquals(MemberFixtures.memberResponse, actualMember)
     }
 
     @Test

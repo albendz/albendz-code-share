@@ -3,10 +3,9 @@ package com.alicia.services
 import com.alicia.constants.Availability
 import com.alicia.exceptions.EmptyImportCsvException
 import com.alicia.exceptions.FailureToReadImportCsvException
-import com.alicia.model.AddBookRequest
-import com.alicia.model.BookResponse
-import com.alicia.model.BulkUploadResponse
-import com.alicia.model.PaginatedBookResponse
+import com.alicia.exceptions.MemberNotFoundException
+import com.alicia.exceptions.NoCopyAvailableException
+import com.alicia.model.*
 import io.micronaut.http.multipart.CompletedFileUpload
 import kotlin.jvm.Throws
 
@@ -24,5 +23,8 @@ interface BookService {
 
     @Throws(EmptyImportCsvException::class, FailureToReadImportCsvException::class)
     fun bulkUpload(csv: CompletedFileUpload): BulkUploadResponse
+
+    @Throws(NoCopyAvailableException::class, MemberNotFoundException::class)
+    fun checkoutBook(isbn: String, checkoutRequest: CheckoutRequest): LoanResponse
 }
 

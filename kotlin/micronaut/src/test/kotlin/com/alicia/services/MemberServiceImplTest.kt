@@ -30,12 +30,11 @@ class MemberServiceImplTest {
     @Test
     fun `WHEN add member THEN save member with details`() {
         val memberRequest = MemberFixtures.addMemberRequest
-        val expectedMemberResponse = MemberFixtures.memberResponse
         `when`(memberRepository.saveMember(memberRequest.toMember())).thenReturn(MemberFixtures.member)
 
-        val actualResponse = memberService.addMember(memberRequest)
+        val actualMember = memberService.addMember(memberRequest)
 
-        assertEquals(expectedMemberResponse, actualResponse)
+        assertEquals(MemberFixtures.member, actualMember)
     }
 
     @Test
@@ -54,9 +53,9 @@ class MemberServiceImplTest {
     fun `WHEN get member exists THEN return existing member with ID`() {
         `when`(memberRepository.findFirstById(MemberFixtures.defaultUuid)).thenReturn(MemberFixtures.member)
 
-        val actualResponse = memberService.getMember(MemberFixtures.defaultUuid)
+        val actualMember = memberService.getMember(MemberFixtures.defaultUuid)
 
-        assertEquals(MemberFixtures.memberResponse, actualResponse)
+        assertEquals(MemberFixtures.member, actualMember)
     }
 
     @Test

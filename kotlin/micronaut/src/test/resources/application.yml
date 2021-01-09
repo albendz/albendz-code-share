@@ -32,3 +32,6 @@ libraryInfo:
   address: "11  W 53rd St."
   country: "USA"
   zipCode:  "10019"
+---
+book:
+  loanDurationDays: 1
