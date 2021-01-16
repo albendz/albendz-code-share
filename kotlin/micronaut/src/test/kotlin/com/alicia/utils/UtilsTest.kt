@@ -17,7 +17,7 @@ class UtilsTest {
         val expected = "Fiction"
 
         inputs.map { Utils.toGenreName(it) }.forEach {
-            assertEquals("Expect $it to be $expected", expected, it)
+            assertEquals(expected, it)
         }
     }
 
@@ -33,7 +33,7 @@ class UtilsTest {
         val expected = "Science Fiction"
 
         inputs.map { Utils.toGenreName(it) }.forEach {
-            assertEquals("Expect $it to be $expected", expected, it)
+            assertEquals(expected, it)
         }
     }
 
