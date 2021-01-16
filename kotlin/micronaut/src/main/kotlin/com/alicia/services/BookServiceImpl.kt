@@ -84,8 +84,9 @@ class BookServiceImpl : BookService {
             authorService.findAuthor(addBookRequest.authorId)
         }
 
-        bookRepository.saveBookAndGenre(addBookRequest.toBook(genre), author)
-        return bookRepository.save(addBookRequest.toBook(genre)).let { book -> book.isbn?.let { bookRepository.findFirstByIsbn(it)?.toBookResponse() } ?: book.toBookResponse() }
+        return bookRepository.saveBookAndGenre(addBookRequest.toBook(genre), author).let { book ->
+            book.isbn?.let { bookRepository.findFirstByIsbn(it)?.toBookResponse() } ?: book.toBookResponse()
+        }
     }
 
     @Throws(EmptyImportCsvException::class, FailureToReadImportCsvException::class)

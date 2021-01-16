@@ -20,11 +20,11 @@ data class AddBookRequest(
         Book(
             author = Author(id = authorId),
             title = title,
-            genre = null,
+            genre = genre,
             publicationDate = publicationDate?.let { Date(publicationDate) },
             isbn = isbn,
         ).apply {
-            copies = List(desiredCopies) { Copy(book = this, status = Availability.AVAILABLE.name) }
+            copies = List(desiredCopies) { Copy(status = Availability.AVAILABLE.name) }
         }
 
     override fun getErrors(): List<String> {
