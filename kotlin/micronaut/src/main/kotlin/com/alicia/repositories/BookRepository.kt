@@ -57,7 +57,8 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
     fun saveBookAndGenre(book: Book, author: Author?): Book {
         try {
             val genre = book.genre?.let { genre ->
-                genreRepository.findFirstByName(book.genre?.name) ?: genreRepository.save(genre)
+                genreRepository.findFirstByName(book.genre?.name)
+                    ?: genreRepository.save(genre)
             }
 
             return book.apply {
@@ -73,7 +74,7 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
                 it
             }
         } catch (e: ConstraintViolationException) {
-            throw BookWithIsbnAlreadyExists(book.isbn!!) // TODO
+            throw BookWithIsbnAlreadyExists(book.isbn)
         }
     }
 

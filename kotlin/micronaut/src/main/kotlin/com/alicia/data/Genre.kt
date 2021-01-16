@@ -12,8 +12,7 @@ data class Genre(
         @Column(name = "id")
         val id: UUID? = null,
 
-        //TODO: Unique constraint?
-        @Column(name = "name")
+        @Column(name = "name", unique = true)
         val name: String? = null,
 
         @Column(name = "age_group")

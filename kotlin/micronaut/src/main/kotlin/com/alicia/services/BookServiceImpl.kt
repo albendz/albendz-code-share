@@ -7,6 +7,7 @@ import com.alicia.data.Author
 import com.alicia.data.Book
 import com.alicia.data.Copy
 import com.alicia.data.Genre
+import com.alicia.utils.Utils
 import com.alicia.exceptions.*
 import com.alicia.model.*
 import com.alicia.repositories.BookRepository
@@ -74,18 +75,17 @@ class BookServiceImpl : BookService {
         }
 
     override fun addBook(addBookRequest: AddBookRequest): BookResponse {
-        // TODO: add genre addition to transaction with book create
-        val genre = Genre(name = addBookRequest.genre)
-        val author = authorService.findAuthor(addBookRequest.authorId)
-
-        // TODO: add copies
-        // TODO: catch DB exceptions and map correctly
-        // TODO: verify author exists
-        // TODO: handle book already exists
-        bookRepository.saveBookAndGenre(addBookRequest.toBook(genre), author)
-        return bookRepository.save(addBookRequest.toBook(genre)).let { book ->
-            book.isbn?.let { bookRepository.findFirstByIsbn(it)?.toBookResponse() } ?: book.toBookResponse()
+        val genre = addBookRequest.genre?.let { genre ->
+            val genreName = Utils.toGenreName(genre)
+            Genre(name = genreName)
         }
+
+        val author = addBookRequest.authorId?.let {
+            authorService.findAuthor(addBookRequest.authorId)
+        }
+
+        bookRepository.saveBookAndGenre(addBookRequest.toBook(genre), author)
+        return bookRepository.save(addBookRequest.toBook(genre)).let { book -> book.isbn?.let { bookRepository.findFirstByIsbn(it)?.toBookResponse() } ?: book.toBookResponse() }
     }
 
     @Throws(EmptyImportCsvException::class, FailureToReadImportCsvException::class)

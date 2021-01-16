@@ -14,7 +14,7 @@ data class Book (
     var isbn: String? = null,
 
     @ManyToOne(fetch = FetchType.EAGER)
-    var author: Author? = null,
+    var author: Author? = null, // TODO: make non-null later
 
     @ManyToOne
     var genre: Genre? = null,
