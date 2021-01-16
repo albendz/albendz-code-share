@@ -6,11 +6,12 @@ import com.alicia.data.Genre
 import java.util.*
 
 data class AddBookRequest(
-        val authorId: UUID?,
+        val authorId: UUID,
         val title: String,
         val publicationDate: Long? = null,
         val genre: String? = null,
         val isbn: String,
+        val desiredCopies: Int =  0,
 ): ValidatableRequest() {
 
     fun toBook(genre: Genre?): Book =
@@ -36,6 +37,10 @@ data class AddBookRequest(
 
         if (title.isBlank()) {
             errors.add("Title")
+        }
+
+        if (desiredCopies < 0) {
+            errors.add("Desired Copies")
         }
 
         return  errors

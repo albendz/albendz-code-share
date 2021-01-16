@@ -2,10 +2,8 @@ package com.alicia.repositories
 
 import com.alicia.configuration.CalendarManager
 import com.alicia.constants.Availability
-import com.alicia.data.Book
-import com.alicia.data.Copy
-import com.alicia.data.Loan
-import com.alicia.data.Member
+import com.alicia.data.*
+import com.alicia.exceptions.BookWithIsbnAlreadyExists
 import com.alicia.exceptions.NoCopyAvailableForBookException
 import io.micronaut.data.annotation.Query
 import io.micronaut.data.annotation.Repository
@@ -13,13 +11,10 @@ import io.micronaut.data.model.Page
 import io.micronaut.data.model.Pageable
 import io.micronaut.data.repository.CrudRepository
 import io.micronaut.data.repository.PageableRepository
-import java.time.Instant
-import java.time.temporal.TemporalAccessor
-import java.util.Calendar
-import java.util.Date
 import java.util.UUID
 import javax.inject.Inject
 import javax.transaction.Transactional
+import org.hibernate.exception.ConstraintViolationException
 
 @Repository
 abstract class BookRepository : CrudRepository<Book, String>, PageableRepository<Book, String> {
@@ -44,29 +39,42 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
     abstract fun existsByIsbn(isbn: String?): Boolean
 
     @Transactional
-    fun saveWithAuthorAndGenre(book: Book): Book {
-        if (existsByIsbn(book.isbn)) return book
+    fun saveWithAuthorAndGenreOrReturnExisting(book: Book): Book {
+        findFirstByIsbn(book.isbn!!)?.let {
+            return book
+        }
 
         val author = book.author?.let { author ->
             authorRepository.findFirstByFirstNameAndLastName(author.firstName, author.lastName)
                 ?: authorRepository.save(author)
         }
 
-        val genre = book.genre?.let { genre ->
-            genreRepository.findFirstByName(book.genre?.name) ?: genreRepository.save(genre)
+        return saveBookAndGenre(book, author)
+    }
+
+    @Throws(BookWithIsbnAlreadyExists::class)
+    @Transactional
+    fun saveBookAndGenre(book: Book, author: Author?): Book {
+        try {
+            val genre = book.genre?.let { genre ->
+                genreRepository.findFirstByName(book.genre?.name) ?: genreRepository.save(genre)
+            }
+
+            return book.apply {
+                this.author = author
+                this.genre = genre
+            }.let {
+                save(it)
+            }.let {
+                it.copies = it.copies.map { copy ->
+                    copy.book = it
+                    copyRepository.save(copy)
+                }
+                it
+            }
+        } catch (e: ConstraintViolationException) {
+            throw BookWithIsbnAlreadyExists(book.isbn!!) // TODO
         }
-
-        book.author = author
-        book.genre = genre
-
-        save(book)
-
-        book.copies = book.copies.map { copy ->
-            copy.book = book
-            copyRepository.save(copy)
-        }
-
-        return book
     }
 
     @Query(

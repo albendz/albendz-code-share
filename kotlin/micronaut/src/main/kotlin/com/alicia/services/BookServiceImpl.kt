@@ -43,6 +43,9 @@ class BookServiceImpl : BookService {
     @Inject
     lateinit var bookConfiguration: BookConfiguration
 
+    @Inject
+    lateinit var authorService: AuthorService
+
     override fun search(availabilities: List<Availability>, pageNumber: Int, itemsPerPage: Int): PaginatedBookResponse {
         val pageable = Pageable.from(pageNumber, itemsPerPage)
         var count = 0L
@@ -71,11 +74,15 @@ class BookServiceImpl : BookService {
         }
 
     override fun addBook(addBookRequest: AddBookRequest): BookResponse {
-        val genre = addBookRequest.genre?.let {
-            genreRepository.findFirstByName(it) ?: genreRepository.save(Genre(name = it))
-        }
+        // TODO: add genre addition to transaction with book create
+        val genre = Genre(name = addBookRequest.genre)
+        val author = authorService.findAuthor(addBookRequest.authorId)
 
         // TODO: add copies
+        // TODO: catch DB exceptions and map correctly
+        // TODO: verify author exists
+        // TODO: handle book already exists
+        bookRepository.saveBookAndGenre(addBookRequest.toBook(genre), author)
         return bookRepository.save(addBookRequest.toBook(genre)).let { book ->
             book.isbn?.let { bookRepository.findFirstByIsbn(it)?.toBookResponse() } ?: book.toBookResponse()
         }
@@ -121,7 +128,7 @@ class BookServiceImpl : BookService {
 
             return BulkUploadResponse(
                 books.map { book ->
-                    bookRepository.saveWithAuthorAndGenre(book).toBookResponse()
+                    bookRepository.saveWithAuthorAndGenreOrReturnExisting(book).toBookResponse()
                 },
                 errors
             )
