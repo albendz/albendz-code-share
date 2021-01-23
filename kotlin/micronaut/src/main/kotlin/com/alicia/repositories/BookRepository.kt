@@ -53,7 +53,7 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
     }
 
     @Throws(BookWithIsbnAlreadyExists::class)
-    @Transactional
+    @Transactional(rollbackOn = [BookWithIsbnAlreadyExists::class])
     fun saveBookAndGenre(book: Book, author: Author?): Book {
         try {
             val genre = book.genre?.let { genre ->
@@ -66,12 +66,6 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
                 this.genre = genre
             }.let {
                 save(it)
-            }.let {
-                it.copies = it.copies.map { copy ->
-                    copy.book = it
-                    copyRepository.save(copy)
-                }
-                it
             }
         } catch (e: ConstraintViolationException) {
             throw BookWithIsbnAlreadyExists(book.isbn)
