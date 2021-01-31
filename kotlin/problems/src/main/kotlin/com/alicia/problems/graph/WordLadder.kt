@@ -10,25 +10,31 @@ object WordLadder {
     /**
      * Given a starting word, HEAD, and an ending word, TAIL
      * Find the sequence of single letter transformations of valid words
-     * that turns HEAD into tail.
+     * that turns HEAD into TAIL.
      *
      * Ex. HEAD > TEAL > TELL > TALL > TAIL
      */
-    fun findWordLadder(head: String, tail: String): List<String>? {
+    fun findWordLadder(head: String, tail: String): List<String> {
         val visited = mutableSetOf<String>()
-        val next: Queue<WordNode> = LinkedList<WordNode>()
+        val next: Queue<WordNode> = LinkedList()
         val dictionary = Dictionary()
 
         // Could do validation here for valid chars, matching size
+        // Invalid character (not english letters)
+        // convert to all upper case
+        // no empty strings
 
         if (head == tail) return listOf(head)
+
+        if (head.length != tail.length) return emptyList()
+
+        if (!dictionary.isValidWord(head) || !dictionary.isValidWord(tail)) return emptyList()
 
         next.add(WordNode(head, null))
         visited.add(head)
 
         while(!next.isEmpty()) {
             val current = next.remove()
-            println(current.word)
 
             if (current.word == tail) {
                 return getPathTo(current)
@@ -43,7 +49,7 @@ object WordLadder {
                 }
         }
 
-        return  emptyList()
+        return emptyList()
     }
 
 
