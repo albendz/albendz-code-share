@@ -12,9 +12,9 @@ class WordLadderTest {
         val expected = listOf("HEAD", "HEAL", "TEAL", "TELL", "TALL", "TAIL")
         val result = WordLadder.findWordLadder("HEAD", "TAIL")
 
-        assertEquals(expected.size, result?.size)
+        assertEquals(expected.size, result.size)
         for(i in expected.indices) {
-            assertEquals(expected[i], result!![i], "Expected ${expected[i]} but was ${result[i]}")
+            assertEquals(expected[i], result[i], "Expected ${expected[i]} but was ${result[i]}")
         }
     }
 
