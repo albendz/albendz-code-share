@@ -84,9 +84,7 @@ class BookServiceImpl : BookService {
             authorService.findAuthor(addBookRequest.authorId)
         }
 
-        return bookRepository.saveBookAndGenre(addBookRequest.toBook(genre), author).let { book ->
-            book.isbn?.let { bookRepository.findFirstByIsbn(it)?.toBookResponse() } ?: book.toBookResponse()
-        }
+        return bookRepository.saveBookAndGenre(addBookRequest.toBook(genre), author).toBookResponse()
     }
 
     @Throws(EmptyImportCsvException::class, FailureToReadImportCsvException::class)
@@ -128,7 +126,7 @@ class BookServiceImpl : BookService {
             }
 
             return BulkUploadResponse(
-                books.map { book ->
+                books.filter { it.isbn != null }.map { book ->
                     bookRepository.saveWithAuthorAndGenreOrReturnExisting(book).toBookResponse()
                 },
                 errors

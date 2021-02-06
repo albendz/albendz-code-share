@@ -175,4 +175,49 @@ class BookRepositoryTest {
             )
         }
     }
+
+    @Test
+    fun `WHEN save with author and genre with no ISBN then throw exception`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN save with author and genre for existing THEN return existing book`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN save with author and genre with existing author then use existing author`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN save with author and genre for new author THEN save new author`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN save with author and genre for null author THEN no author repository interaction`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN save with author and genre with existing genre then use existing genre`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN save with author and genre for new genre THEN save new genre`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN save with author and genre for null genre THEN no genre repository interaction`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN contraint violation exception on save book with author and genre then throw internal exception`() {
+        TODO("Unimplemented")
+    }
 }

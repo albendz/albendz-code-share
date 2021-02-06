@@ -3,6 +3,7 @@ package com.alicia.repositories
 import com.alicia.configuration.CalendarManager
 import com.alicia.constants.Availability
 import com.alicia.data.*
+import com.alicia.exceptions.BookMissingIsbnException
 import com.alicia.exceptions.BookWithIsbnAlreadyExists
 import com.alicia.exceptions.NoCopyAvailableForBookException
 import io.micronaut.data.annotation.Query
@@ -36,21 +37,16 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
 
     abstract fun findFirstByIsbn(isbn: String): Book?
 
-    abstract fun existsByIsbn(isbn: String?): Boolean
-
     @Transactional
-    fun saveWithAuthorAndGenreOrReturnExisting(book: Book): Book {
-        findFirstByIsbn(book.isbn!!)?.let {
-            return book
-        }
-
-        val author = book.author?.let { author ->
-            authorRepository.findFirstByFirstNameAndLastName(author.firstName, author.lastName)
-                ?: authorRepository.save(author)
-        }
-
-        return saveBookAndGenre(book, author)
-    }
+    fun saveWithAuthorAndGenreOrReturnExisting(book: Book): Book =
+        book.isbn?.let { isbn ->
+            findFirstByIsbn(isbn) ?: book.author?.let { author ->
+                authorRepository.findFirstByFirstNameAndLastName(author.firstName, author.lastName)
+                    ?: authorRepository.save(author)
+            }.let { author ->
+                saveBookAndGenre(book, author)
+            }
+        } ?: throw BookMissingIsbnException()
 
     @Throws(BookWithIsbnAlreadyExists::class)
     @Transactional(rollbackOn = [BookWithIsbnAlreadyExists::class])

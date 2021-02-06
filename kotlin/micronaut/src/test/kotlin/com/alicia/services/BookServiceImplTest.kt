@@ -123,4 +123,24 @@ class BookServiceImplTest {
             bookService.checkoutBook(BookFixtures.defaultIsbn, checkoutRequest)
         }
     }
+
+    @Test
+    fun `WHEN adding book with genre THEN convert to valid genre on book`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN adding book without genre THEN no genre on book`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN adding book with existing author THEN add author to book`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN adding book with no author THEN add no author to book`() {
+        TODO("Unimplemented")
+    }
 }

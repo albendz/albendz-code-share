@@ -5,7 +5,7 @@ import com.alicia.model.AddBookRequest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class BookTest {
+class AddBookRequestTest {
 
     @Test
     fun `WHEN book request is valid THEN has no errors`() {
@@ -14,13 +14,25 @@ class BookTest {
 
     @Test
     fun `WHEN book request has all errors THEN return all errors`() {
-        assertEquals(listOf("Author ID", "ISBN", "Title"),
+        assertEquals(
+            listOf("Author", "ISBN", "Title", "Desired  copies"),
             AddBookRequest(
                 authorId = null,
                 title = "",
                 isbn = "",
                 genre = "Science",
+                desiredCopies = -1,
             ).getErrors()
         )
+    }
+
+    @Test
+    fun `WHEN add copies with request THEN create Book with desired copies`() {
+        TODO("Unimplemented")
+    }
+
+    @Test
+    fun `WHEN desired copies is 0 THEN copies is empty list`() {
+        TODO("Unimplemented")
     }
 }
