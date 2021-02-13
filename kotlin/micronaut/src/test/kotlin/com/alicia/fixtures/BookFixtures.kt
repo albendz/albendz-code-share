@@ -6,7 +6,7 @@ import com.alicia.data.Genre
 import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.model.GenreResponse
-import java.util.*
+import java.util.UUID
 
 object BookFixtures {
     const val defaultIsbn = "DEFAULT_ISBN"
@@ -15,23 +15,23 @@ object BookFixtures {
     val defaultResponse = BookResponse(
         author = "Darwin, Charles",
         title = "Origin of Species",
-        genre = GenreResponse("Science"),
+        genre = GenreResponse(UUID.randomUUID(), "Science"),
         isbn = defaultIsbn,
         totalCopies = 0,
         availableCopies = 0,
     )
 
     val defaultBook = Book(
-            author = Author(id = defaultUuid),
-            title = "Origin of Species",
-            genre = Genre(defaultUuid, "Science"),
-            isbn = defaultIsbn,
+        author = Author(id = defaultUuid),
+        title = "Origin of Species",
+        genre = Genre(defaultUuid, "Science"),
+        isbn = defaultIsbn,
     )
 
     val addBookRequest = AddBookRequest(
-            authorId = defaultUuid,
-            title = "Origin of Species",
-            isbn = defaultIsbn,
-            genre = "Science",
+        authorId = defaultUuid,
+        title = "Origin of Species",
+        isbn = defaultIsbn,
+        genre = "Science",
     )
 }
