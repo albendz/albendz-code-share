@@ -7,25 +7,22 @@ import com.alicia.data.Author
 import com.alicia.data.Book
 import com.alicia.data.Copy
 import com.alicia.data.Genre
-import com.alicia.utils.Utils
 import com.alicia.exceptions.*
 import com.alicia.model.*
 import com.alicia.repositories.BookRepository
 import com.alicia.repositories.GenreRepository
 import io.micronaut.data.model.Pageable
 import io.micronaut.http.multipart.CompletedFileUpload
+import java.io.ByteArrayInputStream
+import java.io.IOException
+import java.io.InputStreamReader
+import java.util.Date
+import javax.inject.Inject
+import javax.inject.Singleton
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVRecord
 import org.slf4j.LoggerFactory
-import java.io.ByteArrayInputStream
-import java.io.IOException
-import java.io.InputStreamReader
-import java.lang.NumberFormatException
-import java.util.Date
-import javax.inject.Inject
-import javax.inject.Singleton
-import kotlin.jvm.Throws
 
 @Singleton
 class BookServiceImpl : BookService {
@@ -75,16 +72,11 @@ class BookServiceImpl : BookService {
         }
 
     override fun addBook(addBookRequest: AddBookRequest): BookResponse {
-        val genre = addBookRequest.genre?.let { genre ->
-            val genreName = Utils.toGenreName(genre)
-            Genre(name = genreName)
-        }
-
         val author = addBookRequest.authorId?.let {
             authorService.findAuthor(addBookRequest.authorId)
-        }
+        } ?: throw AuthorRequiredException()
 
-        return bookRepository.saveBookAndGenre(addBookRequest.toBook(genre), author).toBookResponse()
+        return bookRepository.saveBookAndGenre(addBookRequest.toBook(), author).toBookResponse()
     }
 
     @Throws(EmptyImportCsvException::class, FailureToReadImportCsvException::class)

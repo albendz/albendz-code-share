@@ -5,7 +5,9 @@ import com.alicia.data.Author
 import com.alicia.data.Book
 import com.alicia.data.Copy
 import com.alicia.data.Genre
-import java.util.*
+import com.alicia.utils.Utils
+import java.util.Date
+import java.util.UUID
 
 data class AddBookRequest(
     val authorId: UUID?,
@@ -16,11 +18,14 @@ data class AddBookRequest(
     val desiredCopies: Int = 0,
 ) : ValidatableRequest() {
 
-    fun toBook(genre: Genre?): Book =
+    fun toBook(): Book =
         Book(
             author = Author(id = authorId),
             title = title,
-            genre = genre,
+            genre = genre?.let { g ->
+                val genreName = Utils.toGenreName(g)
+                Genre(name = genreName)
+            },
             publicationDate = publicationDate?.let { Date(publicationDate) },
             isbn = isbn,
         ).apply {
