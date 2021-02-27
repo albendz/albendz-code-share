@@ -48,7 +48,10 @@ class BookController {
     @Get("/{isbn}")
     @ApiResponses(
         ApiResponse(
-            description = "Return book with ID",
+            description = """Return book with ID.
+                The Book ID is a UUID type.
+                If a non-UUID is passed, you will receive an error.
+            """,
             responseCode = "200"
         ),
         ApiResponse(
