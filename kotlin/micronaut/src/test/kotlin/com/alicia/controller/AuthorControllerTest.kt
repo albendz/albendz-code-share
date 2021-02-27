@@ -1,5 +1,6 @@
 package com.alicia.controller
 
+import com.alicia.data.Author
 import com.alicia.exceptions.AuthorNotFoundException
 import com.alicia.model.AddAuthorRequest
 import com.alicia.model.AuthorResponse
@@ -96,9 +97,15 @@ class AuthorControllerTest {
     @Test
     fun `WHEN get existing author THEN return existing author`() {
         val id = UUID.randomUUID()
+        val author = Author(
+            id = id,
+            firstName = "Charles",
+            lastName = "Darwin",
+            birthDate = Date(0)
+        )
         val expectedResponse = AuthorResponse(
-                firstName = "Charles",
-                lastName = "Darwin",
+                firstName = author.firstName,
+                lastName = author.lastName,
                 dob = "1970-01-01Z",
                 dod = null,
                 biography = null,
@@ -106,7 +113,7 @@ class AuthorControllerTest {
         )
 
         val request = HttpRequest.GET<AuthorResponse>("/$id")
-        Mockito.`when`(authorService.findAuthor(id)).thenReturn(expectedResponse)
+        Mockito.`when`(authorService.findAuthor(id)).thenReturn(author)
 
         // Action
         val actualResponse = client.toBlocking()

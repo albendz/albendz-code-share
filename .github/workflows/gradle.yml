@@ -3,12 +3,20 @@
 
 name: Java CI with Gradle
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+    - mainline
+  pull_request:
+    paths:
+    - 'kotlin/micronaut/**'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./kotlin/micronaut
 
     steps:
     - uses: actions/checkout@v2
@@ -17,6 +25,6 @@ jobs:
       with:
         java-version: 1.8
     - name: Grant execute permission for gradlew
-      run: chmod +x kotlin/micronaut/gradlew
+      run: chmod +x ./gradlew
     - name: Build with Gradle
-      run: ./kotlin/micronaut/gradlew build
+      run: ./gradlew build
