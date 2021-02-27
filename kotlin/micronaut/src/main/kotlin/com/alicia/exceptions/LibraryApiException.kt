@@ -6,6 +6,8 @@ import java.util.UUID
 open class LibraryApiException(override val message: String, val httpStatus: HttpStatus):
         Exception("${httpStatus.code}: $message")
 
+class AuthorRequiredException: LibraryApiException("Author is required", HttpStatus.BAD_REQUEST)
+
 class BookNotFoundException(isbn: String):
         LibraryApiException("Book not found: $isbn", HttpStatus.NOT_FOUND)
 

@@ -2,10 +2,9 @@ package com.alicia.repositories
 
 import com.alicia.configuration.CalendarManager
 import com.alicia.constants.Availability
-import com.alicia.data.Book
-import com.alicia.data.Copy
-import com.alicia.data.Loan
-import com.alicia.data.Member
+import com.alicia.data.*
+import com.alicia.exceptions.BookMissingRequiredDataException
+import com.alicia.exceptions.BookWithIsbnAlreadyExistsException
 import com.alicia.exceptions.NoCopyAvailableForBookException
 import io.micronaut.data.annotation.Query
 import io.micronaut.data.annotation.Repository
@@ -13,13 +12,10 @@ import io.micronaut.data.model.Page
 import io.micronaut.data.model.Pageable
 import io.micronaut.data.repository.CrudRepository
 import io.micronaut.data.repository.PageableRepository
-import java.time.Instant
-import java.time.temporal.TemporalAccessor
-import java.util.Calendar
-import java.util.Date
 import java.util.UUID
 import javax.inject.Inject
 import javax.transaction.Transactional
+import org.hibernate.exception.ConstraintViolationException
 
 @Repository
 abstract class BookRepository : CrudRepository<Book, String>, PageableRepository<Book, String> {
@@ -41,32 +37,35 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
 
     abstract fun findFirstByIsbn(isbn: String): Book?
 
-    abstract fun existsByIsbn(isbn: String?): Boolean
+    @Transactional(rollbackOn = [BookWithIsbnAlreadyExistsException::class])
+    fun saveWithAuthorAndGenreOrReturnExisting(book: Book): Book =
+        book.isbn?.let { isbn ->
+            findFirstByIsbn(isbn) ?: book.author?.let { author ->
+                authorRepository.findClosestMatchAuthor(author)
+                    ?: authorRepository.save(author)
+            }.let { author ->
+                saveBookAndGenre(book, author)
+            }
+        } ?: throw BookMissingRequiredDataException()
 
-    @Transactional
-    fun saveWithAuthorAndGenre(book: Book): Book {
-        if (existsByIsbn(book.isbn)) return book
+    @Throws(BookWithIsbnAlreadyExistsException::class)
+    @Transactional(rollbackOn = [BookWithIsbnAlreadyExistsException::class])
+    fun saveBookAndGenre(book: Book, author: Author?): Book {
+        try {
+            val genre = book.genre?.let { genre ->
+                genreRepository.findFirstByName(book.genre?.name)
+                    ?: genreRepository.save(genre)
+            }
 
-        val author = book.author?.let { author ->
-            authorRepository.findFirstByFirstNameAndLastName(author.firstName, author.lastName)
-                ?: authorRepository.save(author)
+            return book.apply {
+                this.author = author
+                this.genre = genre
+            }.let {
+                save(it)
+            }
+        } catch (e: ConstraintViolationException) {
+            throw BookWithIsbnAlreadyExistsException(book.isbn)
         }
-
-        val genre = book.genre?.let { genre ->
-            genreRepository.findFirstByName(book.genre?.name) ?: genreRepository.save(genre)
-        }
-
-        book.author = author
-        book.genre = genre
-
-        save(book)
-
-        book.copies = book.copies.map { copy ->
-            copy.book = book
-            copyRepository.save(copy)
-        }
-
-        return book
     }
 
     @Query(
@@ -103,7 +102,7 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
             }
         } ?: throw NoCopyAvailableForBookException(isbn)
 
-    private fun getAvailableCopyByIsbnOrCopyId(isbn: String, copyId: UUID?): Copy? =
+    fun getAvailableCopyByIsbnOrCopyId(isbn: String, copyId: UUID?): Copy? =
         if (copyId != null)
             copyRepository.findFirstByCopyId(copyId)
         else {

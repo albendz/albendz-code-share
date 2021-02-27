@@ -15,7 +15,7 @@ data class Genre(
 
         // TODO: read from config
         @Size(max = 100)
-        @Column(name = "name")
+        @Column(name = "name", unique = true)
         val name: String? = null,
 
         @Column(name = "age_group")

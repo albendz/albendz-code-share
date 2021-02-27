@@ -33,5 +33,6 @@ object BookFixtures {
         title = "Origin of Species",
         isbn = defaultIsbn,
         genre = "Science",
+        desiredCopies = 7,
     )
 }

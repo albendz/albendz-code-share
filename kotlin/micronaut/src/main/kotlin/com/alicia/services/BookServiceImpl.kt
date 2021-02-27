@@ -13,18 +13,16 @@ import com.alicia.repositories.BookRepository
 import com.alicia.repositories.GenreRepository
 import io.micronaut.data.model.Pageable
 import io.micronaut.http.multipart.CompletedFileUpload
+import java.io.ByteArrayInputStream
+import java.io.IOException
+import java.io.InputStreamReader
+import java.util.Date
+import javax.inject.Inject
+import javax.inject.Singleton
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVRecord
 import org.slf4j.LoggerFactory
-import java.io.ByteArrayInputStream
-import java.io.IOException
-import java.io.InputStreamReader
-import java.lang.NumberFormatException
-import java.util.Date
-import javax.inject.Inject
-import javax.inject.Singleton
-import kotlin.jvm.Throws
 
 @Singleton
 class BookServiceImpl : BookService {
@@ -42,6 +40,9 @@ class BookServiceImpl : BookService {
 
     @Inject
     lateinit var bookConfiguration: BookConfiguration
+
+    @Inject
+    lateinit var authorService: AuthorService
 
     override fun search(availabilities: List<Availability>, pageNumber: Int, itemsPerPage: Int): PaginatedBookResponse {
         val pageable = Pageable.from(pageNumber, itemsPerPage)
@@ -71,14 +72,11 @@ class BookServiceImpl : BookService {
         }
 
     override fun addBook(addBookRequest: AddBookRequest): BookResponse {
-        val genre = addBookRequest.genre?.let {
-            genreRepository.findFirstByName(it) ?: genreRepository.save(Genre(name = it))
-        }
+        val author = addBookRequest.authorId?.let {
+            authorService.findAuthor(addBookRequest.authorId)
+        } ?: throw AuthorRequiredException()
 
-        // TODO: add copies
-        return bookRepository.save(addBookRequest.toBook(genre)).let { book ->
-            book.isbn?.let { bookRepository.findFirstByIsbn(it)?.toBookResponse() } ?: book.toBookResponse()
-        }
+        return bookRepository.saveBookAndGenre(addBookRequest.toBook(), author).toBookResponse()
     }
 
     @Throws(EmptyImportCsvException::class, FailureToReadImportCsvException::class)
@@ -120,8 +118,8 @@ class BookServiceImpl : BookService {
             }
 
             return BulkUploadResponse(
-                books.map { book ->
-                    bookRepository.saveWithAuthorAndGenre(book).toBookResponse()
+                books.filter { it.isbn != null }.map { book ->
+                    bookRepository.saveWithAuthorAndGenreOrReturnExisting(book).toBookResponse()
                 },
                 errors
             )

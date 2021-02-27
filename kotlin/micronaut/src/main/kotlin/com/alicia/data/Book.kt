@@ -14,7 +14,7 @@ data class Book (
     var isbn: String? = null,
 
     @ManyToOne(fetch = FetchType.EAGER)
-    var author: Author? = null,
+    var author: Author? = null, // TODO: make non-null later
 
     @ManyToOne
     var genre: Genre? = null,
@@ -27,7 +27,7 @@ data class Book (
     var  title: String? = null,
 
     @Join(value = "copy", type = Join.Type.FETCH)
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
     var copies: List<Copy> = emptyList(),
 ) {
 
