@@ -6,17 +6,21 @@ import com.alicia.data.Book
 import com.alicia.data.Copy
 import com.alicia.data.Loan
 import com.alicia.exceptions.BookMissingRequiredDataException
+import com.alicia.exceptions.BookWithIsbnAlreadyExistsException
 import com.alicia.exceptions.NoCopyAvailableForBookException
 import com.alicia.fixtures.AuthorFixtures
 import com.alicia.fixtures.BookFixtures
 import com.alicia.fixtures.MemberFixtures
+import com.nhaarman.mockitokotlin2.any
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
+import java.sql.SQLException
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.GregorianCalendar
 import java.util.UUID
 import javax.inject.Inject
+import org.hibernate.exception.ConstraintViolationException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -121,11 +125,13 @@ class BookRepositoryTest {
                 Availability.AVAILABLE.name,
             )
         ).thenReturn(null)
-        `when`(bookRepository.checkoutBook(
-            MemberFixtures.member,
-            BookFixtures.defaultBook.isbn!!,
-            15,
-        )).thenCallRealMethod()
+        `when`(
+            bookRepository.checkoutBook(
+                MemberFixtures.member,
+                BookFixtures.defaultBook.isbn!!,
+                15,
+            )
+        ).thenCallRealMethod()
         `when`(bookRepository.getAvailableCopyByIsbnOrCopyId(BookFixtures.defaultBook.isbn!!, null))
             .thenCallRealMethod()
 
@@ -150,12 +156,14 @@ class BookRepositoryTest {
         ).thenReturn(copy)
         `when`(loanRepository.save(loan))
             .thenReturn(loan)
-        `when`(bookRepository.checkoutBook(
-            MemberFixtures.member,
-            BookFixtures.defaultBook.isbn!!,
-            15,
-            copy.copyId
-        )).thenCallRealMethod()
+        `when`(
+            bookRepository.checkoutBook(
+                MemberFixtures.member,
+                BookFixtures.defaultBook.isbn!!,
+                15,
+                copy.copyId
+            )
+        ).thenCallRealMethod()
         `when`(bookRepository.getAvailableCopyByIsbnOrCopyId(BookFixtures.defaultBook.isbn!!, copy.copyId))
             .thenCallRealMethod()
 
@@ -188,12 +196,14 @@ class BookRepositoryTest {
         `when`(loanRepository.findFirstByCopy(copy))
             .thenReturn(oldLoan)
         `when`(loanRepository.update(newLoan)).thenReturn(newLoan)
-        `when`(bookRepository.checkoutBook(
-            MemberFixtures.member,
-            BookFixtures.defaultBook.isbn!!,
-            15,
-            copy.copyId
-        )).thenCallRealMethod()
+        `when`(
+            bookRepository.checkoutBook(
+                MemberFixtures.member,
+                BookFixtures.defaultBook.isbn!!,
+                15,
+                copy.copyId
+            )
+        ).thenCallRealMethod()
         `when`(bookRepository.getAvailableCopyByIsbnOrCopyId(BookFixtures.defaultBook.isbn!!, copy.copyId))
             .thenCallRealMethod()
 
@@ -288,12 +298,12 @@ class BookRepositoryTest {
     fun `WHEN save with author and genre for new author THEN save new author`() {
         val book = BookFixtures.defaultBook
 
-        `when`(bookRepository.findFirstByIsbn(book.isbn!!)).thenReturn(null)
-        `when`(bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)).thenCallRealMethod()
         `when`(authorRepository.findClosestMatchAuthor(book.author!!))
             .thenReturn(null)
         `when`(authorRepository.save(book.author!!)).thenReturn(AuthorFixtures.defaultAuthor)
         `when`(bookRepository.saveBookAndGenre(book, AuthorFixtures.defaultAuthor)).thenReturn(book)
+        `when`(bookRepository.findFirstByIsbn(book.isbn!!)).thenReturn(null)
+        `when`(bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)).thenCallRealMethod()
 
         val result = bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)
 
@@ -313,22 +323,64 @@ class BookRepositoryTest {
     }
 
     @Test
-    fun `WHEN save with author and genre with existing genre then use existing genre`() {
-        TODO("Unimplemented")
+    fun `WHEN save with author and genre with existing genre THEN use existing genre`() {
+        val book = BookFixtures.defaultBook
+        val existingGenre = book.genre?.copy(id = UUID.randomUUID())
+        val author = AuthorFixtures.defaultAuthor
+        val expectedBook = book.copy(author = author, genre = existingGenre)
+
+        `when`(genreRepository.findFirstByName(book.genre?.name)).thenReturn(existingGenre)
+        `when`(bookRepository.save(any())).thenReturn(book)
+        `when`(bookRepository.saveBookAndGenre(book, author)).thenCallRealMethod()
+
+        val savedBook = bookRepository.saveBookAndGenre(book, author)
+
+        assertEquals(expectedBook, savedBook)
     }
 
     @Test
     fun `WHEN save with author and genre for new genre THEN save new genre`() {
-        TODO("Unimplemented")
+        val book = BookFixtures.defaultBook
+        val author = AuthorFixtures.defaultAuthor
+        val expectedBook = book.copy(author = author, genre = book.genre)
+
+        `when`(genreRepository.findFirstByName(book.genre?.name)).thenReturn(null)
+        `when`(genreRepository.save(any())).thenReturn(book.genre)
+        `when`(bookRepository.save(any())).thenReturn(book)
+        `when`(bookRepository.saveBookAndGenre(book, author)).thenCallRealMethod()
+
+        val savedBook = bookRepository.saveBookAndGenre(book, author)
+
+        assertEquals(expectedBook, savedBook)
+        verify(genreRepository, times(1)).save(any())
     }
 
     @Test
     fun `WHEN save with author and genre for null genre THEN no genre repository interaction`() {
-        TODO("Unimplemented")
+        val book = BookFixtures.defaultBook.copy(genre = null)
+        val author = AuthorFixtures.defaultAuthor
+        val expectedBook = book.copy(author = author,genre = null)
+
+        `when`(bookRepository.save(any())).thenReturn(book)
+        `when`(bookRepository.saveBookAndGenre(book, author)).thenCallRealMethod()
+
+        val savedBook = bookRepository.saveBookAndGenre(book, author)
+
+        assertEquals(expectedBook, savedBook)
+        verifyNoInteractions(genreRepository)
     }
 
     @Test
     fun `WHEN constraint violation exception on save book with author and genre then throw internal exception`() {
-        TODO("Unimplemented")
+        val book = BookFixtures.defaultBook
+        val existingGenre = book.genre?.copy(id = UUID.randomUUID())
+        val author = AuthorFixtures.defaultAuthor
+
+        `when`(genreRepository.findFirstByName(book.genre?.name)).thenReturn(existingGenre)
+        `when`(bookRepository.save(any()))
+            .thenThrow(ConstraintViolationException("", SQLException(), ""))
+        `when`(bookRepository.saveBookAndGenre(book, author)).thenCallRealMethod()
+
+        assertThrows<BookWithIsbnAlreadyExistsException> { bookRepository.saveBookAndGenre(book, author) }
     }
 }
