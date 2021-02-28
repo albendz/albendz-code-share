@@ -59,7 +59,7 @@ class GenreController {
     )
     fun getGenreByName(@PathVariable name: String): GenreResponse =
         // Validate name via configuration
-        name.takeIf { it.length <= 100 }?.let {
+        name.takeIf { it.length in 1..100 }?.let {
             genreService.getGenreByName(name)?.toGenreResponse() ?: throw GenreNotFoundException()
         } ?: throw InvalidRequestException(listOf("Name"))
 }
