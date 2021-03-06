@@ -6,7 +6,12 @@ import com.alicia.exceptions.FailureToReadImportCsvException
 import com.alicia.exceptions.MemberNotFoundException
 import com.alicia.exceptions.NoCopyAvailableException
 import com.alicia.fixtures.BookFixtures
-import com.alicia.model.*
+import com.alicia.model.AddBookRequest
+import com.alicia.model.BookResponse
+import com.alicia.model.BulkUploadResponse
+import com.alicia.model.CheckoutRequest
+import com.alicia.model.LoanResponse
+import com.alicia.model.PaginatedBookResponse
 import com.alicia.services.BookService
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpStatus
@@ -20,12 +25,10 @@ import java.util.UUID
 import javax.inject.Inject
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.fail
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
-import org.mockito.MockitoAnnotations
 
 @MicronautTest
 class BookControllerTest {
@@ -42,11 +45,6 @@ class BookControllerTest {
 
     @MockBean(BookService::class)
     fun bookService(): BookService = Mockito.mock(BookService::class.java)
-
-    @BeforeEach
-    fun setup() {
-        MockitoAnnotations.openMocks(this)
-    }
 
     @Test
     fun `WHEN search for books with default availability THEN return books`() {

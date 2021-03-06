@@ -1,6 +1,7 @@
 package com.alicia.services
 
 import com.alicia.data.Genre
+import com.alicia.exceptions.GenreNotFoundException
 import com.alicia.model.PaginatedGenreResponse
 import com.alicia.repositories.GenreRepository
 import io.micronaut.data.model.Pageable
@@ -14,9 +15,11 @@ class GenreServiceImpl : GenreService {
     @Inject
     lateinit var genreRepository: GenreRepository
 
+    @Throws(GenreNotFoundException::class)
     override fun getGenreById(id: UUID): Genre? =
         genreRepository.findFirstById(id)
 
+    @Throws(GenreNotFoundException::class)
     override fun getGenreByName(name: String): Genre? =
         genreRepository.findFirstByName(name)
 

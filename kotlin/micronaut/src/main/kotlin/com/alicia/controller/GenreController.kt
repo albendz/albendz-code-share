@@ -40,7 +40,7 @@ class GenreController {
         ),
         ApiResponse(
             description = "Genre not found by ID",
-            responseCode = "400"
+            responseCode = "404"
         )
     )
     fun getGenreById(@PathVariable id: UUID): GenreResponse =
@@ -54,12 +54,12 @@ class GenreController {
         ),
         ApiResponse(
             description = "Genre not found by name",
-            responseCode = "400"
+            responseCode = "404"
         )
     )
     fun getGenreByName(@PathVariable name: String): GenreResponse =
         // Validate name via configuration
-        name.takeIf { it.length in 1..100 }?.let {
+    name.takeIf { it.length in 1..20 }?.let {
             genreService.getGenreByName(name)?.toGenreResponse() ?: throw GenreNotFoundException()
         } ?: throw InvalidRequestException(listOf("Name"))
 }

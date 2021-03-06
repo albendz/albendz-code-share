@@ -7,8 +7,18 @@ import com.alicia.data.Author
 import com.alicia.data.Book
 import com.alicia.data.Copy
 import com.alicia.data.Genre
-import com.alicia.exceptions.*
-import com.alicia.model.*
+import com.alicia.exceptions.AuthorRequiredException
+import com.alicia.exceptions.BookNotFoundException
+import com.alicia.exceptions.EmptyImportCsvException
+import com.alicia.exceptions.FailureToReadImportCsvException
+import com.alicia.exceptions.NoCopyAvailableException
+import com.alicia.exceptions.NoCopyAvailableForBookException
+import com.alicia.model.AddBookRequest
+import com.alicia.model.BookResponse
+import com.alicia.model.BulkUploadResponse
+import com.alicia.model.CheckoutRequest
+import com.alicia.model.LoanResponse
+import com.alicia.model.PaginatedBookResponse
 import com.alicia.repositories.BookRepository
 import com.alicia.repositories.GenreRepository
 import io.micronaut.data.model.Pageable
@@ -31,9 +41,6 @@ class BookServiceImpl : BookService {
 
     @Inject
     lateinit var bookRepository: BookRepository
-
-    @Inject
-    lateinit var genreRepository: GenreRepository
 
     @Inject
     lateinit var memberService: MemberService

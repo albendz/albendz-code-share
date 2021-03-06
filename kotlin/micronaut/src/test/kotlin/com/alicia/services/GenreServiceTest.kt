@@ -1,7 +1,6 @@
 package com.alicia.services
 
 import com.alicia.data.Genre
-import com.alicia.model.GenreResponse
 import com.alicia.model.PaginatedGenreResponse
 import com.alicia.repositories.GenreRepository
 import io.micronaut.data.model.Page
