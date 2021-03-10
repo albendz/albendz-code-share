@@ -2,6 +2,7 @@ package com.alicia.controller
 
 import com.alicia.exceptions.GenreNotFoundException
 import com.alicia.exceptions.InvalidRequestException
+import com.alicia.exceptions.InvalidSearchRequestException
 import com.alicia.model.GenreResponse
 import com.alicia.model.PaginatedGenreResponse
 import com.alicia.services.GenreService
@@ -25,12 +26,24 @@ class GenreController {
         ApiResponse(
             description = "Return all genres paginated",
             responseCode = "200"
+        ),
+        ApiResponse(
+            description = "Bad request if search parameters are invalid",
+            responseCode = "400"
         )
     )
     fun getAllGenres(
         @QueryValue(defaultValue = "0") pageNumber: Int,
         @QueryValue(defaultValue = "10") itemsPerPage: Int,
-    ): PaginatedGenreResponse = genreService.getPaginatedGenres(pageNumber, itemsPerPage)
+    ): PaginatedGenreResponse {
+
+        if(pageNumber < 0 || itemsPerPage < 1) {
+            throw InvalidSearchRequestException()
+        }
+
+        return genreService.getPaginatedGenres(pageNumber, itemsPerPage)
+    }
+    // TODO: check for valid page numbers and numbers per page
 
     @Get("/id/{id}")
     @ApiResponses(

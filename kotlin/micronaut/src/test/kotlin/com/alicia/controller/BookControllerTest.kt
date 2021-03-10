@@ -109,6 +109,34 @@ class BookControllerTest {
     }
 
     @Test
+    fun `WHEN search for books with invalid page number THEN return bad request`() {
+        val request = HttpRequest.GET<PaginatedBookResponse>(
+            "/search?availability=UNAVAILABLE&pageNumber=-5&itemsPerPage=6"
+        )
+
+        val exception = assertThrows<HttpClientResponseException> {
+            client.toBlocking()
+                .retrieve(request, PaginatedBookResponse::class.java)
+        }
+
+        assertEquals(HttpStatus.BAD_REQUEST, exception.status)
+    }
+
+    @Test
+    fun `WHEN search for books with invalid items per page THEN return bad request`() {
+        val request = HttpRequest.GET<PaginatedBookResponse>(
+            "/search?availability=UNAVAILABLE&pageNumber=5&itemsPerPage=-6"
+        )
+
+        val exception = assertThrows<HttpClientResponseException> {
+            client.toBlocking()
+                .retrieve(request, PaginatedBookResponse::class.java)
+        }
+
+        assertEquals(HttpStatus.BAD_REQUEST, exception.status)
+    }
+
+    @Test
     fun `WHEN create book THEN return created book`() {
         val isbn = "0451529065"
         val id = UUID.randomUUID()
