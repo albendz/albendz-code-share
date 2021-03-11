@@ -1,6 +1,7 @@
 package com.alicia.controller
 
 import com.alicia.constants.Availability
+import com.alicia.exceptions.InvalidSearchRequestException
 import com.alicia.model.*
 import com.alicia.services.BookService
 import io.micronaut.http.MediaType
@@ -21,13 +22,24 @@ class BookController {
         ApiResponse(
             description = "Return books from search",
             responseCode = "200"
+        ),
+        ApiResponse(
+            description = "Bad request if search parameters are invalid",
+            responseCode = "400"
         )
     )
     fun searchBooks(
         @QueryValue(defaultValue = "AVAILABLE,UNAVAILABLE") availability: List<Availability>,
         @QueryValue(defaultValue = "0") pageNumber: Int,
         @QueryValue(defaultValue = "10") itemsPerPage: Int,
-    ): PaginatedBookResponse = bookService.search(availability, pageNumber, itemsPerPage)
+    ): PaginatedBookResponse {
+
+        if(pageNumber < 0 || itemsPerPage < 1) {
+            throw InvalidSearchRequestException()
+        }
+
+        return bookService.search(availability, pageNumber, itemsPerPage)
+    }
 
     @Post(consumes = ["application/json"], produces = ["application/json"])
     @ApiResponses(
