@@ -34,3 +34,7 @@ class MemberAlreadyExistsWithEmailException:
 
 class NoCopyAvailableException(isbn: String):
         LibraryApiException("No copy available for book: $isbn", HttpStatus.BAD_REQUEST)
+
+class GenreNotFoundException: LibraryApiException("Genre not found", HttpStatus.NOT_FOUND)
+
+class InvalidSearchRequestException: LibraryApiException("Invalid search request", HttpStatus.BAD_REQUEST)

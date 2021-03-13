@@ -15,7 +15,7 @@ object BookFixtures {
     val defaultResponse = BookResponse(
         author = "Darwin, Charles",
         title = "Origin of Species",
-        genre = GenreResponse("Science"),
+        genre = GenreResponse(UUID.randomUUID(), "Science"),
         isbn = defaultIsbn,
         totalCopies = 0,
         availableCopies = 0,
