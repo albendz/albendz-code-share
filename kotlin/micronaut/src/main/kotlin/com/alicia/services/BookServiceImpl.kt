@@ -113,7 +113,8 @@ class BookServiceImpl : BookService {
                                     firstName = csvRecord.get(BookImportHeader.AUTHOR_FIRST_NAME.headerValue),
                                     lastName = csvRecord.get(BookImportHeader.AUTHOR_LAST_NAME.headerValue)
                                 ),
-                                copies = List(csvRecord.get(BookImportHeader.COPIES.headerValue).toInt()) {
+                                // TODO: make sure repeat imports don't add more than 10 copies
+                                copies = List(csvRecord.get(BookImportHeader.COPIES.headerValue).toInt()) { // TODO limit copies to 10
                                     Copy(status = Availability.AVAILABLE.name)
                                 },
                             )

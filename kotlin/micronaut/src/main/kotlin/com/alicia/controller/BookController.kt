@@ -9,10 +9,19 @@ import io.micronaut.http.annotation.*
 import io.micronaut.http.multipart.CompletedFileUpload
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
+import java.util.UUID
 import javax.inject.Inject
 
+/*
+        http://library/book/{ISBN}/copies
+        http://library/book/{ISBN}/copy/{UUID}
+ */
 @Controller("/book")
 class BookController {
+
+    /**
+     *     Book related APIs
+     */
 
     @Inject
     lateinit var bookService: BookService
@@ -103,6 +112,33 @@ class BookController {
             bookService.checkoutBook(isbn, checkoutRequest)
         }
 
-    // Check in
-    // Place hold
+    /**
+     * Copy related APIs
+     */
+
+    @Get("/{isbn}/copies")
+    @ApiResponses(
+        ApiResponse(
+            description = "Get all copies of book by ISBN. Books can only have maximum 10 copies.",
+            responseCode = "201"
+        ),
+        ApiResponse(
+            description = "Book does not exist.",
+            responseCode = "404"
+        )
+    )
+    fun getCopiesByIsbn(@PathVariable isbn: String): List<CopyResponse> = TODO("Unimplemented")
+
+    @Get("/{isbn}/copy/{copyId}")
+    @ApiResponses(
+        ApiResponse(
+            description = "Return copy of book by ISBN and copy ID",
+            responseCode = "200"
+        ),
+        ApiResponse(
+            description = "Copy does not exist or book does not exist.",
+            responseCode = "404"
+        )
+    )
+    fun getCopy(@PathVariable isbn: String, @PathVariable copyId: UUID): CopyResponse = TODO("Unimplemented")
 }
