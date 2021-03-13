@@ -35,6 +35,7 @@ jobs:
       with:
         name: LibraryJAR
         path: build/libs/library-*-all.jar
+        retention-days: 1
   
   docker:
     dependsOn: build
@@ -48,8 +49,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: LibraryJAR
-    - name: Build Docker Image
+        path: build/libs
+    - name: Set up docker
       uses: docker/build-push-action@v1
+    - name: Build Docker Image
       run: docker build -t library .
     - name: Upload Docker Image
       run: echo "Upload Docker image"
