@@ -38,9 +38,9 @@ jobs:
         retention-days: 1
   
   docker:
-    dependsOn: build
+    needs: build
     runs-on: ubuntu-latest
-    default:
+    defaults:
       run:
         working-directory: ./kotlin/micronaut
     
