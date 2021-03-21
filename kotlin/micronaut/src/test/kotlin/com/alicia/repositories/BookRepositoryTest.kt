@@ -152,7 +152,7 @@ class BookRepositoryTest {
         val loan = Loan(copy = copy, member = MemberFixtures.member, lengthDays = 15, loanDate = dateToday)
 
         `when`(
-            copyRepository.findFirstByCopyId(copy.copyId!!)
+            copyRepository.findFirstByCopyIdAndIsbn(copy.copyId!!, BookFixtures.defaultBook.isbn!!)
         ).thenReturn(copy)
         `when`(loanRepository.save(loan))
             .thenReturn(loan)
@@ -191,7 +191,7 @@ class BookRepositoryTest {
         val newLoan = Loan(copy = copy, member = MemberFixtures.member, lengthDays = 15, loanDate = dateToday)
 
         `when`(
-            copyRepository.findFirstByCopyId(copy.copyId!!)
+            copyRepository.findFirstByCopyIdAndIsbn(copy.copyId!!, BookFixtures.defaultBook.isbn!!)
         ).thenReturn(copy)
         `when`(loanRepository.findFirstByCopy(copy))
             .thenReturn(oldLoan)
@@ -229,7 +229,7 @@ class BookRepositoryTest {
 
         `when`(bookRepository.copyRepository).thenReturn(copyRepository)
         `when`(
-            copyRepository.findFirstByCopyId(copy.copyId!!)
+            copyRepository.findFirstByCopyIdAndIsbn(copy.copyId!!, BookFixtures.defaultBook.isbn!!)
         ).thenReturn(copy)
         `when`(loanRepository.findFirstByCopy(copy))
             .thenReturn(loan)

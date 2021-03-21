@@ -2,20 +2,29 @@ package com.alicia.controller
 
 import com.alicia.constants.Availability
 import com.alicia.exceptions.InvalidSearchRequestException
-import com.alicia.model.*
+import com.alicia.model.AddBookRequest
+import com.alicia.model.BookResponse
+import com.alicia.model.BulkUploadResponse
+import com.alicia.model.CheckoutRequest
+import com.alicia.model.CopyResponse
+import com.alicia.model.LoanResponse
+import com.alicia.model.PaginatedBookResponse
 import com.alicia.services.BookService
+import com.alicia.services.CopyService
 import io.micronaut.http.MediaType
-import io.micronaut.http.annotation.*
+import io.micronaut.http.annotation.Body
+import io.micronaut.http.annotation.Consumes
+import io.micronaut.http.annotation.Controller
+import io.micronaut.http.annotation.Get
+import io.micronaut.http.annotation.PathVariable
+import io.micronaut.http.annotation.Post
+import io.micronaut.http.annotation.QueryValue
 import io.micronaut.http.multipart.CompletedFileUpload
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import java.util.UUID
 import javax.inject.Inject
 
-/*
-        http://library/book/{ISBN}/copies
-        http://library/book/{ISBN}/copy/{UUID}
- */
 @Controller("/book")
 class BookController {
 
@@ -25,6 +34,9 @@ class BookController {
 
     @Inject
     lateinit var bookService: BookService
+
+    @Inject
+    lateinit var copyService: CopyService
 
     @Get("/search")
     @ApiResponses(
@@ -43,7 +55,7 @@ class BookController {
         @QueryValue(defaultValue = "10") itemsPerPage: Int,
     ): PaginatedBookResponse {
 
-        if(pageNumber < 0 || itemsPerPage < 1) {
+        if (pageNumber < 0 || itemsPerPage < 1) {
             throw InvalidSearchRequestException()
         }
 
@@ -127,7 +139,7 @@ class BookController {
             responseCode = "404"
         )
     )
-    fun getCopiesByIsbn(@PathVariable isbn: String): List<CopyResponse> = TODO("Unimplemented")
+    fun getCopiesByIsbn(@PathVariable isbn: String): List<CopyResponse> = copyService.getAllBookCopies(isbn)
 
     @Get("/{isbn}/copy/{copyId}")
     @ApiResponses(
@@ -140,5 +152,6 @@ class BookController {
             responseCode = "404"
         )
     )
-    fun getCopy(@PathVariable isbn: String, @PathVariable copyId: UUID): CopyResponse = TODO("Unimplemented")
+    fun getCopy(@PathVariable isbn: String, @PathVariable copyId: UUID): CopyResponse =
+        copyService.getBookCopy(isbn, copyId)
 }

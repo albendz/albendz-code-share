@@ -3,12 +3,19 @@ package com.alicia.data
 import com.alicia.model.CopyResponse
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
-import java.util.*
-import javax.persistence.*
+import java.util.UUID
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.Lob
+import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @Entity
 @Table(name = "copy")
-data class Copy (
+data class Copy(
     @Id
     @Column(name = "copy_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,11 +32,11 @@ data class Copy (
     var metadata: ByteArray? = null,
 ) {
     fun toCopyResponse(): CopyResponse = CopyResponse(
-            id = copyId,
-            isbn = book?.isbn,
-            status = status,
-            metadata = ObjectMapper().readValue(metadata, MetadataTypeReference()),
+        id = copyId,
+        isbn = book?.isbn,
+        status = status,
+        metadata = null,
     )
 }
 
-private class MetadataTypeReference: TypeReference<Map<String, List<String>>>()
+private class MetadataTypeReference : TypeReference<Map<String, List<String>>>()

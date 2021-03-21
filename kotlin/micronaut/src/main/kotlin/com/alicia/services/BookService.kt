@@ -7,6 +7,7 @@ import com.alicia.exceptions.MemberNotFoundException
 import com.alicia.exceptions.NoCopyAvailableException
 import com.alicia.model.*
 import io.micronaut.http.multipart.CompletedFileUpload
+import java.util.UUID
 import kotlin.jvm.Throws
 
 interface BookService {

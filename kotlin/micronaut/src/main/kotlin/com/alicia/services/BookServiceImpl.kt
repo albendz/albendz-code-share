@@ -17,6 +17,7 @@ import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.model.BulkUploadResponse
 import com.alicia.model.CheckoutRequest
+import com.alicia.model.CopyResponse
 import com.alicia.model.LoanResponse
 import com.alicia.model.PaginatedBookResponse
 import com.alicia.repositories.BookRepository
@@ -27,6 +28,7 @@ import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.InputStreamReader
 import java.util.Date
+import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.apache.commons.csv.CSVFormat

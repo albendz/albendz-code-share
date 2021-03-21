@@ -60,6 +60,7 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
             return book.apply {
                 this.author = author
                 this.genre = genre
+                this.copies.forEach { it.book = this.copy(copies = null) }
             }.let {
                 save(it)
             }
@@ -104,7 +105,7 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
 
     fun getAvailableCopyByIsbnOrCopyId(isbn: String, copyId: UUID?): Copy? =
         if (copyId != null)
-            copyRepository.findFirstByCopyId(copyId)
+            copyRepository.findFirstByCopyIdAndIsbn(copyId, isbn)
         else {
             copyRepository.findFirstByIsbnAndStatus(isbn, Availability.AVAILABLE.name)
         }
