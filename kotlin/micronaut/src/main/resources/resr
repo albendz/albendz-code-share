@@ -1,5 +1,0 @@
-create table copy (copy_id binary not null, metadata blob, status varchar(255), book_isbn varchar(255), primary key (copy_id))
-
-SELECT * FROM copy WHERE copy_id = :uuid AND book_isbn = :isbn
-
-SELECT c FROM Copy c WHERE c.book.isbn = :isbn WHERE b.isbn = :isbn
