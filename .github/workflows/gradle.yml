@@ -31,7 +31,11 @@ jobs:
     - name: Create application jar
       run: ./gradlew shadowJar
     - name: where am I
-      run: pwd
+      run: ls
+    - name: where am I
+      run: ls build
+    - name: where am I
+      run: ls build/libs
     - name: Save Application JAR
       uses: actions/upload-artifact@v2
       with:
