@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: LibraryJARs
-        path: build/libs
+        path: build/libs/*.jar
         retention-days: 1
   
   docker:
