@@ -60,9 +60,12 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
             return book.apply {
                 this.author = author
                 this.genre = genre
-                this.copies.forEach { it.book = this.copy(copies = null) }
-            }.let {
-                save(it)
+            }.let { bookA ->
+                save(bookA).let {
+                    it.copies = book.copies.map { copy -> copyRepository.save(copy) }
+                    it
+                }
+
             }
         } catch (e: ConstraintViolationException) {
             throw BookWithIsbnAlreadyExistsException(book.isbn)

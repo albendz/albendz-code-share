@@ -25,11 +25,10 @@ data class Book (
 
     @Column(name = "title")
     var  title: String? = null,
-
-    @Join(value = "copy", type = Join.Type.FETCH)
-    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    var copies: List<Copy> = emptyList(),
 ) {
+
+    @Transient // TODO constructor?
+    var copies: List<Copy> = emptyList()
 
     fun toBookResponse(): BookResponse =
             BookResponse(
