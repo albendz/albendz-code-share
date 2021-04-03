@@ -3,6 +3,7 @@ package com.alicia.controller
 import com.alicia.constants.Availability
 import com.alicia.exceptions.InvalidSearchRequestException
 import com.alicia.model.*
+import com.alicia.producer.CheckinProducer
 import com.alicia.services.BookService
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
@@ -16,6 +17,9 @@ class BookController {
 
     @Inject
     lateinit var bookService: BookService
+
+    @Inject
+    lateinit var checkinProducer: CheckinProducer
 
     @Get("/search")
     @ApiResponses(
@@ -104,5 +108,7 @@ class BookController {
         }
 
     // Check in
+    @Post("/checkin")
+    fun checkinBook(checkinRecord: CheckinRecord) = checkinProducer.sendCheckinBook(checkinRecord.isbn!!, checkinRecord)
     // Place hold
 }

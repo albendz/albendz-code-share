@@ -6,6 +6,10 @@ micronaut:
       swagger:
         paths: classpath:META-INF/swagger
         mapping: /swagger/**
+  executors:
+    consumer:
+      type: fixed
+      nThreads: 4
 ---
 datasources:
   default:
@@ -35,3 +39,11 @@ libraryInfo:
 ---
 book:
   loanDurationDays: 15
+---
+kafka:
+  bootstrap:
+    servers: localhost:9092
+---
+library:
+  kafka:
+    checkin-topic: library-checkin-book
