@@ -2,7 +2,6 @@ package com.alicia.data
 
 import com.alicia.constants.Availability
 import com.alicia.model.BookResponse
-import io.micronaut.data.annotation.Join
 import java.util.*
 import javax.persistence.*
 
@@ -25,10 +24,10 @@ data class Book (
 
     @Column(name = "title")
     var  title: String? = null,
-) {
 
-    @Transient // TODO constructor?
+    @Transient
     var copies: List<Copy> = emptyList()
+) {
 
     fun toBookResponse(): BookResponse =
             BookResponse(

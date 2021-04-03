@@ -71,7 +71,7 @@ class BookServiceImpl : BookService {
     }
 
     override fun getBook(isbn: String): BookResponse =
-        bookRepository.findFirstByIsbn(isbn).let { book ->
+        bookRepository.findBookWithCopiesByIsbn(isbn).let { book ->
             if (book != null) {
                 book.toBookResponse()
             } else {
@@ -118,7 +118,7 @@ class BookServiceImpl : BookService {
                             ).apply {
                                 // TODO: make sure repeat imports don't add more than 10 copies
                                 copies = List(csvRecord.get(BookImportHeader.COPIES.headerValue).toInt()) { // TODO limit copies to 10
-                                    Copy(status = Availability.AVAILABLE.name)
+                                    Copy(status = Availability.AVAILABLE.name, book = this)
                                 }
                             }
 

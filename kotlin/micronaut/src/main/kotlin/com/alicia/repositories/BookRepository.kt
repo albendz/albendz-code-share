@@ -37,10 +37,16 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
 
     abstract fun findFirstByIsbn(isbn: String): Book?
 
+    fun findBookWithCopiesByIsbn(isbn: String): Book? =
+        findFirstByIsbn(isbn)?.let { book ->
+            book.copies = copyRepository.findAllByIsbn(isbn)
+            book
+        }
+
     @Transactional(rollbackOn = [BookWithIsbnAlreadyExistsException::class])
     fun saveWithAuthorAndGenreOrReturnExisting(book: Book): Book =
         book.isbn?.let { isbn ->
-            findFirstByIsbn(isbn) ?: book.author?.let { author ->
+            findBookWithCopiesByIsbn(isbn) ?: book.author?.let { author ->
                 authorRepository.findClosestMatchAuthor(author)
                     ?: authorRepository.save(author)
             }.let { author ->
@@ -61,8 +67,8 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
                 this.author = author
                 this.genre = genre
             }.let { bookA ->
-                save(bookA).let {
-                    it.copies = book.copies.map { copy -> copyRepository.save(copy) }
+                save(bookA).let { // TODO no `!!`
+                    it.copies = book.copies.map { copy -> copyRepository.saveCopy(it.isbn!!, copy.status!!) }
                     it
                 }
 
@@ -107,10 +113,8 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
         } ?: throw NoCopyAvailableForBookException(isbn)
 
     fun getAvailableCopyByIsbnOrCopyId(isbn: String, copyId: UUID?): Copy? =
-        if (copyId != null)
+        copyId?.let {
             copyRepository.findFirstByCopyIdAndIsbn(copyId, isbn)
-        else {
-            copyRepository.findFirstByIsbnAndStatus(isbn, Availability.AVAILABLE.name)
-        }
+        } ?: copyRepository.findFirstByIsbnAndStatus(isbn, Availability.AVAILABLE.name)
 
 }
