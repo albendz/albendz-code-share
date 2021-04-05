@@ -2,7 +2,7 @@ package com.alicia.data
 
 import com.alicia.constants.Availability
 import com.alicia.model.BookResponse
-import java.util.*
+import java.util.Date
 import javax.persistence.*
 
 @Entity
@@ -24,10 +24,10 @@ data class Book (
 
     @Column(name = "title")
     var  title: String? = null,
+) {
 
     @Transient
     var copies: List<Copy> = emptyList()
-) {
 
     fun toBookResponse(): BookResponse =
             BookResponse(

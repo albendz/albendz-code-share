@@ -67,9 +67,10 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
                 this.author = author
                 this.genre = genre
             }.let { bookA ->
-                save(bookA).let { // TODO no `!!`
-                    it.copies = book.copies.map { copy -> copyRepository.saveCopy(it.isbn!!, copy.status!!) }
-                    it
+                save(bookA).apply {
+                    copies = book.copies.map { copy ->
+                        copyRepository.save(copy)
+                    }
                 }
 
             }
