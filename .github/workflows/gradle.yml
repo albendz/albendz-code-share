@@ -31,16 +31,12 @@ jobs:
     - name: Create application jar
       run: ./gradlew shadowJar
     - name: where am I
-      run: ls
-    - name: where am I
-      run: ls build
-    - name: where am I
       run: ls build/libs
     - name: Save Application JAR
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2.2.1
       with:
         name: LibraryJARs
-        path: build/libs/*.jar
+        path: build/libs
         retention-days: 1
   
   docker:
@@ -52,7 +48,7 @@ jobs:
     
     steps:
     - name: Download math result for job 2
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v2.0.8
       with:
         name: LibraryJARs
         path: build/libs
