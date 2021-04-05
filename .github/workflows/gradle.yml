@@ -35,8 +35,8 @@ jobs:
     - name: Save Application JAR
       uses: actions/upload-artifact@v2.2.1
       with:
-        name: LibraryJARs
-        path: build/libs/
+        name: LibraryJAR
+        path: build/libs/library-*-all.jar
         retention-days: 1
   
   docker:
@@ -50,7 +50,7 @@ jobs:
     - name: Download math result for job 2
       uses: actions/download-artifact@v2.0.8
       with:
-        name: LibraryJARs
+        name: LibraryJAR
         path: build/libs
     - name: Set up docker
       uses: docker/build-push-action@v1
