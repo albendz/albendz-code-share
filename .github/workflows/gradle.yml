@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v2.2.1
       with:
         name: LibraryJAR
-        path: ./build/libs/library-0.1-all.jar
+        path: kotlin/micronaut/build/libs/library-0.1-all.jar
         retention-days: 1
   
   docker:
