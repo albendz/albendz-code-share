@@ -45,14 +45,15 @@ jobs:
         working-directory: ./kotlin/micronaut
     
     steps:
-    - name: Download math result for job 2
+    - name: Download LibraryJar
       uses: actions/download-artifact@v2.0.8
       with:
         name: LibraryJAR
         path: kotlin/micronaut/build/libs/library-0.1-all.jar
     - name: Set up docker
       uses: docker/build-push-action@v1
-    - name: Build Docker Image
-      run: docker build -t library ./kotlin/micronaut/
+      with:
+        file: ./kotlin/micronaut
+        tags: library
     - name: Upload Docker Image
       run: echo "Upload Docker image"
