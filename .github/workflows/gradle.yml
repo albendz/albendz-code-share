@@ -51,7 +51,7 @@ jobs:
         name: LibraryJAR
         path: kotlin/micronaut/build/libs/library-0.1-all.jar
     - name: Set up docker
-      uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v2
       with:
         context: ./kotlin/micronaut
         tags: library
