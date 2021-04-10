@@ -30,8 +30,6 @@ jobs:
       run: ./gradlew build
     - name: Create application jar
       run: ./gradlew shadowJar
-    - name: where am I
-      run: ls build/libs
     - name: Save Application JAR
       uses: actions/upload-artifact@v2.2.1
       with:
@@ -51,10 +49,10 @@ jobs:
       uses: actions/download-artifact@v2.0.8
       with:
         name: LibraryJAR
-        path: build/libs
+        path: kotlin/micronaut/build/libs/library-0.1-all.jar
     - name: Set up docker
       uses: docker/build-push-action@v1
     - name: Build Docker Image
-      run: docker build -t library .
+      run: docker build -t library ./kotlin/micronaut/
     - name: Upload Docker Image
       run: echo "Upload Docker image"
