@@ -53,7 +53,7 @@ jobs:
     - name: Set up docker
       uses: docker/build-push-action@v1
       with:
-        file: ./kotlin/micronaut
+        context: ./kotlin/micronaut
         tags: library
     - name: Upload Docker Image
       run: echo "Upload Docker image"
