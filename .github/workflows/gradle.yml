@@ -45,7 +45,7 @@ jobs:
       uses: actions/download-artifact@v2.0.8
       with:
         name: LibraryJAR
-        path: ./build/libs/library-0.1-all.jar
+        path: ./kotlin/micronaut/build/libs/library-0.1-all.jar
     - name: Docker Build
       uses: docker/build-push-action@v2
       with:
