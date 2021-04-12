@@ -51,5 +51,6 @@ jobs:
       with:
         file: ./kotlin/micronaut/Dockerfile
         tags: library
+        context: /home/runner/work/albendz-code-share/albendz-code-share/kotlin/micronaut
     - name: Upload Docker Image
       run: echo "Upload Docker image"
