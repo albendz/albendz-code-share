@@ -1,6 +1,6 @@
 FROM adoptopenjdk/openjdk11:jre11u-ubuntu-nightly
 
-COPY build/libs/library-*-all.jar library.jar
+COPY ./build/libs/library-*-all.jar library.jar
 
 EXPOSE 8080
 
