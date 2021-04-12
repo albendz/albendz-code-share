@@ -51,6 +51,5 @@ jobs:
       with:
         file: ./kotlin/micronaut/Dockerfile
         tags: library
-        context: ./kotlin/micronaut
     - name: Upload Docker Image
       run: echo "Upload Docker image"
