@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: Java CI with Gradle
+name: Build Micronaut Library Service
 
 on:
   push:
@@ -28,3 +28,32 @@ jobs:
       run: chmod +x ./gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Create application jar
+      run: ./gradlew shadowJar
+    - name: Save Application JAR
+      uses: actions/upload-artifact@v2.2.1
+      with:
+        name: LibraryJAR
+        path: kotlin/micronaut/build/libs/library-0.1-all.jar
+        retention-days: 1
+  
+  docker:
+    needs: build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./kotlin/micronaut
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download LibraryJar
+      uses: actions/download-artifact@v2.0.8
+      with:
+        name: LibraryJAR
+        path: ./kotlin/micronaut/build/libs/library-0.1-all.jar
+    - uses: docker/setup-buildx-action@v1
+      id: buildx
+      with:
+        install: true
+    - name: Build
+      run: docker build .
+      
