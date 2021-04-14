@@ -54,10 +54,6 @@ jobs:
       id: buildx
       with:
         install: true
-    - name: Where am I?
-      run: pwd
-    - name: Who's here?
-      run: ls
     - name: Build
       run: docker build .
       
