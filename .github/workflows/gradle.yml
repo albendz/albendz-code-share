@@ -44,6 +44,7 @@ jobs:
       run:
         working-directory: ./kotlin/micronaut
     steps:
+    - uses: actions/checkout@v2
     - name: Download LibraryJar
       uses: actions/download-artifact@v2.0.8
       with:
