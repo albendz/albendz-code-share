@@ -50,9 +50,14 @@ jobs:
       with:
         name: LibraryJAR
         path: ./build/libs/library-0.1-all.jar
-    - name: Docker Build
-      uses: docker/build-push-action@v2
+    - uses: docker/setup-buildx-action@v1
+      id: buildx
       with:
-        tags: library
-    - name: Upload Docker Image
-      run: echo "Upload Docker image"
+        install: true
+    - name: Where am I?
+      run: pwd
+    - name: Who's here?
+      run: ls
+    - name: Build
+      run: docker build .
+      
