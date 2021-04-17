@@ -28,7 +28,6 @@ data class CopyResponse(
     val id: UUID?,
     val isbn: String?,
     val status: String?,
-    val metadata: Map<String, List<String>>?,
 )
 
 @JsonInclude(JsonInclude.Include.ALWAYS)

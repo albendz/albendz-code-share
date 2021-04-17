@@ -22,6 +22,7 @@ import java.util.UUID
 import javax.inject.Inject
 import org.hibernate.exception.ConstraintViolationException
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.fail
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -292,6 +293,7 @@ class BookRepositoryTest {
 
         assertEquals(book, result)
         verify(authorRepository, times(0)).save(book.author!!)
+        fail<Unit>("Test save copies as well")
     }
 
     @Test
@@ -383,4 +385,15 @@ class BookRepositoryTest {
 
         assertThrows<BookWithIsbnAlreadyExistsException> { bookRepository.saveBookAndGenre(book, author) }
     }
+
+    @Test
+    fun `WHEN find book with copies THEN return book and copies`() {
+        fail<Unit>();
+    }
+
+    @Test
+    fun `WHEN find book with copies for invalid book THEN return null`() {
+        fail<Unit>();
+    }
+
 }

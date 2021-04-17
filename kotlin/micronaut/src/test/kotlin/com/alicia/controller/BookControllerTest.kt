@@ -1,18 +1,15 @@
 package com.alicia.controller
 
 import com.alicia.constants.Availability
+import com.alicia.data.Copy
 import com.alicia.exceptions.EmptyImportCsvException
 import com.alicia.exceptions.FailureToReadImportCsvException
 import com.alicia.exceptions.MemberNotFoundException
 import com.alicia.exceptions.NoCopyAvailableException
 import com.alicia.fixtures.BookFixtures
-import com.alicia.model.AddBookRequest
-import com.alicia.model.BookResponse
-import com.alicia.model.BulkUploadResponse
-import com.alicia.model.CheckoutRequest
-import com.alicia.model.LoanResponse
-import com.alicia.model.PaginatedBookResponse
+import com.alicia.model.*
 import com.alicia.services.BookService
+import com.alicia.services.CopyService
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.HttpClient
@@ -21,8 +18,10 @@ import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.http.client.multipart.MultipartBody
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
+import java.awt.print.Book
 import java.util.UUID
 import javax.inject.Inject
+import javax.print.attribute.standard.Copies
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.fail
 import org.junit.jupiter.api.Test
@@ -41,10 +40,16 @@ class BookControllerTest {
     lateinit var bookService: BookService
 
     @Inject
+    lateinit var copyService: CopyService
+
+    @Inject
     lateinit var bookController: BookController
 
     @MockBean(BookService::class)
     fun bookService(): BookService = Mockito.mock(BookService::class.java)
+
+    @MockBean(CopyService::class)
+    fun copyService(): CopyService = Mockito.mock(CopyService::class.java)
 
     @Test
     fun `WHEN search for books with default availability THEN return books`() {
@@ -308,6 +313,36 @@ class BookControllerTest {
         }
 
         assertEquals(HttpStatus.BAD_REQUEST, exception.status)
+    }
+
+    @Test
+    fun `WHEN get copies by ISBN for existing book THEN return copies`() {
+        val copy = Copy(copyId = UUID.randomUUID())
+        val book = BookFixtures.defaultBook.copy().apply {
+            this.copies = listOf(copy)
+        }
+        val request = HttpRequest.GET<CopiesResponse>("/${book.isbn}/copies")
+
+        Mockito.`when`(copyService.getAllBookCopies(book.isbn!!)).thenReturn(book.copies.map { it.toCopyResponse() })
+
+        val actualCopies = client.toBlocking().retrieve(request, CopiesResponse::class.java)
+
+        assertEquals(CopiesResponse(listOf(copy.toCopyResponse()), 1), actualCopies)
+    }
+
+    @Test
+    fun `WHEN get copies by ISBN for invalid book THEN return 404`() {
+        fail<Unit>()
+    }
+
+    @Test
+    fun `WHEN get copy by ID THEN return copy`() {
+        fail<Unit>()
+    }
+
+    @Test
+    fun `WHEN get copy for invalid copy THEN return 404`() {
+        TODO("Unimplemented")
     }
 
     private fun <T> any(): T {

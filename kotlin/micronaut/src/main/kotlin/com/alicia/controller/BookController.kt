@@ -2,13 +2,7 @@ package com.alicia.controller
 
 import com.alicia.constants.Availability
 import com.alicia.exceptions.InvalidSearchRequestException
-import com.alicia.model.AddBookRequest
-import com.alicia.model.BookResponse
-import com.alicia.model.BulkUploadResponse
-import com.alicia.model.CheckoutRequest
-import com.alicia.model.CopyResponse
-import com.alicia.model.LoanResponse
-import com.alicia.model.PaginatedBookResponse
+import com.alicia.model.*
 import com.alicia.services.BookService
 import com.alicia.services.CopyService
 import io.micronaut.http.MediaType
@@ -132,14 +126,17 @@ class BookController {
     @ApiResponses(
         ApiResponse(
             description = "Get all copies of book by ISBN. Books can only have maximum 10 copies.",
-            responseCode = "201"
+            responseCode = "200"
         ),
         ApiResponse(
             description = "Book does not exist.",
             responseCode = "404"
         )
     )
-    fun getCopiesByIsbn(@PathVariable isbn: String): List<CopyResponse> = copyService.getAllBookCopies(isbn)
+    fun getCopiesByIsbn(@PathVariable isbn: String): CopiesResponse =
+        copyService.getAllBookCopies(isbn).let {
+            CopiesResponse(it, it.size)
+        }
 
     @Get("/{isbn}/copy/{copyId}")
     @ApiResponses(
