@@ -2,10 +2,7 @@ package com.alicia.controller
 
 import com.alicia.constants.Availability
 import com.alicia.data.Copy
-import com.alicia.exceptions.EmptyImportCsvException
-import com.alicia.exceptions.FailureToReadImportCsvException
-import com.alicia.exceptions.MemberNotFoundException
-import com.alicia.exceptions.NoCopyAvailableException
+import com.alicia.exceptions.*
 import com.alicia.fixtures.BookFixtures
 import com.alicia.model.*
 import com.alicia.services.BookService
@@ -18,10 +15,8 @@ import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.http.client.multipart.MultipartBody
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
-import java.awt.print.Book
 import java.util.UUID
 import javax.inject.Inject
-import javax.print.attribute.standard.Copies
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.fail
 import org.junit.jupiter.api.Test
@@ -332,12 +327,21 @@ class BookControllerTest {
 
     @Test
     fun `WHEN get copies by ISBN for invalid book THEN return 404`() {
-        fail<Unit>()
+        val isbn = "unrealIsbn"
+        val request = HttpRequest.GET<CopiesResponse>("/$isbn/copies")
+
+        Mockito.`when`(copyService.getAllBookCopies(isbn)).thenThrow(BookNotFoundException(isbn))
+
+        val exception = assertThrows<HttpClientResponseException> {
+            client.toBlocking().retrieve(request, CopiesResponse::class.java)
+        }
+
+        assertEquals(HttpStatus.NOT_FOUND, exception.status)
     }
 
     @Test
     fun `WHEN get copy by ID THEN return copy`() {
-        fail<Unit>()
+        TODO("Unimplemented")
     }
 
     @Test
