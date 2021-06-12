@@ -341,12 +341,36 @@ class BookControllerTest {
 
     @Test
     fun `WHEN get copy by ID THEN return copy`() {
-        TODO("Unimplemented")
+        val isbn = "isbn"
+        val copyId = UUID.randomUUID()
+        val copyResponse = CopyResponse(
+            isbn = isbn,
+            id = copyId,
+            status = "${Availability.AVAILABLE}"
+        )
+        val request = HttpRequest.GET<CopyResponse>("/$isbn/copy/$copyId")
+
+        Mockito.`when`(copyService.getBookCopy(isbn, copyId)).thenReturn(copyResponse.copy())
+
+        val response: CopyResponse = client.toBlocking().retrieve(request, CopyResponse::class.java)
+
+        assertEquals(copyResponse, response)
+
     }
 
     @Test
     fun `WHEN get copy for invalid copy THEN return 404`() {
-        TODO("Unimplemented")
+        val isbn = "isbn"
+        val copyId = UUID.randomUUID()
+        val request = HttpRequest.GET<CopyResponse>("/$isbn/copy/$copyId")
+
+        Mockito.`when`(copyService.getBookCopy(isbn, copyId)).thenThrow(CopyNotFoundException(isbn, copyId))
+
+        val exception = assertThrows<HttpClientResponseException> {
+            client.toBlocking().retrieve(request, CopyResponse::class.java)
+        }
+
+        assertEquals(HttpStatus.NOT_FOUND, exception.status)
     }
 
     private fun <T> any(): T {
