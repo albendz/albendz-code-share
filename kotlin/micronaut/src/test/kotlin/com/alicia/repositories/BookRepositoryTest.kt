@@ -269,14 +269,18 @@ class BookRepositoryTest {
 
     @Test
     fun `WHEN save with author and genre for existing book THEN return existing book`() {
-        val book = BookFixtures.defaultBook
+        val book = BookFixtures.defaultBook.copy()
+        val copy = Copy(book = book, status = Availability.AVAILABLE.name)
+        book.copies = listOf(copy)
 
         `when`(bookRepository.findFirstByIsbn(book.isbn!!)).thenReturn(book)
         `when`(bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)).thenCallRealMethod()
+        `when`(copyRepository.save(copy)).thenReturn(copy.copy(UUID.randomUUID()));
 
         val result = bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)
 
         assertEquals(book, result)
+        verify(copyRepository).save(copy)
     }
 
     @Test

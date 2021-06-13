@@ -42,7 +42,7 @@ class AddBookRequestTest {
         val book = BookFixtures.addBookRequest.toBook()
 
         assertEquals(BookFixtures.addBookRequest.desiredCopies, book.copies.size)
-        assertTrue(book.copies.all { it.status == Availability.AVAILABLE.name })
+        assertTrue(book.copies.all { it.status == Availability.AVAILABLE.name && it.book == book})
     }
 
     @Test
