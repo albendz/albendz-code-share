@@ -269,35 +269,36 @@ class BookRepositoryTest {
 
     @Test
     fun `WHEN save with author and genre for existing book THEN return existing book`() {
-        val book = BookFixtures.defaultBook.copy()
-        val copy = Copy(book = book, status = Availability.AVAILABLE.name)
-        book.copies = listOf(copy)
+        val book = BookFixtures.defaultBook
 
+        bookRepository.authorRepository = authorRepository
         `when`(bookRepository.findFirstByIsbn(book.isbn!!)).thenReturn(book)
         `when`(bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)).thenCallRealMethod()
-        `when`(copyRepository.save(copy)).thenReturn(copy.copy(UUID.randomUUID()));
 
         val result = bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)
 
         assertEquals(book, result)
-        verify(copyRepository).save(copy)
     }
 
     @Test
     fun `WHEN save with author and genre with existing author THEN use existing author`() {
-        val book = BookFixtures.defaultBook
+        val book = BookFixtures.defaultBook.copy()
+        val copy = Copy(book = book, status = Availability.AVAILABLE.name)
+        book.copies = listOf(copy)
 
         `when`(bookRepository.findFirstByIsbn(book.isbn!!)).thenReturn(null)
         `when`(bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)).thenCallRealMethod()
         `when`(authorRepository.findClosestMatchAuthor(book.author!!))
             .thenReturn(AuthorFixtures.defaultAuthor)
         `when`(bookRepository.saveBookAndGenre(book, AuthorFixtures.defaultAuthor)).thenReturn(book)
+        `when`(copyRepository.save(copy)).thenReturn(copy.copy(UUID.randomUUID()))
 
         val result = bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)
 
         assertEquals(book, result)
         verify(authorRepository, times(0)).save(book.author!!)
         fail<Unit>("Test save copies as well")
+        verify(copyRepository).save(copy)
     }
 
     @Test
