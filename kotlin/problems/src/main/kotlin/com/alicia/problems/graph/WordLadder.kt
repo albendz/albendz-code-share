@@ -12,7 +12,7 @@ object WordLadder {
      * Find the sequence of single letter transformations of valid words
      * that turns HEAD into TAIL.
      *
-     * Ex. HEAD > TEAL > TELL > TALL > TAIL
+     * Ex. HEAD > HEAL > TEAL > TELL > TALL > TAIL
      */
     fun findWordLadder(head: String, tail: String): List<String> {
         val visited = mutableSetOf<String>()
@@ -58,7 +58,7 @@ object WordLadder {
         val charArray = word.toCharArray()
 
         for(i in charArray.indices) {
-            for (c in Dictionary.letters) {
+            for (c in 'A'..'Z') {
                 if (charArray[i] == c) continue
 
                 val newWord = charArray.copyOf()
@@ -92,13 +92,6 @@ class WordNode(
 
 class Dictionary {
 
-    companion object {
-        var letters = listOf(
-            'A', 'B', 'C', 'D', 'E', 'F', 'G',
-            'H','I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-            'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-        )
-    }
     private val words: Set<String>
 
     init {

@@ -5,7 +5,7 @@ import java.util.*
 object GraphSearch {
 
     fun bfs(start: Node, target: String): List<Node>? {
-        val next: Queue<Node> = LinkedList<Node>()
+        val next: Queue<Node> = LinkedList()
         val visited: MutableList<Node> = mutableListOf()
 
         next.add(start)
@@ -31,6 +31,35 @@ object GraphSearch {
 
         return null
     }
+
+    fun bfsFindNode(root: Node, target: String): Node? {
+        val next: Queue<Node> = LinkedList()
+        val visited: MutableList<Node> = mutableListOf()
+
+        next.add(root)
+        visited.add(root)
+
+        while (!next.isEmpty()) {
+            val current = next.remove()
+            println(current)
+
+            if (current.data == target) {
+                println("Found!")
+                return current
+            }
+
+            current.neighbours.forEach {
+                if (it !in visited) {
+                    next.add(it)
+                    visited.add(it)
+                }
+            }
+        }
+
+        return null
+    }
+
+    fun getFirstNeighbor(node: Node) = node.neighbours.first()
 
     fun dfs(start: Node, target: String): List<Node>? {
         val next: Stack<Node> = Stack()
@@ -73,5 +102,7 @@ object GraphSearch {
 
         return path
     }
+
+
 
 }

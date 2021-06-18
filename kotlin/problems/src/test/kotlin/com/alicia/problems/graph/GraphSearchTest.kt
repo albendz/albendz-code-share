@@ -64,6 +64,26 @@ class GraphSearchTest {
         assertNull(path)
     }
 
+    @Test
+    fun `WHEN search BFS find node THEN return node`() {
+        val node = GraphSearch.bfsFindNode(getExampleGraph(), "G")
+
+        node?.let { print(it.data) } ?: print("Node wasn't found")
+
+        if (node == null) {
+            print(node?.data)
+        } else {
+            print("Node wasn't found")
+        }
+    }
+
+    @Test
+    fun `WHEN Java search BFS find node THEN return node`() {
+        val node = com.alicia.java.problems.graph.GraphSearch.bfsFindNode(getExampleGraph(), "G")
+
+        node.ifPresentOrElse({ n -> print(n.data) }, { print("Node wasn't found")})
+    }
+
     private fun getExampleGraph(): Node {
         val a = Node("A", mutableListOf())
         val b = Node("B", mutableListOf())
