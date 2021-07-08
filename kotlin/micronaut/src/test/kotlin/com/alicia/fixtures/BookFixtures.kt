@@ -10,19 +10,19 @@ import java.util.UUID
 
 object BookFixtures {
     const val defaultIsbn = "DEFAULT_ISBN"
-    private val defaultUuid = UUID.randomUUID()
+    val defaultUuid = UUID.randomUUID()
 
     val defaultResponse = BookResponse(
         author = "Darwin, Charles",
         title = "Origin of Species",
-        genre = GenreResponse(UUID.randomUUID(), "Science"),
+        genre = GenreResponse(defaultUuid, "Science"),
         isbn = defaultIsbn,
         totalCopies = 0,
         availableCopies = 0,
     )
 
     val defaultBook = Book(
-        author = Author(id = defaultUuid),
+        author = Author(id = defaultUuid, firstName = "Charles", lastName = "Darwin"),
         title = "Origin of Species",
         genre = Genre(defaultUuid, "Science"),
         isbn = defaultIsbn,

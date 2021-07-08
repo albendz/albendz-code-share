@@ -2,13 +2,16 @@ package com.alicia.services
 
 import com.alicia.data.*
 import com.alicia.exceptions.AuthorRequiredException
+import com.alicia.exceptions.BookNotFoundException
 import com.alicia.exceptions.MemberNotFoundException
 import com.alicia.exceptions.NoCopyAvailableException
 import com.alicia.exceptions.NoCopyAvailableForBookException
 import com.alicia.fixtures.AuthorFixtures
 import com.alicia.fixtures.BookFixtures
 import com.alicia.fixtures.MemberFixtures
+import com.alicia.model.BookResponse
 import com.alicia.model.CheckoutRequest
+import com.alicia.model.GenreResponse
 import com.alicia.model.PaginatedBookResponse
 import com.alicia.repositories.BookRepository
 import com.alicia.repositories.GenreRepository
@@ -17,8 +20,12 @@ import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.isNull
 import io.micronaut.data.model.Page
 import io.micronaut.data.model.Pageable
+import io.micronaut.http.client.multipart.MultipartBody
+import io.micronaut.http.multipart.CompletedFileUpload
+import io.micronaut.http.multipart.FileUpload
 import io.micronaut.test.annotation.MockBean
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
+import java.io.File
 import java.util.Date
 import java.util.UUID
 import javax.inject.Inject
@@ -62,6 +69,40 @@ class BookServiceImplTest {
     @BeforeEach
     fun setup() {
         MockitoAnnotations.openMocks(this)
+    }
+
+    @Test
+    fun `WHEN get book for existing book THEN return existing book response`() {
+        val expectedBook = BookResponse(
+            author = "Darwin, Charles",
+            title = "Origin of Species",
+            genre = GenreResponse(BookFixtures.defaultUuid, "Science"),
+            isbn = BookFixtures.defaultIsbn,
+            totalCopies = 0,
+            availableCopies = 0,
+        )
+        val book = Book(
+            author = Author(id = BookFixtures.defaultUuid, firstName = "Charles", lastName = "Darwin"),
+            title = "Origin of Species",
+            genre = Genre(BookFixtures.defaultUuid, "Science"),
+            isbn = BookFixtures.defaultIsbn,
+        )
+        Mockito.`when`(bookRepository.findFirstByIsbn(BookFixtures.defaultIsbn))
+            .thenReturn(book)
+
+        val actualResponse = bookService.getBook(BookFixtures.defaultIsbn)
+
+        assertEquals(expectedBook, actualResponse)
+    }
+
+    @Test
+    fun `WHEN get book for non-existing book THEN return book not found exception`() {
+        Mockito.`when`(bookRepository.findFirstByIsbn(BookFixtures.defaultIsbn))
+            .thenReturn(null)
+
+        assertThrows<BookNotFoundException> {
+            bookService.getBook(BookFixtures.defaultIsbn)
+        }
     }
 
     @Test
@@ -180,5 +221,33 @@ class BookServiceImplTest {
         val bookRequest = BookFixtures.addBookRequest.copy(authorId = null)
 
         assertThrows<AuthorRequiredException> { bookService.addBook(bookRequest) }
+    }
+
+    @Test
+    fun `WHEN bulk upload csv with multiple books THEN save each book`() {
+//        val fileUpload: CompletedFileUpload = MultipartBody.builder().addPart("csv", File("good_import.csv"))
+//            .build()
+//
+//        bookService.bulkUpload(fileUpload)
+    }
+
+    @Test
+    fun `WHEN bulk upload csv with no books THEN throw empty import exception`() {
+
+    }
+
+    @Test
+    fun `WHEN bulk upload csv for non-csv file THEN throw exception`() {
+
+    }
+
+    @Test
+    fun `WHEN bulk upload csv where csv has an error of each type THEN do not save and return errors`() {
+
+    }
+
+    @Test
+    fun `WHEN bulk upload csv without header line THEN throw invalid csv`() {
+
     }
 }

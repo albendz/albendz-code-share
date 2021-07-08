@@ -5,7 +5,7 @@ import java.util.UUID
 
 @JsonInclude(JsonInclude.Include.ALWAYS)
 data class GenreResponse(
-    val id: UUID?,
+    var id: UUID?,
     val name: String?,
 )
 
