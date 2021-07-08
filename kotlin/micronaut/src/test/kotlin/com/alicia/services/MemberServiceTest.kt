@@ -16,7 +16,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
 @MicronautTest
-class MemberServiceImplTest {
+class MemberServiceTest {
 
     @Inject
     lateinit var memberService: MemberServiceImpl

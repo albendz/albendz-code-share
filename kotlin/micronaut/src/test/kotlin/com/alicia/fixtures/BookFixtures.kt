@@ -5,6 +5,7 @@ import com.alicia.data.Book
 import com.alicia.data.Genre
 import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
+import com.alicia.model.CopyResponse
 import com.alicia.model.GenreResponse
 import java.util.UUID
 

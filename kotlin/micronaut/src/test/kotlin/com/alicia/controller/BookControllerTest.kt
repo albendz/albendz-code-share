@@ -1,18 +1,12 @@
 package com.alicia.controller
 
 import com.alicia.constants.Availability
-import com.alicia.exceptions.EmptyImportCsvException
-import com.alicia.exceptions.FailureToReadImportCsvException
-import com.alicia.exceptions.MemberNotFoundException
-import com.alicia.exceptions.NoCopyAvailableException
+import com.alicia.data.Copy
+import com.alicia.exceptions.*
 import com.alicia.fixtures.BookFixtures
-import com.alicia.model.AddBookRequest
-import com.alicia.model.BookResponse
-import com.alicia.model.BulkUploadResponse
-import com.alicia.model.CheckoutRequest
-import com.alicia.model.LoanResponse
-import com.alicia.model.PaginatedBookResponse
+import com.alicia.model.*
 import com.alicia.services.BookService
+import com.alicia.services.CopyService
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.HttpClient
@@ -41,10 +35,16 @@ class BookControllerTest {
     lateinit var bookService: BookService
 
     @Inject
+    lateinit var copyService: CopyService
+
+    @Inject
     lateinit var bookController: BookController
 
     @MockBean(BookService::class)
     fun bookService(): BookService = Mockito.mock(BookService::class.java)
+
+    @MockBean(CopyService::class)
+    fun copyService(): CopyService = Mockito.mock(CopyService::class.java)
 
     @Test
     fun `WHEN search for books with default availability THEN return books`() {
@@ -308,6 +308,69 @@ class BookControllerTest {
         }
 
         assertEquals(HttpStatus.BAD_REQUEST, exception.status)
+    }
+
+    @Test
+    fun `WHEN get copies by ISBN for existing book THEN return copies`() {
+        val copy = Copy(copyId = UUID.randomUUID())
+        val book = BookFixtures.defaultBook.copy().apply {
+            this.copies = listOf(copy)
+        }
+        val request = HttpRequest.GET<CopiesResponse>("/${book.isbn}/copies")
+
+        Mockito.`when`(copyService.getAllBookCopies(book.isbn!!)).thenReturn(book.copies.map { it.toCopyResponse() })
+
+        val actualCopies = client.toBlocking().retrieve(request, CopiesResponse::class.java)
+
+        assertEquals(CopiesResponse(listOf(copy.toCopyResponse()), 1), actualCopies)
+    }
+
+    @Test
+    fun `WHEN get copies by ISBN for invalid book THEN return 404`() {
+        val isbn = "unrealIsbn"
+        val request = HttpRequest.GET<CopiesResponse>("/$isbn/copies")
+
+        Mockito.`when`(copyService.getAllBookCopies(isbn)).thenThrow(BookNotFoundException(isbn))
+
+        val exception = assertThrows<HttpClientResponseException> {
+            client.toBlocking().retrieve(request, CopiesResponse::class.java)
+        }
+
+        assertEquals(HttpStatus.NOT_FOUND, exception.status)
+    }
+
+    @Test
+    fun `WHEN get copy by ID THEN return copy`() {
+        val isbn = "isbn"
+        val copyId = UUID.randomUUID()
+        val copyResponse = CopyResponse(
+            isbn = isbn,
+            id = copyId,
+            status = "${Availability.AVAILABLE}"
+        )
+        val request = HttpRequest.GET<CopyResponse>("/$isbn/copy/$copyId")
+
+        Mockito.`when`(copyService.getBookCopy(isbn, copyId)).thenReturn(copyResponse.copy())
+
+        val response: CopyResponse = client.toBlocking().retrieve(request, CopyResponse::class.java)
+
+        assertEquals(copyResponse, response)
+
+    }
+
+    @Test
+    fun `WHEN get copy for invalid copy THEN return 404`() {
+        val isbn = "isbn"
+        val copyId = UUID.randomUUID()
+        val request = HttpRequest.GET<CopyResponse>("/$isbn/copy/$copyId")
+
+        Mockito.`when`(copyService.getBookCopy(isbn, copyId)).thenThrow(CopyNotFoundException(isbn, copyId))
+
+        val exception = assertThrows<HttpClientResponseException> {
+            client.toBlocking().retrieve(request, CopyResponse::class.java)
+        }
+
+        assertEquals(HttpStatus.NOT_FOUND, exception.status)
     }
 
     private fun <T> any(): T {

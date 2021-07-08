@@ -7,12 +7,12 @@ import java.util.UUID
 @JsonInclude(JsonInclude.Include.ALWAYS)
 data class BookResponse(
     val author: String?,
-    val availableCopies: Int?,
+    val availableCopies: Int? = null,
     val genre: GenreResponse? = null,
     val isbn: String?,
     val publicationDate: String? = null,
     val title: String?,
-    val totalCopies: Int?,
+    val totalCopies: Int? = null,
 ) {
     val availablity: Availability by lazy {
         if (availableCopies?.let { it > 0 } == true) {
@@ -28,7 +28,6 @@ data class CopyResponse(
     val id: UUID?,
     val isbn: String?,
     val status: String?,
-    val metadata: Map<String, List<String>>?,
 )
 
 @JsonInclude(JsonInclude.Include.ALWAYS)

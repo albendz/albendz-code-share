@@ -37,10 +37,16 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
 
     abstract fun findFirstByIsbn(isbn: String): Book?
 
+    fun findBookWithCopiesByIsbn(isbn: String): Book? =
+        findFirstByIsbn(isbn)?.let { book ->
+            book.copies = copyRepository.findAllByIsbn(isbn)
+            book
+        }
+
     @Transactional(rollbackOn = [BookWithIsbnAlreadyExistsException::class])
     fun saveWithAuthorAndGenreOrReturnExisting(book: Book): Book =
         book.isbn?.let { isbn ->
-            findFirstByIsbn(isbn) ?: book.author?.let { author ->
+            findBookWithCopiesByIsbn(isbn) ?: book.author?.let { author ->
                 authorRepository.findClosestMatchAuthor(author)
                     ?: authorRepository.save(author)
             }.let { author ->
@@ -60,8 +66,13 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
             return book.apply {
                 this.author = author
                 this.genre = genre
-            }.let {
-                save(it)
+            }.let { bookA ->
+                save(bookA).apply {
+                    copies = book.copies.map { copy ->
+                        copyRepository.save(copy)
+                    }
+                }
+
             }
         } catch (e: ConstraintViolationException) {
             throw BookWithIsbnAlreadyExistsException(book.isbn)
@@ -103,10 +114,8 @@ abstract class BookRepository : CrudRepository<Book, String>, PageableRepository
         } ?: throw NoCopyAvailableForBookException(isbn)
 
     fun getAvailableCopyByIsbnOrCopyId(isbn: String, copyId: UUID?): Copy? =
-        if (copyId != null)
-            copyRepository.findFirstByCopyId(copyId)
-        else {
-            copyRepository.findFirstByIsbnAndStatus(isbn, Availability.AVAILABLE.name)
-        }
+        copyId?.let {
+            copyRepository.findFirstByCopyIdAndIsbn(copyId, isbn)
+        } ?: copyRepository.findFirstByIsbnAndStatus(isbn, Availability.AVAILABLE.name)
 
 }

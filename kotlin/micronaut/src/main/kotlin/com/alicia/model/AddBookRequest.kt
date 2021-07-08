@@ -15,7 +15,7 @@ data class AddBookRequest(
     val publicationDate: Long? = null,
     val genre: String? = null,
     val isbn: String,
-    val desiredCopies: Int = 0,
+    val desiredCopies: Int = 0, // TODO: limit to 10
 ) : ValidatableRequest() {
 
     fun toBook(): Book =
@@ -29,7 +29,7 @@ data class AddBookRequest(
             publicationDate = publicationDate?.let { Date(publicationDate) },
             isbn = isbn,
         ).apply {
-            copies = List(desiredCopies) { Copy(status = Availability.AVAILABLE.name) }
+            copies = List(desiredCopies) { Copy(status = Availability.AVAILABLE.name, book = this) }
         }
 
     override fun getErrors(): List<String> {

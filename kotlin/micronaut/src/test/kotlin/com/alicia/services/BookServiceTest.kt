@@ -33,7 +33,7 @@ import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 @MicronautTest
-class BookServiceImplTest {
+class BookServiceTest {
 
     @Inject
     lateinit var bookService: BookServiceImpl

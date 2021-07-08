@@ -22,6 +22,7 @@ import java.util.UUID
 import javax.inject.Inject
 import org.hibernate.exception.ConstraintViolationException
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.fail
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -152,7 +153,7 @@ class BookRepositoryTest {
         val loan = Loan(copy = copy, member = MemberFixtures.member, lengthDays = 15, loanDate = dateToday)
 
         `when`(
-            copyRepository.findFirstByCopyId(copy.copyId!!)
+            copyRepository.findFirstByCopyIdAndIsbn(copy.copyId!!, BookFixtures.defaultBook.isbn!!)
         ).thenReturn(copy)
         `when`(loanRepository.save(loan))
             .thenReturn(loan)
@@ -191,7 +192,7 @@ class BookRepositoryTest {
         val newLoan = Loan(copy = copy, member = MemberFixtures.member, lengthDays = 15, loanDate = dateToday)
 
         `when`(
-            copyRepository.findFirstByCopyId(copy.copyId!!)
+            copyRepository.findFirstByCopyIdAndIsbn(copy.copyId!!, BookFixtures.defaultBook.isbn!!)
         ).thenReturn(copy)
         `when`(loanRepository.findFirstByCopy(copy))
             .thenReturn(oldLoan)
@@ -229,7 +230,7 @@ class BookRepositoryTest {
 
         `when`(bookRepository.copyRepository).thenReturn(copyRepository)
         `when`(
-            copyRepository.findFirstByCopyId(copy.copyId!!)
+            copyRepository.findFirstByCopyIdAndIsbn(copy.copyId!!, BookFixtures.defaultBook.isbn!!)
         ).thenReturn(copy)
         `when`(loanRepository.findFirstByCopy(copy))
             .thenReturn(loan)
@@ -270,6 +271,7 @@ class BookRepositoryTest {
     fun `WHEN save with author and genre for existing book THEN return existing book`() {
         val book = BookFixtures.defaultBook
 
+        bookRepository.authorRepository = authorRepository
         `when`(bookRepository.findFirstByIsbn(book.isbn!!)).thenReturn(book)
         `when`(bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)).thenCallRealMethod()
 
@@ -280,18 +282,23 @@ class BookRepositoryTest {
 
     @Test
     fun `WHEN save with author and genre with existing author THEN use existing author`() {
-        val book = BookFixtures.defaultBook
+        val book = BookFixtures.defaultBook.copy()
+        val copy = Copy(book = book, status = Availability.AVAILABLE.name)
+        book.copies = listOf(copy)
 
         `when`(bookRepository.findFirstByIsbn(book.isbn!!)).thenReturn(null)
         `when`(bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)).thenCallRealMethod()
         `when`(authorRepository.findClosestMatchAuthor(book.author!!))
             .thenReturn(AuthorFixtures.defaultAuthor)
         `when`(bookRepository.saveBookAndGenre(book, AuthorFixtures.defaultAuthor)).thenReturn(book)
+        `when`(copyRepository.save(copy)).thenReturn(copy.copy(UUID.randomUUID()))
 
         val result = bookRepository.saveWithAuthorAndGenreOrReturnExisting(book)
 
         assertEquals(book, result)
         verify(authorRepository, times(0)).save(book.author!!)
+        fail<Unit>("Test save copies as well")
+        verify(copyRepository).save(copy)
     }
 
     @Test
@@ -383,4 +390,15 @@ class BookRepositoryTest {
 
         assertThrows<BookWithIsbnAlreadyExistsException> { bookRepository.saveBookAndGenre(book, author) }
     }
+
+    @Test
+    fun `WHEN find book with copies THEN return book and copies`() {
+        fail<Unit>();
+    }
+
+    @Test
+    fun `WHEN find book with copies for invalid book THEN return null`() {
+        fail<Unit>();
+    }
+
 }

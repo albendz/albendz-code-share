@@ -17,6 +17,7 @@ import com.alicia.model.AddBookRequest
 import com.alicia.model.BookResponse
 import com.alicia.model.BulkUploadResponse
 import com.alicia.model.CheckoutRequest
+import com.alicia.model.CopyResponse
 import com.alicia.model.LoanResponse
 import com.alicia.model.PaginatedBookResponse
 import com.alicia.repositories.BookRepository
@@ -27,6 +28,7 @@ import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.InputStreamReader
 import java.util.Date
+import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.apache.commons.csv.CSVFormat
@@ -69,7 +71,7 @@ class BookServiceImpl : BookService {
     }
 
     override fun getBook(isbn: String): BookResponse =
-        bookRepository.findFirstByIsbn(isbn).let { book ->
+        bookRepository.findBookWithCopiesByIsbn(isbn).let { book ->
             if (book != null) {
                 book.toBookResponse()
             } else {
@@ -112,11 +114,13 @@ class BookServiceImpl : BookService {
                                 author = Author(
                                     firstName = csvRecord.get(BookImportHeader.AUTHOR_FIRST_NAME.headerValue),
                                     lastName = csvRecord.get(BookImportHeader.AUTHOR_LAST_NAME.headerValue)
-                                ),
-                                copies = List(csvRecord.get(BookImportHeader.COPIES.headerValue).toInt()) {
-                                    Copy(status = Availability.AVAILABLE.name)
-                                },
-                            )
+                                )
+                            ).apply {
+                                // TODO: make sure repeat imports don't add more than 10 copies
+                                copies = List(csvRecord.get(BookImportHeader.COPIES.headerValue).toInt()) { // TODO limit copies to 10
+                                    Copy(status = Availability.AVAILABLE.name, book = this)
+                                }
+                            }
 
                             books.add(book)
                         }

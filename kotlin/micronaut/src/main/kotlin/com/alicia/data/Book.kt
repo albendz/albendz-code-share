@@ -2,8 +2,7 @@ package com.alicia.data
 
 import com.alicia.constants.Availability
 import com.alicia.model.BookResponse
-import io.micronaut.data.annotation.Join
-import java.util.*
+import java.util.Date
 import javax.persistence.*
 
 @Entity
@@ -25,11 +24,10 @@ data class Book (
 
     @Column(name = "title")
     var  title: String? = null,
-
-    @Join(value = "copy", type = Join.Type.FETCH)
-    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    var copies: List<Copy> = emptyList(),
 ) {
+
+    @Transient
+    var copies: List<Copy> = emptyList()
 
     fun toBookResponse(): BookResponse =
             BookResponse(
