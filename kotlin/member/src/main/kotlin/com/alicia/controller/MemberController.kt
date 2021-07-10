@@ -1,23 +1,29 @@
 package com.alicia.controller
 
+import com.alicia.data.Member
 import com.alicia.service.MemberService
+import com.mongodb.client.result.DeleteResult
 import io.micronaut.http.annotation.*
+import io.micronaut.security.annotation.Secured
+import java.util.UUID
+import javax.inject.Inject
 
-@Controller("/member-management")
+@Secured("true")
+@Controller("/member")
 class MemberController(
-    val memberService: MemberService
+    private val memberService: MemberService
 ) {
 
     @Get("/{uuid}")
-    fun getMember(): String = TODO("Unimplemented")
+    fun getMember(@PathVariable uuid: UUID): Member? = memberService.getMember(uuid)
 
-    @Post("/create")
-    fun createMember(): String = TODO("Unimplemented")
+    @Post
+    fun createMember(@Body member: Member): String? = memberService.createMember(member)
 
-    @Put("/{uuid}/update")
-    fun updateMember(): String = TODO("Unimplemented")
+    @Put("/{uuid}")
+    fun updateMember(@PathVariable uuid: UUID): String = TODO("Unimplemented")
 
     @Delete("/{uuid}")
-    fun deleteMember(): String = TODO("Unimplemented")
+    fun deleteMember(@PathVariable uuid: UUID): DeleteResult = memberService.deleteMember(uuid)
 
 }

@@ -4,7 +4,7 @@ import java.time.Instant
 import java.util.UUID
 
 open class Employee(
-    uuid: UUID,
+    uuid: String,
     name: String,
     permissions: List<String>,
     accountStatus: String,
