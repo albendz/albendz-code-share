@@ -70,8 +70,8 @@ class GraphSearchTest {
 
         node?.let { print(it.data) } ?: print("Node wasn't found")
 
-        if (node == null) {
-            print(node?.data)
+        if (node != null) {
+            print(node.data)
         } else {
             print("Node wasn't found")
         }
