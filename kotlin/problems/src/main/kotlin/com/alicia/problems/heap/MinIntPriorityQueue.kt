@@ -1,10 +1,8 @@
 package com.alicia.problems.com.alicia.problems.heap
 
-interface PriorityQueue {
-
+interface MinIntPriorityQueue {
     fun findMin(): Int
     fun getMin(): Int
     fun insert(n: Int)
-    fun size(): Int
-
+    fun isEmpty(): Boolean
 }

@@ -25,6 +25,22 @@ class HeapTest {
     }
 
     @Test
+    fun `WHEN insert past size THEN increase size`() {
+        val heap = Heap(5)
+
+        heap.insert(3)
+        heap.insert(4)
+        heap.insert(5)
+        heap.insert(6)
+        heap.insert(35)
+        heap.insert(33)
+        heap.insert(32)
+
+
+        assertEquals(3, heap.findMin())
+    }
+
+    @Test
     fun `WHEN heapify increasing order list THEN findMin returns min`() {
         val heap = Heap.heapify(listOf(1, 2, 3, 4, 5))
 
@@ -36,6 +52,11 @@ class HeapTest {
         val heap = Heap.heapify(listOf(5, 4, 3, 2, 1))
 
         assertEquals(1, heap.findMin())
+        assertEquals(1, heap.getMin())
+        assertEquals(2, heap.getMin())
+        assertEquals(3, heap.getMin())
+        assertEquals(4, heap.getMin())
+        assertEquals(5, heap.getMin())
     }
 
     @Test
@@ -44,6 +65,10 @@ class HeapTest {
 
         assertEquals(1, heap.getMin())
         assertEquals(2, heap.findMin())
+        assertEquals(2, heap.getMin())
+        assertEquals(3, heap.getMin())
+        assertEquals(4, heap.getMin())
+        assertEquals(5, heap.getMin())
     }
 
 }
