@@ -40,6 +40,10 @@ dependencies {
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
+    kaptTest("io.micronaut:micronaut-inject-java")
+    testImplementation("io.micronaut.test:micronaut-test-kotest:3.5.0")
+    testImplementation("io.mockk:mockk")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm")
 }
 
 
@@ -72,5 +76,6 @@ micronaut {
     }
 }
 
-
-
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+}

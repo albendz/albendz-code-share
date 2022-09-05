@@ -1,33 +1,22 @@
-package com.example
+package com.example.controller
 
 import com.example.model.CreateCustomerRequest
 import com.example.model.CustomerResponse
+import com.example.model.PaginatedCustomerResponse
 import com.example.service.CustomerService
 import io.micronaut.http.HttpResponse
-import io.micronaut.http.annotation.Controller
-import io.micronaut.http.annotation.Get
-import io.micronaut.http.annotation.PathVariable
-import io.micronaut.http.annotation.Post
+import io.micronaut.http.annotation.*
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import java.util.UUID
 
-@Controller("/bank")
-class BankController(
+@Controller("/bank/customer")
+class CustomerController(
     private val customerService: CustomerService
 ) {
 
-    @Get(uri = "/", produces = ["text/plain"])
-    @ApiResponses(
-        ApiResponse(
-            description = "Display bank welcome message",
-            responseCode = "200",
-        )
-    )
-    fun index(): String = "Welcome to my simple banking application!"
-
-    @Get(uri = "/customer/{id}", produces = ["application/json"])
+    @Get(uri = "/{id}", produces = ["application/json"])
     @Operation(
         summary = "Get a customer",
         description = "Get a customer by ID"
@@ -47,7 +36,7 @@ class BankController(
     fun getCustomer(@PathVariable id: UUID) = customerService.get(id)
         ?: HttpResponse.notFound("Customer $id not found.")
 
-    @Post(uri = "/customer", produces = ["application/json"], consumes = ["application/json"])
+    @Post(uri = "/", produces = ["application/json"], consumes = ["application/json"])
     @Operation(
         summary = "Create a customer",
         description = "Create a customer with basic information and no ID"
@@ -81,4 +70,19 @@ class BankController(
                 }
             )
         }
+
+    @Get("/")
+    fun searchCustomers(
+        @QueryValue(value = "offset", defaultValue = "0") offset: Int,
+        @QueryValue(value = "count", defaultValue = "10") count: Int,
+    ): PaginatedCustomerResponse = PaginatedCustomerResponse(offset, count, emptyList())
+
+    @Post("/{id}")
+    fun updateAsPost(@PathVariable id: UUID): CustomerResponse = TODO("Unimplemented")
+
+    @Put("/{id}")
+    fun updateAsPut(@PathVariable id: UUID): CustomerResponse = TODO("Unimplemented")
+
+    @Delete("/{id}")
+    fun delete(@PathVariable id: UUID): Unit = TODO("Unimplemented")
 }
