@@ -20,7 +20,7 @@ dependencies {
     kapt("io.micronaut.data:micronaut-data-document-processor")
     kapt("io.micronaut.micrometer:micronaut-micrometer-annotation")
     kapt("io.micronaut.openapi:micronaut-openapi")
-    kapt("io.micronaut.security:micronaut-security-annotations")
+//    kapt("io.micronaut.security:micronaut-security-annotations")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-jackson-databind")
     implementation("io.micronaut:micronaut-management")
@@ -29,7 +29,7 @@ dependencies {
     implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut.micrometer:micronaut-micrometer-core")
-    implementation("io.micronaut.security:micronaut-security-jwt")
+//    implementation("io.micronaut.security:micronaut-security-jwt")
     implementation("io.swagger.core.v3:swagger-annotations")
     implementation("jakarta.annotation:jakarta.annotation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
@@ -40,6 +40,10 @@ dependencies {
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
+    kaptTest("io.micronaut:micronaut-inject-java")
+    testImplementation("io.micronaut.test:micronaut-test-kotest:3.5.0")
+    testImplementation("io.mockk:mockk")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm")
 }
 
 
@@ -72,5 +76,6 @@ micronaut {
     }
 }
 
-
-
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+}
