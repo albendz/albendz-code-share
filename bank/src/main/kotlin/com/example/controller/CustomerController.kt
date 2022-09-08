@@ -57,14 +57,7 @@ class CustomerController(
         ).let {
             HttpResponse.created(
                 CustomerResponse(
-                    customerId = it.customerId,
-                    firstName = it.firstName,
-                    lastName = it.lastName,
-                    middleName = it.middleName,
-                    socialSecurityNumber = it.socialSecurityNumber
-                        .substring(it.socialSecurityNumber.length - 4, it.socialSecurityNumber.length)
-                        .padStart(8, 'X'),
-                    uri = "/customer/${it.customerId}"
+                    it
                 ).also { response ->
                     println(response)
                 }
@@ -75,7 +68,7 @@ class CustomerController(
     fun searchCustomers(
         @QueryValue(value = "offset", defaultValue = "0") offset: Int,
         @QueryValue(value = "count", defaultValue = "10") count: Int,
-    ): PaginatedCustomerResponse = PaginatedCustomerResponse(offset, count, emptyList())
+    ): PaginatedCustomerResponse = PaginatedCustomerResponse(offset, count, customerService.getAll(offset, count).map { CustomerResponse(it) })
 
     @Post("/{id}")
     fun updateAsPost(@PathVariable id: UUID): CustomerResponse = TODO("Unimplemented")
@@ -84,5 +77,5 @@ class CustomerController(
     fun updateAsPut(@PathVariable id: UUID): CustomerResponse = TODO("Unimplemented")
 
     @Delete("/{id}")
-    fun delete(@PathVariable id: UUID): Unit = TODO("Unimplemented")
+    fun delete(@PathVariable id: UUID): Unit = customerService.delete(id)
 }

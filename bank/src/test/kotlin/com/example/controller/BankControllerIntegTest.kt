@@ -1,7 +1,6 @@
 package com.example.controller
 
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.core.spec.style.Test
 import io.kotest.matchers.shouldBe
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client

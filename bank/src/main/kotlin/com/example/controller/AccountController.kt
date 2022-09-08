@@ -13,10 +13,9 @@ import java.util.UUID
 
 @Controller("/bank/customer/{customerId}/account")
 class AccountController(
-    private val customerService: CustomerService
 ) {
 
-    @Get(uri = "/", produces = ["text/plain"])
+    @Get(uri = "/", produces = ["application/json"])
     @ApiResponses(
         ApiResponse(
             description = "Display accounts for a customer",
