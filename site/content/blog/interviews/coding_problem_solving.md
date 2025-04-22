@@ -1,3 +1,10 @@
+---
+title: Preparing for Coding and Problem Solving Interviews
+description: Preparing for Coding and Problem Solving Interviews
+date: 2025-03-30
+tags: interviews
+---
+
 # Preparing for Coding and Problem Solving
 
 ## Types of Coding Questions
@@ -6,7 +13,7 @@
 complexity analysis, clean code, and communication. These are generally focused on Leetcode medium questions.
 
 **Pair programming:** Pair programming exercises focus primarily on communication, collaboration, and code quality while keeping
-the problems more straighforward and less tricky.
+the problems more straightforward and less tricky.
 
 **Take home assessments**: Take home assessments primarily focus on correctness of code as they are hard pass/fail assessments and
 secondarily focus on clean code. They do not evaluate communication (unless there is a free text written portion) and usually do
@@ -72,12 +79,12 @@ For the open book review, you can primarily focus on familiarizing yourself with
 identifying how each topic shows up in questions, and ensuring you know how to solve Leetcode problems in your language
 of choice.
 
-For each topic, I recommend doing 1 leetcode easy and 2 leetcode medium for this phase of review.
+For each topic, I recommend doing 1 Leetcode easy and 2 Leetcode medium for this phase of review.
 
 ### Mock Interview Timed Review
 
 For this type of review, focus on creating an interview-like situation where you solve each problem without interruption and without looking anything up with a goal of solving
-Leetcode easy within 15 min and leetcode medium within 30 min. Try to do at least one per topic and then focus on areas where you need more practice. After a certain point, I just use the Leetcode random question button and try to make sure I practice topics evenly.
+Leetcode easy within 15 min and Leetcode medium within 30 min. Try to do at least one per topic and then focus on areas where you need more practice. After a certain point, I just use the Leetcode random question button and try to make sure I practice topics evenly.
 
 Make sure to follow this rough outline when solving problems:
 1. Clarify the problem: repeat back the problem and confirm you understand the examples, provide another example if you can think of one
@@ -144,7 +151,7 @@ I've used most recently. I haven't ever paid for any interview preparation resou
 I can't comment on whether paying is worth it or not.
 
 * [GeeksForGeeks](https://www.geeksforgeeks.org/dsa-tutorial-learn-data-structures-and-algorithms/) for theory
-* [Leetcode](https://leetcode.com/problemset/)
+* [Leetcode](https://Leetcode.com/problemset/)
 * [Hackerrank](https://www.hackerrank.com/interview/preparation-kits)
 
 ### Leetcode Preparation Checklist
@@ -180,11 +187,11 @@ This is a table that I use when I'm getting ready to do interview preparation fr
 ## Preparing for Pair Programming and Take Home Assessments
 
 Preparing for pair programming interviews requires:
-* Familiarity with the common topics above but not necessarily able to solve tricker leetcode problems
+* Familiarity with the common topics above but not necessarily able to solve tricker Leetcode problems
 * Familiarity with common tools and libraries to build applications in your area of expertise (ex. web application frameworks, testing frameworks, http clients)
 * Strong code design and organization (ex. Object-oriented design, functional design, package structure)
 * (Company dependent) A working local development setup that where you can run and test code
-* (Company dependent) A github account and local setup to clone a github repo
+* (Company dependent) A Github account and local setup to clone a Github repo
 
 My recommendation is to do the first two parts of Leetcode prep - theory review and open book problems - and then locally build and run applications to refresh your skills
 if you're not actively using them at work. The application I usually build is a simple REST service with multiple different APIs, unit tests, and a script that runs multiple GET and POST API calls, similar to an integration test. For example, build a product service that allows you to create, update, and search for products with a goal to write a script that calls your
@@ -198,7 +205,7 @@ service to run a request against each of the APIs.
 * If you are running your local development environment, make sure you already have a project set up with running unit tests on a dummy file at least a day before your interview and have it up and running an hour before your interview
 * Know how the underlying data structures and algorithms in your language of choice work
   * For example, if you are a Java developer, know the difference between HashMap, TreeMap, and LinkedHashMap.
-  * For example, if you are a Python developer, be aware that the `list()` data type is is implemented as a dynamic/resizing array.
+  * For example, if you are a Python developer, be aware that the `list()` data type is implemented as a dynamic/resizing array.
   * If your language has utilities like `.sort()`, `.substring()`, `.replace()`, `.find()`, etc., make sure you know the time and space complexity with special attention to when a new object is created vs. when something is updated in place.
      * I have seen several Leetcode solutions that claim to be O(n) but there's an implicit string copy or string traversal via a utility method and it's actually O(n^2)
 * If a company tells you they will use a specific took ([Hackkerrank](https://www.hackerrank.com/interview/preparation-kits), [Codility](https://www.codility.com/), [CodeSignal](https://codesignal.com/), etc.) make sure to practice using it ahead of time
