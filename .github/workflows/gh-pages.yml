@@ -37,6 +37,7 @@ jobs:
           key: ${{ runner.os }}-eleventy-fetch-cache
 
 
+      - run: cd site
       - run: npm install
       - run: npm run build-ghpages
 
@@ -45,4 +46,4 @@ jobs:
         if: github.ref == 'refs/heads/mainline'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          publish_dir: ./site/_site
