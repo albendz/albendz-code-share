@@ -13,7 +13,8 @@ jobs:
   deploy:
     runs-on: ubuntu-22.04
     defaults:
-      working-directory: ./site
+      run:
+        working-directory: ./site
     permissions:
       contents: write
     concurrency:
