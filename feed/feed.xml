@@ -1,0 +1,1099 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="pretty-atom-feed.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>Blog Title</title>
+  <subtitle>This is a longer description about your blog.</subtitle>
+  <link href="https://example.com/eleventy-base-blog/feed/feed.xml" rel="self" />
+  <link href="https://example.com/eleventy-base-blog/" />
+  <updated>2025-04-25T00:00:00Z</updated>
+  <id>https://example.com/eleventy-base-blog/</id>
+  <author>
+    <name>Your Name</name>
+  </author>
+  <entry>
+    <title>Work Hobbies</title>
+    <link href="https://example.com/eleventy-base-blog/blog/career_growth/work_hobbies/" />
+    <updated>2025-04-25T00:00:00Z</updated>
+    <id>https://example.com/eleventy-base-blog/blog/career_growth/work_hobbies/</id>
+    <content type="html">&lt;h1 id=&quot;work-hobbies&quot;&gt;Work Hobbies&lt;/h1&gt;
+&lt;p&gt;&amp;quot;Work Hobby&amp;quot; is a term I use to describe optional activities at work that I decide to do in addition to my core responsibilities. These are things I&#39;m interested in that also have a potential positive impact to my team or product.&lt;/p&gt;
+&lt;p&gt;Things that make something a work hobby instead of just work:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Optional, no deadlines&lt;/li&gt;
+&lt;li&gt;Voluntary, done out of interest&lt;/li&gt;
+&lt;li&gt;Can be done incrementally in small chunks of time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Work hobbies, like work, can have a positive impact on your career and to your product. They can vary a lot in terms of the types of skills you develop or acquire, whether you work alone or with a group, how technical or non-technical they are, and how flexible they are in terms of time commitments.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learning how to debug your teams frontend application by writing cypress tests&lt;/li&gt;
+&lt;li&gt;Taking a security reviewer certification course to become a security reviewer&lt;/li&gt;
+&lt;li&gt;Joining or leading mentoring circles to grow and help others grow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have a detailed list of work hobbies and examples at the end of this post.&lt;/p&gt;
+&lt;h2 id=&quot;why-or-why-not-work-hobbies&quot;&gt;Why or why not work hobbies?&lt;/h2&gt;
+&lt;p&gt;Whether or not work hobbies are a good fit depends on the person and the situation. Work hobbies are good when:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can manage multi-tasking (picking up and putting things down) without disruption from your core work&lt;/li&gt;
+&lt;li&gt;You frequently have &amp;quot;waiting&amp;quot; time of 15+ minutes where you feel you can do something small while waiting&lt;/li&gt;
+&lt;li&gt;Your work environment is stable enough to take on a work hobby for a few months&lt;/li&gt;
+&lt;li&gt;Your work culture allows budget for self-driven projects or self-learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Work hobbies are &lt;strong&gt;not&lt;/strong&gt; good when:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You are new to a team (within 3 - 6 months)&lt;/li&gt;
+&lt;li&gt;You are working on performance or job expectation gaps&lt;/li&gt;
+&lt;li&gt;You need one or more hours of focus time to be productive&lt;/li&gt;
+&lt;li&gt;You find multi-tasking disruptive&lt;/li&gt;
+&lt;li&gt;You aren&#39;t interested defining work or projects outside of your core work&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;how-to-choose-work-hobbies&quot;&gt;How to choose work hobbies&lt;/h2&gt;
+&lt;p&gt;If you choose work hobbies strategically, you have the potential to develop a new skill and add to your professional portfolio for either promotions or job interviews. Here is a list of things to consider when looking at work hobbies:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Am I interested in doing this?&lt;/li&gt;
+&lt;li&gt;Is this something that can develop into a skill?&lt;/li&gt;
+&lt;li&gt;Is this something that could have a positive impact on my team or product?&lt;/li&gt;
+&lt;li&gt;Is this something that I can easily pick up and put down as I have time for at least a few weeks?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Work hobbies tend to produce better results when working on them over a longer period of time - especially considering this might be an hour or two a week, scattered between meetings or deployments.&lt;/p&gt;
+&lt;h3 id=&quot;interest&quot;&gt;Interest&lt;/h3&gt;
+&lt;p&gt;You need to be interested in your work hobby otherwise it is just another thing to do. Choose areas you&#39;re interested in like learning a specific technology, developing communication skills, or internal networking.&lt;/p&gt;
+&lt;h3 id=&quot;skills&quot;&gt;Skills&lt;/h3&gt;
+&lt;p&gt;Choose a work hobby that can develop into a skill or a project showing experience after being worked on for some time. For example, being a mentor for a single person for several months shows mentorship experience. Learning a new programming language for a few months is a skill you can add to a resume. Participating in or founding a special interest group (SIG) grows communication, influence, and technical expertise.&lt;/p&gt;
+&lt;h3 id=&quot;impact&quot;&gt;Impact&lt;/h3&gt;
+&lt;p&gt;Work hobbies are most successful when they have a positive impact on the product or team. This may mean you are learning frontend by adding more end-to-end tests and increasing product quality or that you become a security design reviewer after completing a security certification. In both cases, you can concretely connect your time investment to a positive outcome in the team or product.&lt;/p&gt;
+&lt;h3 id=&quot;potential-time-investment&quot;&gt;Potential Time Investment&lt;/h3&gt;
+&lt;p&gt;Work hobbies have no specific time investment but they are more likely to be successful if they are something you can &amp;quot;fit in&amp;quot; for several months. Taking the example of getting a certification - if a certification course is 15 hours and you&#39;re able to do 1 - 2 hours a week, then you&#39;ll need 2 - 4 to complete the course.&lt;/p&gt;
+&lt;!-- TODO: Refer to one work hobby continuously --&gt;
+&lt;p&gt;In the example of adding end-to-end tests, you will likely be able to add 1 - 5 test cases per month depending on the complexity of your application. This is an easier example to have a shorter time investment.&lt;/p&gt;
+&lt;h2 id=&quot;tips-for-work-hobbies&quot;&gt;Tips for Work Hobbies&lt;/h2&gt;
+&lt;p&gt;Work hobbies sound simple but they require you to be continually evaluating where you are spending your time and how valuable those investments are. Having work hobbies fall out of balance can have negative personal and professional consequences. Work hobbies can be very diverse and pitfalls vary as much. Here are some tips to avoid work hobbies going wrong:&lt;/p&gt;
+&lt;!-- Clean up --&gt;
+&lt;ul&gt;
+&lt;li&gt;Talk to your managers and mentors&lt;/li&gt;
+&lt;li&gt;Make sure any partial work will not negatively impact the product or team&lt;/li&gt;
+&lt;li&gt;As soon as there is a deadline or someone depends on your work, make sure you discuss priorities with your manager on what you should be working on&lt;/li&gt;
+&lt;li&gt;Make sure you stay interested and motivated to work on your work hobby&lt;/li&gt;
+&lt;li&gt;Try to stick with a single work hobby for a few months&lt;/li&gt;
+&lt;li&gt;Do not put your core responsibilities at risk for a work hobby&lt;/li&gt;
+&lt;li&gt;Don&#39;t let yourself be &amp;quot;delegated&amp;quot; a work hobby&lt;/li&gt;
+&lt;li&gt;Plan ahead how much time you will spend on your work hobby per week and track whether you&#39;re doing too much or too little&lt;/li&gt;
+&lt;li&gt;Avoid spending too much time on work hobbies instead of core responsibilities&lt;/li&gt;
+&lt;li&gt;Choosing a work hobby only to find out someone else was doing this as their core responsibilities&lt;/li&gt;
+&lt;li&gt;Losing interest and burning out on the extra work from a work hobby&lt;/li&gt;
+&lt;li&gt;Work hobbies become a second job when deadlines and dependencies are added&lt;/li&gt;
+&lt;li&gt;Working on the work hobby negatively impacts the product or team&lt;/li&gt;
+&lt;li&gt;Managers or mentors are unaware of your work hobby and it comes as a negative surprise of wasting time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;examples-of-work-hobbies&quot;&gt;Examples of Work Hobbies&lt;/h2&gt;
+&lt;p&gt;Now that the theory is out of the way, let&#39;s go into some specific examples of work hobbies.&lt;/p&gt;
+&lt;h3 id=&quot;employee-resource-groups&quot;&gt;Employee Resource Groups&lt;/h3&gt;
+&lt;p&gt;Employee resource groups are community driven groups focused on a specific demographic, usually a minority group. For example, &amp;quot;women at &lt;company&gt;&amp;quot; or &amp;quot;Latinos at &lt;company&gt;&amp;quot;.&lt;/company&gt;&lt;/company&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Examples&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Coordinating monthly meetings for your organization&#39;s women-in-tech group&lt;/li&gt;
+&lt;li&gt;Leading mentorship circles for your organization&#39;s new grads onboarding group&lt;/li&gt;
+&lt;li&gt;Attending your organization&#39;s monthly web accessibility talks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Interest areas&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mentoring (either as mentee or mentor)&lt;/li&gt;
+&lt;li&gt;Leadership (if taking on leadership responsibilities)&lt;/li&gt;
+&lt;li&gt;Communication (if taking on communication responsibilities)&lt;/li&gt;
+&lt;li&gt;Networking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Impact&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Growing others at the company&lt;/li&gt;
+&lt;li&gt;Learning new skills to bring back to the team&lt;/li&gt;
+&lt;li&gt;Identifying potential new team members&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Career growth&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Communication and leadership skills&lt;/li&gt;
+&lt;li&gt;Building your personal network for job opportunities&lt;/li&gt;
+&lt;li&gt;Finding mentors in a specific area of growth&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Drawbacks&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Low impact to team or product&lt;/li&gt;
+&lt;li&gt;Unpredictable or inconsistent benefits&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;engineering-standards-committees&quot;&gt;Engineering Standards Committees&lt;/h3&gt;
+&lt;p&gt;Engineering standards committees are groups of technical experts providing guidance in their area of expertise. These committees can vary in terms of how they work. They can consist of maintaining organization-wide documentation, regular committee meetings to vet and set new standards, and providing office hours for consultation across the organization.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Examples&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Security reviewer in a security review committee&lt;/li&gt;
+&lt;li&gt;Owner of disaster recovery guidance and documentation for software teams&lt;/li&gt;
+&lt;li&gt;Committee lead for coordinating design reviews and design review office hours&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Interest areas&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Leadership&lt;/li&gt;
+&lt;li&gt;In-depth technical expertise in the area of best practices&lt;/li&gt;
+&lt;li&gt;Internal networking&lt;/li&gt;
+&lt;li&gt;Org-wide mentoring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Impact&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Increasing the quality of software for the committee subject matter either through reviews or documentation&lt;/li&gt;
+&lt;li&gt;Educating engineering teams on best practices&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Career Growth&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Keeping up to date with a given area of expertise&lt;/li&gt;
+&lt;li&gt;Experience making and communicating organization-wide technical decisions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Drawbacks&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There is a specific time commitment if there are regular meetings or office hours though these usually happen on-demand or on a monthly basis&lt;/li&gt;
+&lt;li&gt;These are not a good way to learn the technical area from scratch and instead work best as a way to keep up to date with best practices in an area you are already familiar with&lt;/li&gt;
+&lt;li&gt;You generally need to be at or close to senior level for this to be an effective use of your time for career growth&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;debugging-and-operational-tools&quot;&gt;Debugging and Operational Tools&lt;/h3&gt;
+&lt;p&gt;Debugging and operational tools can be used to automate repetitive debugging or
+automation tasks. These tools can either be used for yourself only or shared with
+your team.&lt;/p&gt;
+&lt;p&gt;Note: Some of the debugging and operational examples can be done via AI tooling. It is still worth sharing the output and documenting how and when the tools should be used.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Examples&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Writing a Python script to redrive AWS SQS DLQ messages&lt;/li&gt;
+&lt;li&gt;Writing a Gradle script to automatically set up a new development environment&lt;/li&gt;
+&lt;li&gt;Creating a common debugging queries page with examples queries for team debugging tools (Kibana, CloudWatch logs, Splunk, SQL, etc.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Interests&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Scripting language (Python, Gradle Kotlin/Groovy)&lt;/li&gt;
+&lt;li&gt;Infrastructure APIs and interfaces (AWS Python SDK, Kibana/Elasticsearch query language)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Impact&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fast and repeatable debugging for common issues that reduces MTTR for production issues&lt;/li&gt;
+&lt;li&gt;Speed up onboarding of new team members by days or weeks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Career Growth&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An example of a script or application showing expertise in a specific programming language and/or integration with a specific technology (AWS APIs, REST) which can be added to your resume skills&lt;/li&gt;
+&lt;li&gt;Hands-on experience with specific technologies are skills which can be added to your resume and used in job interviews for system design&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Drawbacks&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You need to use good judgement when it comes to deciding what is going to be worth writing as a script. Small, one-time tasks are not good candidates but complex or repeat tasks are good candidates.&lt;/li&gt;
+&lt;li&gt;Choosing a different language or tool than what your team normally uses (even if you are interested in it) won&#39;t have a positive impact if your team won&#39;t use it.&lt;/li&gt;
+&lt;li&gt;It is easy to go overboard and over-engineer scripting tools used for lightweight debugging - it&#39;s more about having an automated short-cut rather than an entire new application.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;certifications-and-courses&quot;&gt;Certifications and Courses&lt;/h3&gt;
+&lt;p&gt;Certifications and courses are a great way to fill in time by watching videos
+for 15 - 30 minutes and working through exercises. They can be found on various
+platforms as well as for free on some video hosting sites.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Interests&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Getting a certification for a specific technology (AWS Solutions Architect)&lt;/li&gt;
+&lt;li&gt;Learning about a new area (Prompt Engineering)&lt;/li&gt;
+&lt;li&gt;Gaining a specific new skill (Typescript 101)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Impact&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Become an expert in AWS and provide code review and design feedback on implementation choices resulting in higher quality or lower cost software&lt;/li&gt;
+&lt;li&gt;Contribute to and review generative AI prompt proposal for internal tools resulting in more accurate or efficient use of generative AI (ex. MCP)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Career Growth&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add certifications, courses, and skills to your resume&lt;/li&gt;
+&lt;li&gt;Increase your influence as an expert via design reviews, code reviews, or other opportunities for feedback and discussion&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Drawbacks&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Certifications, courses, and intentional skills development are usually not impactful unless you are specifically asked to do them&lt;/li&gt;
+&lt;li&gt;Companies frequently expect people to learn on the job unless they are in a consulting or contracting space&lt;/li&gt;
+&lt;li&gt;Companies may select one or more individuals to learn about a new technical area and bring back that expertise to the team&lt;/li&gt;
+&lt;li&gt;If you have not been asked to use the skill you want to learn, it is going to be hard to create impact from learning it&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;increasing-testing-or-monitoring-coverage&quot;&gt;Increasing Testing or Monitoring Coverage&lt;/h3&gt;
+&lt;p&gt;Teams often have a backlog of operational work to increase test coverage or improve
+monitoring or alerting. You can take a look at the backlog and create a mini-project
+of a group of such tasks to work on while you have time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Interests&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learning tests frameworks (ex. Cypress)&lt;/li&gt;
+&lt;li&gt;Learning best practices for testing and monitoring&lt;/li&gt;
+&lt;li&gt;Learning about monitoring technologies (ex. Datadog)&lt;/li&gt;
+&lt;li&gt;Learning about automation technologies (ex. BuildKite)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Impact&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Improved product quality by catching bugs via higher automated test coverage&lt;/li&gt;
+&lt;li&gt;Improved product quality by detecting errors faster with higher monitoring coverage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Career Growth&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learning new technologies to add to your resume (ex. Cypress, Datadog, BuildKite)&lt;/li&gt;
+&lt;li&gt;Expertise in testing and/or monitoring best practices through hand-on learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Drawbacks&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You need to be careful to choose simpler test cases to automate to avoid hitting issues that require significant refactoring or re-design&lt;/li&gt;
+&lt;li&gt;You need to be careful not to create noisy alarms or flakey tests, which will create
+perceived negative impact&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;participating-in-hiring-events&quot;&gt;Participating in Hiring Events&lt;/h3&gt;
+&lt;p&gt;Companies host hiring events or join networking events at conferences to attract new
+talent. Hiring events can range from visiting a specific university for a college hire interviewing event or staffing a booth at a career fair. These events can require travel
+and are most beneficial when your team is hiring.&lt;/p&gt;
+&lt;p&gt;You can invest in hiring events by taking interviewer training and preparing interview
+questions in during your idle time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Interests&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Internal and external networking&lt;/li&gt;
+&lt;li&gt;Developing interviewing skills&lt;/li&gt;
+&lt;li&gt;(Maybe) Work travel&lt;/li&gt;
+&lt;li&gt;(Maybe) Reconnecting with the university you went to&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Impact&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Finding new hires for your team or company&lt;/li&gt;
+&lt;li&gt;Becoming a skilled interviewer for your team or company&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Career Growth&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Adding technical interviewing as a skill to your resume&lt;/li&gt;
+&lt;li&gt;Learning more about technical interviews for your own interviewing or to help others&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Drawbacks&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some companies highly value individuals contributing to the hiring process and others do not. Be careful to research how your company views these contributions before spending
+too much time on them.&lt;/li&gt;
+&lt;li&gt;Companies value having experienced interviewers available so they encourage people
+new to interviewing to go to these events. However, once you are already an experienced interviewer, they may not be as supportive.&lt;/li&gt;
+&lt;li&gt;Hiring events are usually infrequent (1 - 2x per year) but they take up a bit chunk of time all at once.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Team Matching</title>
+    <link href="https://example.com/eleventy-base-blog/blog/interviews/team_matching/" />
+    <updated>2025-04-22T00:00:00Z</updated>
+    <id>https://example.com/eleventy-base-blog/blog/interviews/team_matching/</id>
+    <content type="html">&lt;h1 id=&quot;team-matching&quot;&gt;Team Matching&lt;/h1&gt;
+&lt;p&gt;This article is an FAQ guide to the team matching process in the technical
+hiring process for software engineers.&lt;/p&gt;
+&lt;h2 id=&quot;what-is-team-matching&quot;&gt;What is Team Matching?&lt;/h2&gt;
+&lt;p&gt;Team Matching is a phase of the interview process where you meet with different hiring
+managers who have openings matching the level you are interviewing for. Managers will
+ask you questions about your goals and experience to assess whether you are a good fit
+for the team and if the team is a good fit for you. You will meet with one or more
+managers throughout this phase.&lt;/p&gt;
+&lt;p&gt;Team matching isn&#39;t considered an interview because there is no skill assessment but
+you are going to be pitching yourself as a teammate to potential managers.&lt;/p&gt;
+&lt;h2 id=&quot;when-does-team-matching-happen&quot;&gt;When does Team Matching happen?&lt;/h2&gt;
+&lt;p&gt;Team matching happens after the completion of the technical interview rounds and
+before the offer phase. &lt;strong&gt;An offer is not guaranteed during team matching&lt;/strong&gt; even though
+you&#39;ll have already passed the technical interviews.&lt;/p&gt;
+&lt;h2 id=&quot;how-should-i-prepare-for-team-matching&quot;&gt;How should I prepare for Team Matching?&lt;/h2&gt;
+&lt;p&gt;Team matching is an opportunity for you to choose between different teams according
+to your goals and preferences. Here are some things to prepare before entering team matching:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A general idea of what types of projects you&#39;d like to work on. Ex.: backend, frontend, data workflows, high scale, security, user facing, high collaboration, etc.&lt;/li&gt;
+&lt;li&gt;One or two career goals you want to work towards on your new team&lt;/li&gt;
+&lt;li&gt;A 1 - 3 minute summary of your career experience to share with the potential manager&lt;/li&gt;
+&lt;li&gt;Examples of how you like to collaborate with your team or manager&lt;/li&gt;
+&lt;li&gt;2 - 3 questions that will be tie-breakers between teams. Examples:
+&lt;ul&gt;
+&lt;li&gt;What project would I be working on when I join?&lt;/li&gt;
+&lt;li&gt;What are the team&#39;s core working hours?&lt;/li&gt;
+&lt;li&gt;What is the team operational load like?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;what-are-the-steps-of-team-matching&quot;&gt;What are the steps of team matching?&lt;/h2&gt;
+&lt;p&gt;Once you&#39;ve passed your technical interviews, team matching will beging with this rough
+structure:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Recruiter tells you about one or more team opportunities&lt;/li&gt;
+&lt;li&gt;Recruiter sets up 30 min calls with hiring managers for one or more team opportunities&lt;/li&gt;
+&lt;li&gt;Recruiter asked if you are interested in moving forward with one or more teams. If there are multiple teams, you will be asked for your preference.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Team matching can either be &amp;quot;first one that&#39;s a match&amp;quot; or &amp;quot;list of preferences&amp;quot;.
+Regardless of which style&lt;/p&gt;
+&lt;h2 id=&quot;what-are-the-benefits-of-team-matching&quot;&gt;What are the benefits of team matching?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You may have a choice between multiple teams to select what you are most interested in&lt;/li&gt;
+&lt;li&gt;You have more opportunities to learn about the organization and company culture&lt;/li&gt;
+&lt;li&gt;You have the opportunitiy to talk to the potential managers who you will be working with&lt;/li&gt;
+&lt;li&gt;If the position for your application was filled, you have the opportunity to match
+with other teams&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;what-are-the-downsides-of-team-matching&quot;&gt;What are the downsides of team matching?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Team matching can take an unpredictable amount of time (weeks to months)&lt;/li&gt;
+&lt;li&gt;It is possible that team matching won&#39;t find a match and you will not get an offer&lt;/li&gt;
+&lt;li&gt;You may not match with the job posting you applied to&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;team-matching-tips&quot;&gt;Team Matching Tips&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Always ask your recruiter if the hiring process includes team matching&lt;/li&gt;
+&lt;li&gt;If team matching applies, add on 2 - 3 potential extra weeks for team matching to complete&lt;/li&gt;
+&lt;li&gt;Prior to entering team matching, make sure you have 2 - 3 questions to ask each team to help you decide which team you prefer&lt;/li&gt;
+&lt;li&gt;Do not assume you will get an offer if you are in the team matching phase&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Preparing for Coding and Problem Solving Interviews</title>
+    <link href="https://example.com/eleventy-base-blog/blog/interviews/coding_problem_solving/" />
+    <updated>2025-03-30T00:00:00Z</updated>
+    <id>https://example.com/eleventy-base-blog/blog/interviews/coding_problem_solving/</id>
+    <content type="html">&lt;h1 id=&quot;preparing-for-coding-and-problem-solving&quot;&gt;Preparing for Coding and Problem Solving&lt;/h1&gt;
+&lt;h2 id=&quot;types-of-coding-questions&quot;&gt;Types of Coding Questions&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Leetcode:&lt;/strong&gt; Leecode style questions focus on problem solving, data structures &amp;amp; algorithms,
+complexity analysis, clean code, and communication. These are generally focused on Leetcode medium questions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pair programming:&lt;/strong&gt; Pair programming exercises focus primarily on communication, collaboration, and code quality while keeping
+the problems more straightforward and less tricky.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Take home assessments&lt;/strong&gt;: Take home assessments primarily focus on correctness of code as they are hard pass/fail assessments and
+secondarily focus on clean code. They do not evaluate communication (unless there is a free text written portion) and usually do
+not require complexity analysis but the tool will check your complexity.&lt;/p&gt;
+&lt;h2 id=&quot;preparing-for-leetcode-questions&quot;&gt;Preparing for Leetcode Questions&lt;/h2&gt;
+&lt;p&gt;The goal of Leetcode question preparation is to be able to efficiently and cleanly implement a correct and optimal solution
+to an approximately medium level Leetcode question within 30 minutes. Always check with your recruiter what difficulty level
+to target. Most companies target easy to medium but there are some that recommend hard.&lt;/p&gt;
+&lt;p&gt;My recommended study plan is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Review data structures and algorithm basics&lt;/li&gt;
+&lt;li&gt;&amp;quot;Open book&amp;quot;, untimed practice questions to review what each topic&#39;s questions look like&lt;/li&gt;
+&lt;li&gt;Timed practice questions following the interview format&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;data-structures-and-algorithms-review&quot;&gt;Data structures and algorithms review&lt;/h3&gt;
+&lt;p&gt;For each topic, study in whatever way is effective for you (videos, textbooks, blogs) and make sure you can fill in the following from memory:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;Data structure&amp;gt;
+Description:
+Time Complexity in terms of input size n:
+- Access: O(x)
+- Search: O(x)
+- Insertion: O(x)
+- Deletion: O(x)
+Space Complexity: O(x)
+Primary use cases:
+- A
+- B
+- C
+Comparison with other data structures
+-
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or for algorithms&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;Algorithm&amp;gt;
+Description:
+Time complexity: O(x)
+Space complexity: O(x)
+Algorithm steps:
+1. A
+2. B
+Data structures used:
+- A
+- B
+Primary use cases:
+- A
+- B
+Comparison with other algorithms:
+- 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For algorithms, I highly recommend actually implementing them as variations on their
+implementation come up in interview questions.&lt;/p&gt;
+&lt;h3 id=&quot;open-book-review&quot;&gt;Open book review&lt;/h3&gt;
+&lt;p&gt;For the open book review, you can primarily focus on familiarizing yourself with the problem solving style,
+identifying how each topic shows up in questions, and ensuring you know how to solve Leetcode problems in your language
+of choice.&lt;/p&gt;
+&lt;p&gt;For each topic, I recommend doing 1 Leetcode easy and 2 Leetcode medium for this phase of review.&lt;/p&gt;
+&lt;h3 id=&quot;mock-interview-timed-review&quot;&gt;Mock Interview Timed Review&lt;/h3&gt;
+&lt;p&gt;For this type of review, focus on creating an interview-like situation where you solve each problem without interruption and without looking anything up with a goal of solving
+Leetcode easy within 15 min and Leetcode medium within 30 min. Try to do at least one per topic and then focus on areas where you need more practice. After a certain point, I just use the Leetcode random question button and try to make sure I practice topics evenly.&lt;/p&gt;
+&lt;p&gt;Make sure to follow this rough outline when solving problems:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Clarify the problem: repeat back the problem and confirm you understand the examples, provide another example if you can think of one&lt;/li&gt;
+&lt;li&gt;Outline the method signature and input/output characteristics&lt;/li&gt;
+&lt;li&gt;Outline which data structure or algorithms you plan to use to solve the problem and why&lt;/li&gt;
+&lt;li&gt;Outline your coding approach - you can use comments to segment your code&lt;/li&gt;
+&lt;li&gt;Implement your solution&lt;/li&gt;
+&lt;li&gt;Walk through one of the provided test cases for your solution&lt;/li&gt;
+&lt;li&gt;Analyze the time and space complexity of the solution with respect to the input size; &lt;strong&gt;Be careful to know the time and space complexity of your language&#39;s APIs&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;List out additional test cases you would use when writing unit tests for the code; &lt;strong&gt;Some interviews require you to write unit tests&lt;/strong&gt;. Make sure you know how to write
+unit tests for your code in your language of choice.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;list-of-topics&quot;&gt;List of topics&lt;/h3&gt;
+&lt;p&gt;This is the list of topics I use for Leetcode-style interviews. I have them split into prioritized groups based on how
+frequently I see some problems and what I have time to study. I recommend you reference
+what the company interview prep says and consider how much time you have to study to create your own set of higher or lower priority topics.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;More common topics:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Topic&lt;/th&gt;
+&lt;th&gt;Theory Review&lt;/th&gt;
+&lt;th&gt;Easy&lt;/th&gt;
+&lt;th&gt;Medium&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Array&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Matrix&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linked List&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;HashMap&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Binary Tree&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Binary Search Tree&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Tree&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Graph&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Queue&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Stack&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Binary Search&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Graph Search&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sorting: Merge Sort&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sorting: Quick Sort&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Backtracking&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Strings&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Recursion&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sets&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sliding Window&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Less common topics&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Topic&lt;/th&gt;
+&lt;th&gt;Theory Review&lt;/th&gt;
+&lt;th&gt;Easy&lt;/th&gt;
+&lt;th&gt;Medium&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Heaps&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Priority Queues (usually but not always a heap)&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Dynamic Programming&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Topological Sort&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Prefix sum&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Greedy&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mathematics (probability, statistics, geometry, number theory)&lt;/td&gt;
+&lt;td&gt;- []&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[] []&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;There are more topics that you can study that I&#39;ve never seen come up
+in interviews (ex. red-black trees, AVL trees, A*, Djikstra&#39;s algorithm). I have
+rarely seen any company recommend I study these but always refer to the company&#39;s
+preparation guidance.&lt;/p&gt;
+&lt;h3 id=&quot;leetcode-preparation-resources&quot;&gt;Leetcode Preparation Resources&lt;/h3&gt;
+&lt;p&gt;There are many interview preparation resources out there. These are the resources
+I&#39;ve used most recently. I haven&#39;t ever paid for any interview preparation resources so
+I can&#39;t comment on whether paying is worth it or not.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.geeksforgeeks.org/dsa-tutorial-learn-data-structures-and-algorithms/&quot;&gt;GeeksForGeeks&lt;/a&gt; for theory&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://Leetcode.com/problemset/&quot;&gt;Leetcode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.hackerrank.com/interview/preparation-kits&quot;&gt;Hackerrank&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;leetcode-preparation-checklist&quot;&gt;Leetcode Preparation Checklist&lt;/h3&gt;
+&lt;p&gt;This is a table that I use when I&#39;m getting ready to do interview preparation from scratch and am focusing on the theory and &amp;quot;open book&amp;quot; stages of preparation.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Topic&lt;/th&gt;
+&lt;th&gt;Theory Review&lt;/th&gt;
+&lt;th&gt;Easy&lt;/th&gt;
+&lt;th&gt;Medium&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Array&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Matrix&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Linked List&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;HashMap&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Binary Tree&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Binary Search Tree&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Tree&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Graph&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Queue&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Stack&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Binary Search&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Graph Search&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sorting: Merge Sort&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sorting: Quick Sort&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Backtracking&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Strings&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Recursion&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Dynamic Programming&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sets&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Sliding Window&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Topological Sort&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Prefix sum&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Greedy&lt;/td&gt;
+&lt;td&gt;- [ ]&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;[][]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;preparing-for-pair-programming-and-take-home-assessments&quot;&gt;Preparing for Pair Programming and Take Home Assessments&lt;/h2&gt;
+&lt;p&gt;Preparing for pair programming interviews requires:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Familiarity with the common topics above but not necessarily able to solve tricker Leetcode problems&lt;/li&gt;
+&lt;li&gt;Familiarity with common tools and libraries to build applications in your area of expertise (ex. web application frameworks, testing frameworks, http clients)&lt;/li&gt;
+&lt;li&gt;Strong code design and organization (ex. Object-oriented design, functional design, package structure)&lt;/li&gt;
+&lt;li&gt;(Company dependent) A working local development setup that where you can run and test code&lt;/li&gt;
+&lt;li&gt;(Company dependent) A Github account and local setup to clone a Github repo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My recommendation is to do the first two parts of Leetcode prep - theory review and open book problems - and then locally build and run applications to refresh your skills
+if you&#39;re not actively using them at work. The application I usually build is a simple REST service with multiple different APIs, unit tests, and a script that runs multiple GET and POST API calls, similar to an integration test. For example, build a product service that allows you to create, update, and search for products with a goal to write a script that calls your
+service to run a request against each of the APIs.&lt;/p&gt;
+&lt;h2 id=&quot;general-tips&quot;&gt;General Tips&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Double check what the interview style will be, recommended topics, time constraints, pass/fail criteria, and required development setup is for the interview&lt;/li&gt;
+&lt;li&gt;If you find yourself having a hard time debugging in Leetcode, I recommend you spend the time to set up your local environment with unit tests so you can step through your code with a debugger
+&lt;ul&gt;
+&lt;li&gt;This also helps if you want to do practice questions offline&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If you are running your local development environment, make sure you already have a project set up with running unit tests on a dummy file at least a day before your interview and have it up and running an hour before your interview&lt;/li&gt;
+&lt;li&gt;Know how the underlying data structures and algorithms in your language of choice work
+&lt;ul&gt;
+&lt;li&gt;For example, if you are a Java developer, know the difference between HashMap, TreeMap, and LinkedHashMap.&lt;/li&gt;
+&lt;li&gt;For example, if you are a Python developer, be aware that the &lt;code&gt;list()&lt;/code&gt; data type is implemented as a dynamic/resizing array.&lt;/li&gt;
+&lt;li&gt;If your language has utilities like &lt;code&gt;.sort()&lt;/code&gt;, &lt;code&gt;.substring()&lt;/code&gt;, &lt;code&gt;.replace()&lt;/code&gt;, &lt;code&gt;.find()&lt;/code&gt;, etc., make sure you know the time and space complexity with special attention to when a new object is created vs. when something is updated in place.
+&lt;ul&gt;
+&lt;li&gt;I have seen several Leetcode solutions that claim to be O(n) but there&#39;s an implicit string copy or string traversal via a utility method and it&#39;s actually O(n^2)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If a company tells you they will use a specific took (&lt;a href=&quot;https://www.hackerrank.com/interview/preparation-kits&quot;&gt;Hackkerrank&lt;/a&gt;, &lt;a href=&quot;https://www.codility.com/&quot;&gt;Codility&lt;/a&gt;, &lt;a href=&quot;https://codesignal.com/&quot;&gt;CodeSignal&lt;/a&gt;, etc.) make sure to practice using it ahead of time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;preparation-timeline&quot;&gt;Preparation Timeline&lt;/h2&gt;
+&lt;p&gt;How long do you need to study Leetcode before being ready to interview?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For me, it takes 4 - 6 weeks from day 0 if I study for 4 - 6 hours per week. I can usually complete the open book and timed reviews for the most common topics.&lt;/li&gt;
+&lt;li&gt;FANG/MANG+ companies are often aware of how long this takes and can schedule interviews 3 - 4 weeks out. Smaller companies or companies with fewer openings are often looking to schedule interviews within 2 weeks.&lt;/li&gt;
+&lt;li&gt;It usually takes at least 2 weeks to hear back from a company after applying and you may never hear back from them (don&#39;t take it personally).&lt;/li&gt;
+&lt;li&gt;If you put all this together and use me as an example, it is best to be 2 - 3 weeks into your interview preparation - done with theory review and working through medium open book questions - before applying.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This does not include time to study and prepare for system design or behavioral interviews.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Using Your Brand to Set Your Goals</title>
+    <link href="https://example.com/eleventy-base-blog/blog/career_growth/brand/" />
+    <updated>2025-02-01T00:00:00Z</updated>
+    <id>https://example.com/eleventy-base-blog/blog/career_growth/brand/</id>
+    <content type="html">&lt;h1 id=&quot;using-your-brand-to-set-your-goals&quot;&gt;Using Your Brand to Set Your Goals&lt;/h1&gt;
+&lt;p&gt;When you hear &amp;quot;brand&amp;quot;, you may think of something like Coca Cola or Gucci. Brands aren&#39;t just a name - in addition to being well-known, these companies make an effort to associate their brands with specific traits - high quality, exclusive, affordable, healthy - whatever it is they want people to think of when they see the brand.&lt;/p&gt;
+&lt;p&gt;A brand also apply to individuals as well as companies. This is where your &amp;quot;personal&amp;quot; brand comes in. Everyone has a brand whether or not they&#39;ve built it intentionally. You brand is built from traits people think of when they describe you. Without intention, your brand may become something unexpected and potentially detrimental to your career.&lt;/p&gt;
+&lt;p&gt;Here are some questions to illustrate how your brand can impact your career:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Promotions&lt;/strong&gt;: when your name is brought up in promotion discussions, your brand is what comes to mind. Do you know what skills or traits will come to mind when you promotion case is introduced?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Networking and referrals&lt;/strong&gt;: networking and referrals are a critical tool to finding your next job, client, or employee. What are the top three things you want someone to say about you when connecting you with a potential new contact?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Career direction and job satisfaction&lt;/strong&gt;: if you find your career path and progression is aligned with your values and personal goals, you will feel motivated to advance your career and rewarded by progress. Do you know what the top 3 most important things are to direct your next career steps?&lt;/p&gt;
+&lt;p&gt;This exercise is built to help you introspect and develop a personal brand. I will focus on using this exercise in two ways:&lt;/p&gt;
+&lt;p&gt;Understand what your brand is today to quickly and effectively communicate who you are and what you can offer to clients or employers&lt;/p&gt;
+&lt;p&gt;Use the brand you define through this exercise to guide your day-to-day and long-term career decisions to achieve the brand you want&lt;/p&gt;
+&lt;h2 id=&quot;part-1-values&quot;&gt;Part 1: Values&lt;/h2&gt;
+&lt;p&gt;Choose 2 - 3 words that represent traits that you value. Feel free to add your own values as well.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Accountability&lt;/td&gt;
+&lt;td&gt;Assertiveness&lt;/td&gt;
+&lt;td&gt;Creativity&lt;/td&gt;
+&lt;td&gt;Authenticity&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Adaptability&lt;/td&gt;
+&lt;td&gt;Balance&lt;/td&gt;
+&lt;td&gt;Ambition&lt;/td&gt;
+&lt;td&gt;Bravery&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Calm&lt;/td&gt;
+&lt;td&gt;Challenge&lt;/td&gt;
+&lt;td&gt;Commitment&lt;/td&gt;
+&lt;td&gt;Communication&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Compassion&lt;/td&gt;
+&lt;td&gt;Competence&lt;/td&gt;
+&lt;td&gt;Confidence&lt;/td&gt;
+&lt;td&gt;Consistency&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Contribution&lt;/td&gt;
+&lt;td&gt;Control&lt;/td&gt;
+&lt;td&gt;Credibility&lt;/td&gt;
+&lt;td&gt;Curiosity&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Dedication&lt;/td&gt;
+&lt;td&gt;Efficiency&lt;/td&gt;
+&lt;td&gt;Empathy&lt;/td&gt;
+&lt;td&gt;Empowerment&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Enthusiasm&lt;/td&gt;
+&lt;td&gt;Equality&lt;/td&gt;
+&lt;td&gt;Excellence&lt;/td&gt;
+&lt;td&gt;Family&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Freedom&lt;/td&gt;
+&lt;td&gt;Friendship&lt;/td&gt;
+&lt;td&gt;Fun&lt;/td&gt;
+&lt;td&gt;Generosity&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Gratitude&lt;/td&gt;
+&lt;td&gt;Growth&lt;/td&gt;
+&lt;td&gt;Happiness&lt;/td&gt;
+&lt;td&gt;Hard work&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Health&lt;/td&gt;
+&lt;td&gt;Honesty&lt;/td&gt;
+&lt;td&gt;Imagination&lt;/td&gt;
+&lt;td&gt;Independence&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Innovation&lt;/td&gt;
+&lt;td&gt;Integrity&lt;/td&gt;
+&lt;td&gt;Intelligence&lt;/td&gt;
+&lt;td&gt;Justice&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Knowledge&lt;/td&gt;
+&lt;td&gt;Leadership&lt;/td&gt;
+&lt;td&gt;Learning&lt;/td&gt;
+&lt;td&gt;Love&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Motivation&lt;/td&gt;
+&lt;td&gt;Optimism&lt;/td&gt;
+&lt;td&gt;Organization&lt;/td&gt;
+&lt;td&gt;Patience&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Purpose&lt;/td&gt;
+&lt;td&gt;Realism&lt;/td&gt;
+&lt;td&gt;Recognition&lt;/td&gt;
+&lt;td&gt;Respect&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Risk&lt;/td&gt;
+&lt;td&gt;Sincerity&lt;/td&gt;
+&lt;td&gt;Spontaneity&lt;/td&gt;
+&lt;td&gt;Stability&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Success&lt;/td&gt;
+&lt;td&gt;Sustainability&lt;/td&gt;
+&lt;td&gt;Safety&lt;/td&gt;
+&lt;td&gt;Security&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Teamwork&lt;/td&gt;
+&lt;td&gt;Thoroughness&lt;/td&gt;
+&lt;td&gt;Understanding&lt;/td&gt;
+&lt;td&gt;Wisdom&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Start by choosing all the words you identify with. Next, group them together to identify common themes to help narrow them down. Finally, ask yourself some hard questions about what you value more. Think about situations at work or in your personal life where you make a decision that displays a value and decide which you relate to more.&lt;/p&gt;
+&lt;p&gt;For example, you need to decide between empathy and efficiency. Think about reviewing a colleague&#39;s code and leaving a comment. Do you want your colleague to refer to you as an &amp;quot;efficient&amp;quot; code reviewer or an &amp;quot;empathetic&amp;quot; code reviewer after reading your comment?&lt;/p&gt;
+&lt;h2 id=&quot;part-2-strengths&quot;&gt;Part 2: Strengths&lt;/h2&gt;
+&lt;p&gt;Just like the previous part, select 2 - 3 words that represent your strengths. At this point, you can start keeping track of current strengths and desired strengths. Keep the lists separate for now.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Advocating&lt;/td&gt;
+&lt;td&gt;Analyzing&lt;/td&gt;
+&lt;td&gt;Assembling&lt;/td&gt;
+&lt;td&gt;Collaborating&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Counseling&lt;/td&gt;
+&lt;td&gt;Creating&lt;/td&gt;
+&lt;td&gt;Decision-making&lt;/td&gt;
+&lt;td&gt;Documenting&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Getting things done&lt;/td&gt;
+&lt;td&gt;Initiating&lt;/td&gt;
+&lt;td&gt;Innovating&lt;/td&gt;
+&lt;td&gt;Interpreting&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Investigating&lt;/td&gt;
+&lt;td&gt;Leading&lt;/td&gt;
+&lt;td&gt;Listening&lt;/td&gt;
+&lt;td&gt;Managing&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mentoring&lt;/td&gt;
+&lt;td&gt;Negotiating&lt;/td&gt;
+&lt;td&gt;Networking&lt;/td&gt;
+&lt;td&gt;Persuading&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Planning&lt;/td&gt;
+&lt;td&gt;Presenting&lt;/td&gt;
+&lt;td&gt;Problem-solving&lt;/td&gt;
+&lt;td&gt;Prototyping&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Researching&lt;/td&gt;
+&lt;td&gt;Systematizing&lt;/td&gt;
+&lt;td&gt;Visioning&lt;/td&gt;
+&lt;td&gt;Critical Thinking&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As before, feel free to add your own words and get down to detailed strengths like a specific technology stack or language. Similarly, consider what you&#39;d rather see in a performance review or client testimonial to narrow down your selection.&lt;/p&gt;
+&lt;h2 id=&quot;part-3-passions&quot;&gt;Part 3: Passions&lt;/h2&gt;
+&lt;p&gt;For the final time, select 2 - 3 words that reflect your passions. These are the things that motivate you and drive you to go the extra mile. As before, feel free to add passions that are not present in the list below.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Strategic Thinking&lt;/td&gt;
+&lt;td&gt;Relationship Building&lt;/td&gt;
+&lt;td&gt;Influencing&lt;/td&gt;
+&lt;td&gt;Executing&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Analytical&lt;/td&gt;
+&lt;td&gt;Adaptability&lt;/td&gt;
+&lt;td&gt;Activator&lt;/td&gt;
+&lt;td&gt;Achiever&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Context&lt;/td&gt;
+&lt;td&gt;Connectedness&lt;/td&gt;
+&lt;td&gt;Command&lt;/td&gt;
+&lt;td&gt;Arranger&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Futuristic&lt;/td&gt;
+&lt;td&gt;Developer&lt;/td&gt;
+&lt;td&gt;Communication&lt;/td&gt;
+&lt;td&gt;Belief&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ideation&lt;/td&gt;
+&lt;td&gt;Empathy&lt;/td&gt;
+&lt;td&gt;Competition&lt;/td&gt;
+&lt;td&gt;Consistency&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Input&lt;/td&gt;
+&lt;td&gt;Harmony&lt;/td&gt;
+&lt;td&gt;Maximizer&lt;/td&gt;
+&lt;td&gt;Deliberative&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Intellection&lt;/td&gt;
+&lt;td&gt;Includer&lt;/td&gt;
+&lt;td&gt;Self-assurance&lt;/td&gt;
+&lt;td&gt;Discipline&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Learner&lt;/td&gt;
+&lt;td&gt;Individualization&lt;/td&gt;
+&lt;td&gt;Significance&lt;/td&gt;
+&lt;td&gt;Focus&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Strategic&lt;/td&gt;
+&lt;td&gt;Positivity&lt;/td&gt;
+&lt;td&gt;Winning others over&lt;/td&gt;
+&lt;td&gt;Responsibility&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;I have heard people say &amp;quot;I&#39;m not passionate about anything&amp;quot;. One of the challenges is that people show passion in different ways. Being passionate doesn&#39;t mean staying up all night working on your passion or talking someone&#39;s ear off about it at a party even though that&#39;s how people often think passion should look. Another way to look at it is what you find rewarding or what gives you a sense of accomplishment.&lt;/p&gt;
+&lt;h2 id=&quot;part-4-putting-it-all-together&quot;&gt;Part 4: Putting it all together&lt;/h2&gt;
+&lt;p&gt;Take your responses from the previous parts and apply them to this template (there are others below):&lt;/p&gt;
+&lt;p&gt;I am a &lt;strengths&gt; &lt;role&gt; passionate about &lt;passions&gt; to achieve &lt;values&gt;.&lt;/values&gt;&lt;/passions&gt;&lt;/role&gt;&lt;/strengths&gt;&lt;/p&gt;
+&lt;p&gt;Now you have an initial draft of a brand and you can iterate and refine it for you and your role. Example&lt;/p&gt;
+&lt;p&gt;I am a knowledgeable and empathetic developer advocate passionate about communication and innovation to achieve a strong developer community for an operationally excellent product.&lt;/p&gt;
+&lt;p&gt;As you iterate over this, you will develop your &amp;quot;self elevator pitch&amp;quot; or &amp;quot;personal brand&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Here are some other templates and examples:&lt;/p&gt;
+&lt;p&gt;I am passionate about working on &lt;passions&gt; by using &lt;strengths&gt; to build a &lt;values&gt; product.&lt;/values&gt;&lt;/strengths&gt;&lt;/passions&gt;&lt;/p&gt;
+&lt;p&gt;I am passionate about working on complex, cross-team projects by using software design and communication skills to build sustainable and operationally excellent products.&lt;/p&gt;
+&lt;p&gt;I strive to achieve &lt;values&gt; in my work on &lt;passions&gt; by leveraging my &lt;strengths&gt;.&lt;/strengths&gt;&lt;/passions&gt;&lt;/values&gt;&lt;/p&gt;
+&lt;p&gt;I strive to achieve empathetic and supportive teams in my work as a manager and leader by leveraging my communication and mentoring skills.&lt;/p&gt;
+&lt;p&gt;Back in the strengths exercise, you had the option to create two lists of words for what your current strengths are and what strengths you want to grow. Repeat this template exercise with the strengths you want to grow to shape the direction for your career.&lt;/p&gt;
+&lt;p&gt;Congrats! Now you have your own personal brand and maybe a future brand to work towards.&lt;/p&gt;
+&lt;h2 id=&quot;bonus-part-5-how-to-use-your-brand&quot;&gt;Bonus Part 5: How to use your brand&lt;/h2&gt;
+&lt;p&gt;Here are a few ways you can use the output of this exercise:&lt;/p&gt;
+&lt;p&gt;Refine your brand statement and add it to your LinkedIn profile&lt;/p&gt;
+&lt;p&gt;Memorize your brand statement and use it as a self-introduction at networking and recruiter events&lt;/p&gt;
+&lt;p&gt;Keep a sticky note of your values at your desk and when you make decisions, ask yourself if your decisions align with your values or not (you may also discover you have different values than you thought)&lt;/p&gt;
+&lt;p&gt;When looking for your next role, assess whether the role is aligned with your values and passions by learning about the company or asking questions about your values and passions in interviews&lt;/p&gt;
+&lt;p&gt;Build a plan to learn and practice the strengths you want. Seek out opportunities that help you develop these strengths.&lt;/p&gt;
+&lt;p&gt;This blog post is an extension of a presentation made at the 2023 Grace Hopper Celebration call &amp;quot;Building yourself for success&amp;quot; by Zineb Slam and Miruna Ioana Rusu.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
