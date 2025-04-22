@@ -12,6 +12,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-22.04
+    defaults:
+      working-directory: ./site
     permissions:
       contents: write
     concurrency:
@@ -37,8 +39,8 @@ jobs:
           key: ${{ runner.os }}-eleventy-fetch-cache
 
 
-      - run: cd site
       - run: npm install
+
       - run: npm run build-ghpages
 
       - name: Deploy
