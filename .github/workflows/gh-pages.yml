@@ -49,4 +49,4 @@ jobs:
         if: github.ref == 'refs/heads/mainline'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site/_site
+          publish_dir: ./docs/_site
