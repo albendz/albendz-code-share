@@ -17,6 +17,6 @@ A project to write and test interview practice problems.
 ### Micronaut
 A project to build a simple Kotlin Micronaut service
 
-## Site
+## Docs
 
-Site contains data related to testing out setting up an 11ty blog.
+Docs contains data related to testing out setting up an 11ty blog.
