@@ -14,7 +14,7 @@ kotlin/micronaut/.gradle/6.7/fileHashes/resourceHashesCache.bin
 
 node_modules/
 
-site/_site/
-site/node_modules/
-site/package-lock.json
-site/.cache
+docs/_site/
+docs/node_modules/
+docs/package-lock.json
+docs/.cache
