@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Preparing for Coding and Problem Solving Interviews</title>
+		<meta name="description" content="Preparing for Coding and Problem Solving Interviews">
+		<link rel="alternate" href="/albendz-code-share/docs/feed/feed.xml" type="application/atom+xml" title="Alicia&#39;s Blog">
+		
+		<style>/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}
+/* This is an arbitrary CSS string added to the bundle */
+/* Copied from: https://github.com/11ty/eleventy-base-blog/blob/main/public/css/index.css */
+
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color: #fff;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #082840;
+	--text-color-link-active: #5f2b48;
+	--text-color-link-visited: #17050F;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--background-color: #15202b;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	max-width: 40em;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
+img{
+  max-width: 100%;
+}
+img[width][height] {
+  height: auto;
+}
+img[src$=".svg"] {
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+video,
+iframe {
+	width: 100%;
+	height: auto;
+}
+iframe {
+	aspect-ratio: 16/9;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main,
+footer {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+.links-nextprev {
+	display: flex;
+	justify-content: space-between;
+	gap: .5em 1em;
+	list-style: "";
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow-x: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	flex-grow: 1;
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	gap: .5em 1em;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}</style>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/albendz-code-share/docs/" class="home-link">Alicia&#39;s Blog</a>
+			<nav>
+				<h2 class="visually-hidden" id="top-level-navigation-menu">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/albendz-code-share/docs/">Home</a></li>
+					<li class="nav-item"><a href="/albendz-code-share/docs/blog/">Archive</a></li>
+					<li class="nav-item"><a href="/albendz-code-share/docs/about/">About</a></li>
+					<li class="nav-item"><a href="/albendz-code-share/docs/feed/feed.xml">Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<heading-anchors>
+				
+<h1 id="preparing-for-coding-and-problem-solving-interviews">Preparing for Coding and Problem Solving Interviews</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2025-03-30">30 March 2025</time></li>
+	<li><a href="/albendz-code-share/docs/tags/interviews/" class="post-tag">interviews</a></li>
+</ul>
+
+<h1 id="preparing-for-coding-and-problem-solving">Preparing for Coding and Problem Solving</h1>
+<h2 id="types-of-coding-questions">Types of Coding Questions</h2>
+<p><strong>Leetcode:</strong> Leecode style questions focus on problem solving, data structures &amp; algorithms,
+complexity analysis, clean code, and communication. These are generally focused on Leetcode medium questions.</p>
+<p><strong>Pair programming:</strong> Pair programming exercises focus primarily on communication, collaboration, and code quality while keeping
+the problems more straightforward and less tricky.</p>
+<p><strong>Take home assessments</strong>: Take home assessments primarily focus on correctness of code as they are hard pass/fail assessments and
+secondarily focus on clean code. They do not evaluate communication (unless there is a free text written portion) and usually do
+not require complexity analysis but the tool will check your complexity.</p>
+<h2 id="preparing-for-leetcode-questions">Preparing for Leetcode Questions</h2>
+<p>The goal of Leetcode question preparation is to be able to efficiently and cleanly implement a correct and optimal solution
+to an approximately medium level Leetcode question within 30 minutes. Always check with your recruiter what difficulty level
+to target. Most companies target easy to medium but there are some that recommend hard.</p>
+<p>My recommended study plan is:</p>
+<ol>
+<li>Review data structures and algorithm basics</li>
+<li>&quot;Open book&quot;, untimed practice questions to review what each topic's questions look like</li>
+<li>Timed practice questions following the interview format</li>
+</ol>
+<h3 id="data-structures-and-algorithms-review">Data structures and algorithms review</h3>
+<p>For each topic, study in whatever way is effective for you (videos, textbooks, blogs) and make sure you can fill in the following from memory:</p>
+<pre><code>&lt;Data structure&gt;
+Description:
+Time Complexity in terms of input size n:
+- Access: O(x)
+- Search: O(x)
+- Insertion: O(x)
+- Deletion: O(x)
+Space Complexity: O(x)
+Primary use cases:
+- A
+- B
+- C
+Comparison with other data structures
+-
+</code></pre>
+<p>or for algorithms</p>
+<pre><code>&lt;Algorithm&gt;
+Description:
+Time complexity: O(x)
+Space complexity: O(x)
+Algorithm steps:
+1. A
+2. B
+Data structures used:
+- A
+- B
+Primary use cases:
+- A
+- B
+Comparison with other algorithms:
+- 
+</code></pre>
+<p>For algorithms, I highly recommend actually implementing them as variations on their
+implementation come up in interview questions.</p>
+<h3 id="open-book-review">Open book review</h3>
+<p>For the open book review, you can primarily focus on familiarizing yourself with the problem solving style,
+identifying how each topic shows up in questions, and ensuring you know how to solve Leetcode problems in your language
+of choice.</p>
+<p>For each topic, I recommend doing 1 Leetcode easy and 2 Leetcode medium for this phase of review.</p>
+<h3 id="mock-interview-timed-review">Mock Interview Timed Review</h3>
+<p>For this type of review, focus on creating an interview-like situation where you solve each problem without interruption and without looking anything up with a goal of solving
+Leetcode easy within 15 min and Leetcode medium within 30 min. Try to do at least one per topic and then focus on areas where you need more practice. After a certain point, I just use the Leetcode random question button and try to make sure I practice topics evenly.</p>
+<p>Make sure to follow this rough outline when solving problems:</p>
+<ol>
+<li>Clarify the problem: repeat back the problem and confirm you understand the examples, provide another example if you can think of one</li>
+<li>Outline the method signature and input/output characteristics</li>
+<li>Outline which data structure or algorithms you plan to use to solve the problem and why</li>
+<li>Outline your coding approach - you can use comments to segment your code</li>
+<li>Implement your solution</li>
+<li>Walk through one of the provided test cases for your solution</li>
+<li>Analyze the time and space complexity of the solution with respect to the input size; <strong>Be careful to know the time and space complexity of your language's APIs</strong></li>
+<li>List out additional test cases you would use when writing unit tests for the code; <strong>Some interviews require you to write unit tests</strong>. Make sure you know how to write
+unit tests for your code in your language of choice.</li>
+</ol>
+<h3 id="list-of-topics">List of topics</h3>
+<p>This is the list of topics I use for Leetcode-style interviews. I have them split into prioritized groups based on how
+frequently I see some problems and what I have time to study. I recommend you reference
+what the company interview prep says and consider how much time you have to study to create your own set of higher or lower priority topics.</p>
+<p><strong>More common topics:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Theory Review</th>
+<th>Easy</th>
+<th>Medium</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Array</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Matrix</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Linked List</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Binary Tree</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Binary Search Tree</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Tree</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Graph</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Binary Search</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Graph Search</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Sorting: Merge Sort</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Sorting: Quick Sort</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Backtracking</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Strings</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Recursion</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Sets</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Sliding Window</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Less common topics</strong></p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Theory Review</th>
+<th>Easy</th>
+<th>Medium</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Heaps</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Priority Queues (usually but not always a heap)</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Dynamic Programming</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Topological Sort</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Prefix sum</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Greedy</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Mathematics (probability, statistics, geometry, number theory)</td>
+<td>- []</td>
+<td>[]</td>
+<td>[] []</td>
+</tr>
+</tbody>
+</table>
+<p>There are more topics that you can study that I've never seen come up
+in interviews (ex. red-black trees, AVL trees, A*, Djikstra's algorithm). I have
+rarely seen any company recommend I study these but always refer to the company's
+preparation guidance.</p>
+<h3 id="leetcode-preparation-resources">Leetcode Preparation Resources</h3>
+<p>There are many interview preparation resources out there. These are the resources
+I've used most recently. I haven't ever paid for any interview preparation resources so
+I can't comment on whether paying is worth it or not.</p>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/dsa-tutorial-learn-data-structures-and-algorithms/">GeeksForGeeks</a> for theory</li>
+<li><a href="https://Leetcode.com/problemset/">Leetcode</a></li>
+<li><a href="https://www.hackerrank.com/interview/preparation-kits">Hackerrank</a></li>
+</ul>
+<h3 id="leetcode-preparation-checklist">Leetcode Preparation Checklist</h3>
+<p>This is a table that I use when I'm getting ready to do interview preparation from scratch and am focusing on the theory and &quot;open book&quot; stages of preparation.</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Theory Review</th>
+<th>Easy</th>
+<th>Medium</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Array</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Matrix</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Linked List</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Binary Tree</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Binary Search Tree</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Tree</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Graph</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Binary Search</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Graph Search</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Sorting: Merge Sort</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Sorting: Quick Sort</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Backtracking</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Strings</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Recursion</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Dynamic Programming</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Sets</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Sliding Window</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Topological Sort</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Prefix sum</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+<tr>
+<td>Greedy</td>
+<td>- [ ]</td>
+<td>[]</td>
+<td>[][]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="preparing-for-pair-programming-and-take-home-assessments">Preparing for Pair Programming and Take Home Assessments</h2>
+<p>Preparing for pair programming interviews requires:</p>
+<ul>
+<li>Familiarity with the common topics above but not necessarily able to solve tricker Leetcode problems</li>
+<li>Familiarity with common tools and libraries to build applications in your area of expertise (ex. web application frameworks, testing frameworks, http clients)</li>
+<li>Strong code design and organization (ex. Object-oriented design, functional design, package structure)</li>
+<li>(Company dependent) A working local development setup that where you can run and test code</li>
+<li>(Company dependent) A Github account and local setup to clone a Github repo</li>
+</ul>
+<p>My recommendation is to do the first two parts of Leetcode prep - theory review and open book problems - and then locally build and run applications to refresh your skills
+if you're not actively using them at work. The application I usually build is a simple REST service with multiple different APIs, unit tests, and a script that runs multiple GET and POST API calls, similar to an integration test. For example, build a product service that allows you to create, update, and search for products with a goal to write a script that calls your
+service to run a request against each of the APIs.</p>
+<h2 id="general-tips">General Tips</h2>
+<ul>
+<li>Double check what the interview style will be, recommended topics, time constraints, pass/fail criteria, and required development setup is for the interview</li>
+<li>If you find yourself having a hard time debugging in Leetcode, I recommend you spend the time to set up your local environment with unit tests so you can step through your code with a debugger
+<ul>
+<li>This also helps if you want to do practice questions offline</li>
+</ul>
+</li>
+<li>If you are running your local development environment, make sure you already have a project set up with running unit tests on a dummy file at least a day before your interview and have it up and running an hour before your interview</li>
+<li>Know how the underlying data structures and algorithms in your language of choice work
+<ul>
+<li>For example, if you are a Java developer, know the difference between HashMap, TreeMap, and LinkedHashMap.</li>
+<li>For example, if you are a Python developer, be aware that the <code>list()</code> data type is implemented as a dynamic/resizing array.</li>
+<li>If your language has utilities like <code>.sort()</code>, <code>.substring()</code>, <code>.replace()</code>, <code>.find()</code>, etc., make sure you know the time and space complexity with special attention to when a new object is created vs. when something is updated in place.
+<ul>
+<li>I have seen several Leetcode solutions that claim to be O(n) but there's an implicit string copy or string traversal via a utility method and it's actually O(n^2)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If a company tells you they will use a specific took (<a href="https://www.hackerrank.com/interview/preparation-kits">Hackkerrank</a>, <a href="https://www.codility.com/">Codility</a>, <a href="https://codesignal.com/">CodeSignal</a>, etc.) make sure to practice using it ahead of time</li>
+</ul>
+<h2 id="preparation-timeline">Preparation Timeline</h2>
+<p>How long do you need to study Leetcode before being ready to interview?</p>
+<ul>
+<li>For me, it takes 4 - 6 weeks from day 0 if I study for 4 - 6 hours per week. I can usually complete the open book and timed reviews for the most common topics.</li>
+<li>FANG/MANG+ companies are often aware of how long this takes and can schedule interviews 3 - 4 weeks out. Smaller companies or companies with fewer openings are often looking to schedule interviews within 2 weeks.</li>
+<li>It usually takes at least 2 weeks to hear back from a company after applying and you may never hear back from them (don't take it personally).</li>
+<li>If you put all this together and use me as an example, it is best to be 2 - 3 weeks into your interview preparation - done with theory review and working through medium open book questions - before applying.</li>
+</ul>
+<p>This does not include time to study and prepare for system design or behavioral interviews.</p>
+
+<ul class="links-nextprev"><li class="links-nextprev-prev">← Previous<br> <a href="/albendz-code-share/docs/blog/career_growth/brand/">Using Your Brand to Set Your Goals</a></li><li class="links-nextprev-next">Next →<br><a href="/albendz-code-share/docs/blog/interviews/team_matching/">Team Matching</a></li>
+</ul>
+
+			</heading-anchors>
+		</main>
+
+		<footer>
+			<p><em>Built with <a href="https://www.11ty.dev/">Eleventy v3.0.0</a></em></p>
+		</footer>
+
+		<!-- This page `/blog/interviews/coding_problem_solving/` was built on 2025-04-23T17:46:48.218Z -->
+		<script type="module" src="/albendz-code-share/docs/dist/xbxy_EL6cU.js"></script>
+	</body>
+</html>
