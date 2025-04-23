@@ -46,6 +46,12 @@ jobs:
 
       - run: ls
 
+      - run: pwd
+
+      - run: cd _site
+
+      - run: pwd
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/mainline'
