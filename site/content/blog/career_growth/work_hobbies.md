@@ -76,21 +76,13 @@ In the example of adding end-to-end tests, you will likely be able to add 1 - 5 
 
 Work hobbies sound simple but they require you to be continually evaluating where you are spending your time and how valuable those investments are. Having work hobbies fall out of balance can have negative personal and professional consequences. Work hobbies can be very diverse and pitfalls vary as much. Here are some tips to avoid work hobbies going wrong:
 
-<!-- Clean up -->
-* Talk to your managers and mentors
-* Make sure any partial work will not negatively impact the product or team
-* As soon as there is a deadline or someone depends on your work, make sure you discuss priorities with your manager on what you should be working on
-* Make sure you stay interested and motivated to work on your work hobby
-* Try to stick with a single work hobby for a few months
-* Do not put your core responsibilities at risk for a work hobby
-* Don't let yourself be "delegated" a work hobby
-* Plan ahead how much time you will spend on your work hobby per week and track whether you're doing too much or too little
-* Avoid spending too much time on work hobbies instead of core responsibilities
-* Choosing a work hobby only to find out someone else was doing this as their core responsibilities
-* Losing interest and burning out on the extra work from a work hobby
-* Work hobbies become a second job when deadlines and dependencies are added
-* Working on the work hobby negatively impacts the product or team
-* Managers or mentors are unaware of your work hobby and it comes as a negative surprise of wasting time
+* Run your ideas by your manager and mentors to get feedback on impact and growth of your work hobby
+* Plan carefully to make sure partial work won't negatively impact the team or product
+* Avoid hard deadlines to keep the flexibility to work on your work hobby when you can
+* Plan to give a new work hobby a few weeks to see if it works with your schedule and expectations
+* Take care not to let your work hobby take time away from your core responsibilities
+* Check-in regularly to make sure you are still motivated and benefiting from your work hobby
+* Try tracking your time spent on work hobbies to keep track of spending too much time or too little time on them
 
 ## Examples of Work Hobbies
 
