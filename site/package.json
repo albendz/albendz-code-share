@@ -1,7 +1,7 @@
 {
 	"name": "albendz-blog",
 	"version": "9.0.0",
-	"description": "A starter repository for a blog web site using the Eleventy site generator.",
+	"description": "Albendz's github pages blog.",
 	"type": "module",
 	"scripts": {
 		"build": "npx @11ty/eleventy",
@@ -11,20 +11,21 @@
 		"start-ghpages": "npx @11ty/eleventy --pathprefix=/albendz-code-share --serve --quiet",
 		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
 		"debugstart": "cross-env DEBUG=Eleventy* npx @11ty/eleventy --serve --quiet",
-		"benchmark": "cross-env DEBUG=Eleventy:Benchmark* npx @11ty/eleventy"
+		"benchmark": "cross-env DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
+		"clean": "rm -rf node_modules/"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/11ty/albendz-code-share.git"
+		"url": "git://github.com/albendz/albendz-code-share.git"
 	},
 	"author": {
 		"name": "Alicia Bendz",
 		"email": "aliciabendzdev@gmail.com",
-		"url": "https://albendz.github.io"
+		"url": "https://albendz.github.io/albendz-code-share"
 	},
 	"license": "MIT",
 	"engines": {
-		"node": ">=18"
+		"node": ">=20"
 	},
 	"funding": {
 		"type": "opencollective",
