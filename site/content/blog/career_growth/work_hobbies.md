@@ -19,32 +19,35 @@ Work hobbies, like work, can have a positive impact on your career and to your p
 
 Examples:
 
-* Learning how to debug your teams frontend application by writing cypress tests
-* Taking a security reviewer certification course to become a security reviewer
-* Joining or leading mentoring circles to grow and help others grow
+* Learning how to debug your teams frontend application by writing [Cypress](https://www.cypress.io/) tests
+* Taking a [security reviewer certification](https://aws.amazon.com/certification/certified-security-specialty/) course to become a security reviewer
+* Joining or leading [mentoring circles](https://chronus.com/blog/modern-mentoring-mentoring-circles) to grow and help others grow
+* Writing operational or debugging tools to speed up resolving bugs
 
 I have a detailed list of work hobbies and examples at the end of this post.
 
 ## Why or why not work hobbies?
 
-Whether or not work hobbies are a good fit depends on the person and the situation. Work hobbies are good when:
+Whether or not work hobbies are a good fit depends on the person and the situation.
 
-* You can manage multi-tasking (picking up and putting things down) without disruption from your core work
-* You frequently have "waiting" time of 15+ minutes where you feel you can do something small while waiting
-* Your work environment is stable enough to take on a work hobby for a few months
-* Your work culture allows budget for self-driven projects or self-learning
+Work hobbies are good when:
+
+* You can manage multi-tasking
+* You frequently have "idle" time of 15+ minutes between meetings or waiting for deployments
+* Your schedule at work is stable and predictable
+* Your work culture supports self-driven projects or self-learning
 
 Work hobbies are **not** good when:
 
-* You are new to a team (within 3 - 6 months)
-* You are working on performance or job expectation gaps
-* You need one or more hours of focus time to be productive
+* You joined a new team within the past 6 months
+* You are on a performance improvement or focus plan
 * You find multi-tasking disruptive
-* You aren't interested defining work or projects outside of your core work
+* You prefer fewer projects or tasks to focus on
+* You are more effective with team or manager accountability for your work
 
 ## How to choose work hobbies
 
-If you choose work hobbies strategically, you have the potential to develop a new skill and add to your professional portfolio for either promotions or job interviews. Here is a list of things to consider when looking at work hobbies:
+If you choose work hobbies strategically, you have the potential to add to your professional portfolio for either promotions or job interviews. Things to consider for work hobbies:
 
 * Am I interested in doing this?
 * Is this something that can develop into a skill?
@@ -59,28 +62,28 @@ You need to be interested in your work hobby otherwise it is just another thing 
 
 ### Skills
 
-Choose a work hobby that can develop into a skill or a project showing experience after being worked on for some time. For example, being a mentor for a single person for several months shows mentorship experience. Learning a new programming language for a few months is a skill you can add to a resume. Participating in or founding a special interest group (SIG) grows communication, influence, and technical expertise.
+Choose a work hobby that can develop into a skill or a project showing experience after being worked on for some time. Examples of skills are using framworks or specific languages (ex. Cypress, Javascript), building domain expertise (ex. software security), and leadership skills (ex. mentoring, communication).
 
 ### Impact
 
-Work hobbies are most successful when they have a positive impact on the product or team. This may mean you are learning frontend by adding more end-to-end tests and increasing product quality or that you become a security design reviewer after completing a security certification. In both cases, you can concretely connect your time investment to a positive outcome in the team or product.
+Work hobbies are most successful when they have a positive impact on the product or team. Positive impact can be increased product quality with improvements like end-to-end tests and operational tools or growing the company by mentoring individuals and sharing domain expertise with your team.
 
 ### Potential Time Investment
 
-Work hobbies have no specific time investment but they are more likely to be successful if they are something you can "fit in" for several months. Taking the example of getting a certification - if a certification course is 15 hours and you're able to do 1 - 2 hours a week, then you'll need 2 - 4 to complete the course.
+Work hobbies have no specific time investment but they are more likely to be successful if they are something you can work on over several months. For example:
 
-<!-- TODO: Refer to one work hobby continuously -->
-In the example of adding end-to-end tests, you will likely be able to add 1 - 5 test cases per month depending on the complexity of your application. This is an easier example to have a shorter time investment.
+* Getting a certification - if a certification course is 15 hours and you're able to do 1 - 2 hours a week, then you'll need 2 - 4 to complete the course.
+* Adding end-to-end tests - if adding a single end-to-end test takes 1 hour, you will potentially be able to add a new test every week or every other week. You can convert this into a % increase in automation coverage.
 
 ## Tips for Work Hobbies
 
-Work hobbies sound simple but they require you to be continually evaluating where you are spending your time and how valuable those investments are. Having work hobbies fall out of balance can have negative personal and professional consequences. Work hobbies can be very diverse and pitfalls vary as much. Here are some tips to avoid work hobbies going wrong:
+You need to continuously evaluate where you are spending your time and whether you are getting impact out of your work hobbies. When work hobbies fall out of balance, it can have negative personal and professional consequences. Here are some tips to avoid work hobbies going wrong:
 
-* Run your ideas by your manager and mentors to get feedback on impact and growth of your work hobby
+* Run your ideas by your manager and mentors to get feedback on impact and career growth
 * Plan carefully to make sure partial work won't negatively impact the team or product
-* Avoid hard deadlines to keep the flexibility to work on your work hobby when you can
-* Plan to give a new work hobby a few weeks to see if it works with your schedule and expectations
-* Take care not to let your work hobby take time away from your core responsibilities
+* Avoid hard deadlines to keep flexibility
+* Trial a new work hobby a few weeks to see if it works with your schedule and expectations
+* Do not to let your work hobby take time away from your core responsibilities
 * Check-in regularly to make sure you are still motivated and benefiting from your work hobby
 * Try tracking your time spent on work hobbies to keep track of spending too much time or too little time on them
 
@@ -165,30 +168,30 @@ Note: Some of the debugging and operational examples can be done via AI tooling.
 
 **Examples**
 
-* Writing a Python script to redrive AWS SQS DLQ messages
-* Writing a Gradle script to automatically set up a new development environment
-* Creating a common debugging queries page with examples queries for team debugging tools (Kibana, CloudWatch logs, Splunk, SQL, etc.)
+* Writing a [Python](https://www.python.org/) script to redrive [AWS SQS DLQ](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html) messages
+* Writing a [Gradle](https://gradle.org/) script to automatically set up a new development environment
+* Creating a common debugging queries page with examples queries for team debugging tools ([Kibana](https://www.elastic.co/kibana), [CloudWatch logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html), [Splunk](https://www.splunk.com/), [SQL](https://www.w3schools.com/sql/), etc.)
 
 **Interests**
 
 * Scripting language (Python, Gradle Kotlin/Groovy)
-* Infrastructure APIs and interfaces (AWS Python SDK, Kibana/Elasticsearch query language)
+* Infrastructure APIs and interfaces ([AWS Python SDK](https://aws.amazon.com/sdk-for-python/), Kibana/Elasticsearch query language)
 
 **Impact**
 
-* Fast and repeatable debugging for common issues that reduces MTTR for production issues
-* Speed up onboarding of new team members by days or weeks
+* Fast and repeatable debugging for common issues that reduces [MTTR](https://www.atlassian.com/incident-management/kpis/common-metrics) for production issues
+* Speed up onboarding of new team members from days to hours or weeks to days
 
 **Career Growth**
 
-* An example of a script or application showing expertise in a specific programming language and/or integration with a specific technology (AWS APIs, REST) which can be added to your resume skills
+* An example of a script or application showing expertise in a specific programming language and/or integration with a specific technology ([AWS SDKs](https://aws.amazon.com/developer/tools/), [REST](https://aws.amazon.com/what-is/restful-api/)) which can be added to your resume skills
 * Hands-on experience with specific technologies are skills which can be added to your resume and used in job interviews for system design
 
 **Drawbacks**
 
-* You need to use good judgement when it comes to deciding what is going to be worth writing as a script. Small, one-time tasks are not good candidates but complex or repeat tasks are good candidates.
-* Choosing a different language or tool than what your team normally uses (even if you are interested in it) won't have a positive impact if your team won't use it.
-* It is easy to go overboard and over-engineer scripting tools used for lightweight debugging - it's more about having an automated short-cut rather than an entire new application.
+* Good judgement is needed to decide what is worth writing as a script. Small, one-time tasks are not good candidates while complex or repeat tasks are.
+* Choosing a different language or tool than what your team normally uses (even if you are interested in it) won't have a positive impact if your team won't use it or can't understand it.
+* Risk of over-engineer scripting tools used for lightweight debugging - it's more about having an automated short-cut rather than an entire new application.
 
 ### Certifications and Courses
 
@@ -198,14 +201,14 @@ platforms as well as for free on some video hosting sites.
 
 **Interests**
 
-* Getting a certification for a specific technology (AWS Solutions Architect)
-* Learning about a new area (Prompt Engineering)
-* Gaining a specific new skill (Typescript 101)
+* Getting a certification for a specific technology ([AWS Solutions Architect](https://aws.amazon.com/certification/certified-solutions-architect-associate/))
+* Learning about a new area ([Prompt Engineering](https://aws.amazon.com/what-is/prompt-engineering/))
+* Gaining a specific new skill ([Typescript](https://www.w3schools.com/typescript/))
 
 **Impact**
 
 * Become an expert in AWS and provide code review and design feedback on implementation choices resulting in higher quality or lower cost software
-* Contribute to and review generative AI prompt proposal for internal tools resulting in more accurate or efficient use of generative AI (ex. MCP)
+* Contribute to and review generative AI prompt proposal for internal tools resulting in more accurate or efficient use of generative AI (ex. [MCP](https://github.com/modelcontextprotocol))
 
 **Career Growth**
 
@@ -214,10 +217,8 @@ platforms as well as for free on some video hosting sites.
 
 **Drawbacks**
 
-* Certifications, courses, and intentional skills development are usually not impactful unless you are specifically asked to do them
-* Companies frequently expect people to learn on the job unless they are in a consulting or contracting space
-* Companies may select one or more individuals to learn about a new technical area and bring back that expertise to the team
-* If you have not been asked to use the skill you want to learn, it is going to be hard to create impact from learning it
+* Certifications, courses, and intentional skills development are usually not impactful unless your team does not have other experts
+* Companies frequently expect people to learn on the job rather than courses unless they are in a consulting or contracting space
 
 ### Increasing Testing or Monitoring Coverage
 
@@ -239,19 +240,19 @@ of a group of such tasks to work on while you have time.
 
 **Career Growth**
 
-* Learning new technologies to add to your resume (ex. Cypress, Datadog, BuildKite)
+* Learning new technologies to add to your resume (ex. Cypress, [Datadog](https://www.datadoghq.com/), [BuildKite](https://buildkite.com/))
 * Expertise in testing and/or monitoring best practices through hand-on learning
 
 **Drawbacks**
 
-* You need to be careful to choose simpler test cases to automate to avoid hitting issues that require significant refactoring or re-design
+* Impact will be delayed as you learn the tools initially
 * You need to be careful not to create noisy alarms or flakey tests, which will create
 perceived negative impact
 
 ### Participating in Hiring Events
 
 Companies host hiring events or join networking events at conferences to attract new
-talent. Hiring events can range from visiting a specific university for a college hire interviewing event or staffing a booth at a career fair. These events can require travel
+talent. Hiring events can range from visiting a specific university for a college hire interviewing event or staffing a booth at a conference career fair. These events can require travel
 and are most beneficial when your team is hiring.
 
 You can invest in hiring events by taking interviewer training and preparing interview 
@@ -280,4 +281,38 @@ questions in during your idle time.
 too much time on them.
 * Companies value having experienced interviewers available so they encourage people
 new to interviewing to go to these events. However, once you are already an experienced interviewer, they may not be as supportive.
-* Hiring events are usually infrequent (1 - 2x per year) but they take up a bit chunk of time all at once.
+* Hiring events are usually infrequent (1 - 2 times per year) but they take up a bit chunk of time all at once.
+
+### Keeping Up to Date with Blogs, Videos, and Podcasts
+
+Keep up to date with your favorite set of blogs or channels is a way for you to stay connected with
+the evolution of your core skills in the industry. By focusing on the core skills you use at work
+and the key technologies at your company, you can have impact by reading a blog or watching a video in your
+idle time at work.
+
+In order for this to have impact, you need to share the content you think is valuable for your team to learn
+either in a Slack channel or via a team knowledge sharing session.
+
+**Interests**
+
+* Learning about what's new in language releases (ex. [What's new in Python](https://docs.python.org/3/whatsnew/index.html))
+* Stating up to date on new frameworks (ex. [Spring Developer](https://www.youtube.com/springsourcedev))
+* Listening to tech podcasts
+
+**Impact**
+
+* Leveling up the team by curating relevant and high quality content for them to read
+* Building visibility as a team or org-wide mentor
+
+**Career Growth**
+
+* Staying up to date with the industry
+* Maintaining relevancy in your skills
+
+**Drawbacks**
+
+* You may not have a high "hit rate" when it comes to sharing content. If you read 10 articles, you may only
+share 1 that you find valuable to the team.
+* If you share too much irrelevant content, you will appear as distracting.
+* Similarly, if you share content without clarifying why it is relevant, your team may not look at the content
+and it will appear distracting
