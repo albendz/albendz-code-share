@@ -50,7 +50,21 @@ structure:
 1. Recruiter asked if you are interested in moving forward with one or more teams. If there are multiple teams, you will be asked for your preference.
 
 Team matching can either be "first one that's a match" or "list of preferences".
-Regardless of which style
+
+### First Match Team Matching
+
+"First match" team matching is when you go into the offer phase for the first team
+you match with - the first manager who wants to hire you and the first manager you want to
+work with. This can be quick - 1 to 2 weeks - but it can be just as long as the "Best Match"
+approach.
+
+### Best Match Team Matching
+
+In this approach, you have team matching calls with a small number of teams (2 - 4) and then you
+are asked to rank them in order of preference. The recruiter will match you with your highest
+choice that also matched with you. This will likely be longer than the "First Match" approach
+due to having to meet with multiple teams regardless of how many you match with. However, this
+isn't guaranteed to take longer than "First Match".
 
 ## What are the benefits of team matching?
 
