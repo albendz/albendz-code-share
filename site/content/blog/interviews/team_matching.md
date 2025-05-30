@@ -43,7 +43,7 @@ to your goals and preferences. Here are some things to prepare before entering t
 
 ## What are the steps of team matching?
 
-Once you've passed your technical interviews, team matching will beging with this rough
+Once you've passed your technical interviews, team matching will follow this rough
 structure:
 1. Recruiter tells you about one or more team opportunities
 1. Recruiter sets up 30 min calls with hiring managers for one or more team opportunities
