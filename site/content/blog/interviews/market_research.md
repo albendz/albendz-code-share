@@ -1,7 +1,8 @@
 ---
 title: Knowing Your Job Market
-description: Know your job market to plan your next career move and understand your market value. Use your knowledge of opportunities to evaluate pay, positions, and places you want to work.
+description: Use your knowledge of opportunities to evaluate pay, positions, and places you want to work to make your next career move.
 date: 2025-08-09
+updated: 2025-08-09
 tags: interviews
 ---
 
