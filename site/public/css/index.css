@@ -288,6 +288,7 @@ header {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	font-style: italic;
 }
 .post-metadata time {
 	margin-right: 1em;

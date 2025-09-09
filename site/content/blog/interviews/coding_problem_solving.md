@@ -1,7 +1,7 @@
 ---
 title: Preparing for Coding and Problem Solving Interviews
 description: Preparing for Coding and Problem Solving Interviews
-date: 2025-03-30
+date: Created
 tags: interviews
 ---
 

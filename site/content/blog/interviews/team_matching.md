@@ -1,8 +1,7 @@
 ---
 title: Team matching
 description: Understanding and navigating the team matching interview process
-date: 2025-04-22
-updated: 2025-06-08
+date: Created
 tags: interviews
 ---
 

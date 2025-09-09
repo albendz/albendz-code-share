@@ -1,7 +1,7 @@
 ---
 title: Work Hobbies
 description: Using work hobbies to make use of your idle time at work to contribute to your career
-date: 2025-04-25
+date: Created
 tags: career
 ---
 
