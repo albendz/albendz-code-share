@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: org.albendz.share
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle_kotlin
+features: [app-name, gradle, graphql, http-client-test, junit, kafka, kotlin, kotlin-application, ksp, log4j2, management, micrometer, micrometer-annotation, micronaut-aot, micronaut-build, micronaut-http-validation, netty-server, properties, readme, serialization-jackson, shade, static-resources, test-resources]
