@@ -1,7 +1,7 @@
 ---
 title: Knowing Your Job Market
 description: Use your knowledge of opportunities to evaluate pay, positions, and places you want to work to make your next career move.
-date: Created
+date: 2025-08-09
 tags: interviews,job-hunt
 ---
 

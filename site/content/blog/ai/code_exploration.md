@@ -2,7 +2,6 @@
 title: How I’m Using AI For Code Exploration
 description: How I'm using AI to explore codebases, what can go wrong, and whether it will replace us.
 date: 2025-09-08
-updated: 2025-09-08
 tags: ai
 ---
 

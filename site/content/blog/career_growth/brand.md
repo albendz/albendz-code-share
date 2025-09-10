@@ -1,7 +1,7 @@
 ---
 title: Using Your Brand to Set Your Goals
 description: Using Your Brand to Set Your Goals
-date: Created
+date: 2025-02-01
 tags: career
 ---
 
