@@ -17,7 +17,7 @@
     <id>https://albendz.github.io/albendz-code-share/blog/ai/ai_dev_trends_25/</id>
     <content type="html">&lt;h2 id=&quot;ai-in-software-development-2025&quot;&gt;AI in Software Development 2025&lt;/h2&gt;
 &lt;p&gt;This year I attended the &lt;a href=&quot;https://lwtsquad.com/techfutures2025/&quot;&gt;Tech Futures&lt;/a&gt; conference by &lt;a href=&quot;https://lwtsquad.com/about/&quot;&gt;Lesbians Who Tech&lt;/a&gt; and &lt;a href=&quot;https://womenwhocode.com/&quot;&gt;Women Who Code&lt;/a&gt;. This conference focused on AI and how it impacts the different phases and roles of software development. This post is about the content, trends, and how I see the ideas impacting software development.&lt;/p&gt;
-&lt;h3 id=&quot;trend-1-engineers-as-ai-managers&quot;&gt;Trend 1: Engineers as AI Managers&lt;/h3&gt;
+&lt;h3 id=&quot;engineers-as-ai-managers&quot;&gt;Engineers as AI Managers&lt;/h3&gt;
 &lt;p&gt;Ever since we saw that AI can write code, the industry started talking about AI replacing developers. This led to concerns about whether software engineers will have jobs. As time went on, we learned that AI generated content is not good enough for AI to run unsupervised and the trend narrowed down to AI being able to replace junior engineers rather than all engineers. This gets us into the first trend: engineers as AI managers.&lt;/p&gt;
 &lt;p&gt;Before expanding on that, I’ll share a phased model that repeated throughout the conference about how use of AI evolves for developers:&lt;/p&gt;
 &lt;ol&gt;
