@@ -1,7 +1,9 @@
+import org.gradle.kotlin.dsl.support.kotlinCompilerOptions
+
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.9.25"
-    id("com.google.devtools.ksp") version "1.9.25-1.0.20"
+    id("org.jetbrains.kotlin.jvm") version "2.0.0"
+    id("org.jetbrains.kotlin.plugin.allopen") version "2.0.0"
+    id("com.google.devtools.ksp") version "2.0.0-1.0.24"
     id("io.micronaut.application") version "4.5.4"
     id("com.gradleup.shadow") version "8.3.7"
     id("io.micronaut.test-resources") version "4.5.4"
@@ -39,12 +41,22 @@ dependencies {
 
 
 application {
-    mainClass = "org.albendz.share.ApplicationKt"
-}
-java {
-    sourceCompatibility = JavaVersion.toVersion("21")
+    mainClass = "org.albendz.share.listservice.ApplicationKt"
 }
 
+
+//compileOptions {
+//    sourceCompatibility = JavaVersion.VERSION_21
+//    targetCompatibility = JavaVersion.VERSION_21
+//}
+//
+//kotlinOptions {
+//    jvmTarget = "21"
+//}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
 
 graalvmNative.toolchainDetection = false
 
@@ -68,13 +80,14 @@ micronaut {
         optimizeClassLoading = true
         deduceEnvironment = true
         optimizeNetty = true
-        replaceLogbackXml = true
+        replaceLogbackXml = false
     }
 }
 
 
 tasks.named<io.micronaut.gradle.docker.NativeImageDockerfile>("dockerfileNative") {
-    jdkVersion = "21"
+    jdkVersion = "17"
 }
+
 
 

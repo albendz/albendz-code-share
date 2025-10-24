@@ -5,6 +5,14 @@
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/listservice" />
+            <option value="$PROJECT_DIR$/mediaservice" />
+            <option value="$PROJECT_DIR$/userservice" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
