@@ -9,7 +9,7 @@ tags: ai,conference
 
 This year I attended the [Tech Futures](https://lwtsquad.com/techfutures2025/) conference by [Lesbians Who Tech](https://lwtsquad.com/about/) and [Women Who Code](https://womenwhocode.com/). This conference focused on AI and how it impacts the different phases and roles of software development. This post is about the content, trends, and how I see the ideas impacting software development.
 
-### Trend 1: Engineers as AI Managers
+### Engineers as AI Managers
 
 Ever since we saw that AI can write code, the industry started talking about AI replacing developers. This led to concerns about whether software engineers will have jobs. As time went on, we learned that AI generated content is not good enough for AI to run unsupervised and the trend narrowed down to AI being able to replace junior engineers rather than all engineers. This gets us into the first trend: engineers as AI managers.
 
