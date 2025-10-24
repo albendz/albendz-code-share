@@ -25,7 +25,7 @@ This trend matches what I’m seeing companies do to make AI more effective. Com
 
 ### Using AI is a Skill
 
-From the beginning of LLMs being available to consumers, people have said “just ask AI and it will do it for you”. This led to ["AI Slop"]() and complaints that it takes longer to fix the AI code than to write it yourself. There is a repeating pattern:
+From the beginning of LLMs being available to consumers, people have said “just ask AI and it will do it for you”. This led to ["AI Slop"](https://en.wikipedia.org/wiki/AI_slop) and complaints that it takes longer to fix the AI code than to write it yourself. There is a repeating pattern:
 
 1. Engineer is told to use AI to code faster
 2. Engineer tries AI
