@@ -28,7 +28,7 @@
 &lt;p&gt;Going back to &lt;em&gt;engineers as AI managers&lt;/em&gt;: each phase requires to develop skills defining prompts, sub-tasks, and success criteria such that AI can run independently and effectively - they become AI managers.&lt;/p&gt;
 &lt;p&gt;This trend matches what I’m seeing companies do to make AI more effective. Companies are going beyond having a code assistant available to building autonomous agents running as part of automated processes. I’ve also noticed that the most effective AI users are getting better at describing tasks, context, and scope for the AI such that it is able to successfully complete tasks. That leads us to the second trend.&lt;/p&gt;
 &lt;h3 id=&quot;using-ai-is-a-skill&quot;&gt;Using AI is a Skill&lt;/h3&gt;
-&lt;p&gt;From the beginning of LLMs being available to consumers, people have said “just ask AI and it will do it for you”. This led to &lt;a href=&quot;https://albendz.github.io/albendz-code-share/blog/ai/ai_dev_trends_25/&quot;&gt;&amp;quot;AI Slop&amp;quot;&lt;/a&gt; and complaints that it takes longer to fix the AI code than to write it yourself. There is a repeating pattern:&lt;/p&gt;
+&lt;p&gt;From the beginning of LLMs being available to consumers, people have said “just ask AI and it will do it for you”. This led to &lt;a href=&quot;https://en.wikipedia.org/wiki/AI_slop&quot;&gt;&amp;quot;AI Slop&amp;quot;&lt;/a&gt; and complaints that it takes longer to fix the AI code than to write it yourself. There is a repeating pattern:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Engineer is told to use AI to code faster&lt;/li&gt;
 &lt;li&gt;Engineer tries AI&lt;/li&gt;
