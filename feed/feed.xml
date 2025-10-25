@@ -35,7 +35,7 @@
 &lt;li&gt;AI produces slop code&lt;/li&gt;
 &lt;li&gt;Engineer abandons AI&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The missing piece: using AI is a skill. Whether or not you want to use AI, you need to learn to define scope, instructions, and success criteria for the AI assistants and agents to be effective in your environment. Earlier this year, I was skeptical about whether AI writing write code would have the efficiency benefits people were talking about. However, I also saw that engineers would be &lt;em&gt;expected&lt;/em&gt; to use AI. So, I sat down and tried using AI every time I started a task. Through trial and error, I learned how to use it more effectively and break down work such that subtasks could be done by AI independently.&lt;/p&gt;
+&lt;p&gt;The missing piece: using AI is a skill. Whether or not you want to use AI, you need to learn to define scope, instructions, and success criteria for the AI assistants and agents to be effective in your environment. Earlier this year, I was skeptical about whether AI writing code would have the efficiency benefits people were talking about. However, I also saw that engineers would be &lt;em&gt;expected&lt;/em&gt; to use AI. So, I sat down and tried using AI every time I started a task. Through trial and error, I learned how to use it more effectively and break down work such that subtasks could be done by AI independently.&lt;/p&gt;
 &lt;p&gt;A critical point: AI users have to understand both the problem and solution in order to use AI effectively. Junior engineers, new coders, or non-coders who do not have the knowledge or skills to tell the AI how to build a good solution are surprised when it turns out their code is slop.
 Companies and teams are sending out regular reminders that you are still responsible for the code AI is writing for you, just like as a manager, you are responsible for the actions taken by your team.&lt;/p&gt;
 &lt;h3 id=&quot;ai-finds-the-next-bottleneck&quot;&gt;AI Finds the Next Bottleneck&lt;/h3&gt;
@@ -45,9 +45,9 @@ Companies and teams are sending out regular reminders that you are still respons
 &lt;p&gt;The point: AI only helps you deliver as fast as your next bottleneck and organizations need to look at the end-to-end gains in the software development lifecycle, not just the gains in a single phase.&lt;/p&gt;
 &lt;h3 id=&quot;ai-governance&quot;&gt;AI Governance&lt;/h3&gt;
 &lt;p&gt;Speaking of bottlenecks, we have my favorite delivery timeline wildcard: security and privacy reviews. Pretty much any application that has identifiable user data in any form is going to need a security review, legal review, and compliance plan regardless of whether it uses AI or not. As AI moves away from being a POC tool, we’re formalizing responsible and compliant uses of AI.&lt;/p&gt;
-&lt;p&gt;I’ve seen this play out: Product teams and development teams propose an AI-based solution and they are surprised to find out the new rigor needed to launch that product - if they even can. Here are some of the things we are now required to take into consideration:&lt;/p&gt;
+&lt;p&gt;I’ve seen this play out: product teams and development teams propose an AI-based solution and they are surprised to find out the new rigor needed to launch that product - if they even can. Here are some of the things we are now required to take into consideration:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Justify what aspects of the problem require use of AI?&lt;/li&gt;
+&lt;li&gt;Justify what aspects of the problem require use of AI&lt;/li&gt;
 &lt;li&gt;How will we continuously monitor and adjust the use of AI to be compliant and secure?&lt;/li&gt;
 &lt;li&gt;What guardrails are we using to maintain compliance, protect users, and protect the company?&lt;/li&gt;
 &lt;li&gt;What is the escalation plan in the event of a non-compliance or security event involving the AI solution?&lt;/li&gt;
