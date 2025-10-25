@@ -32,7 +32,7 @@ From the beginning of LLMs being available to consumers, people have said “jus
 3. AI produces slop code
 4. Engineer abandons AI
 
-The missing piece: using AI is a skill. Whether or not you want to use AI, you need to learn to define scope, instructions, and success criteria for the AI assistants and agents to be effective in your environment. Earlier this year, I was skeptical about whether AI writing write code would have the efficiency benefits people were talking about. However, I also saw that engineers would be *expected* to use AI. So, I sat down and tried using AI every time I started a task. Through trial and error, I learned how to use it more effectively and break down work such that subtasks could be done by AI independently.
+The missing piece: using AI is a skill. Whether or not you want to use AI, you need to learn to define scope, instructions, and success criteria for the AI assistants and agents to be effective in your environment. Earlier this year, I was skeptical about whether AI writing code would have the efficiency benefits people were talking about. However, I also saw that engineers would be *expected* to use AI. So, I sat down and tried using AI every time I started a task. Through trial and error, I learned how to use it more effectively and break down work such that subtasks could be done by AI independently.
 
 A critical point: AI users have to understand both the problem and solution in order to use AI effectively. Junior engineers, new coders, or non-coders who do not have the knowledge or skills to tell the AI how to build a good solution are surprised when it turns out their code is slop.
 Companies and teams are sending out regular reminders that you are still responsible for the code AI is writing for you, just like as a manager, you are responsible for the actions taken by your team.
@@ -51,9 +51,9 @@ The point: AI only helps you deliver as fast as your next bottleneck and organiz
 
 Speaking of bottlenecks, we have my favorite delivery timeline wildcard: security and privacy reviews. Pretty much any application that has identifiable user data in any form is going to need a security review, legal review, and compliance plan regardless of whether it uses AI or not. As AI moves away from being a POC tool, we’re formalizing responsible and compliant uses of AI.
 
-I’ve seen this play out: Product teams and development teams propose an AI-based solution and they are surprised to find out the new rigor needed to launch that product - if they even can. Here are some of the things we are now required to take into consideration:
+I’ve seen this play out: product teams and development teams propose an AI-based solution and they are surprised to find out the new rigor needed to launch that product - if they even can. Here are some of the things we are now required to take into consideration:
 
-- Justify what aspects of the problem require use of AI?
+- Justify what aspects of the problem require use of AI
 - How will we continuously monitor and adjust the use of AI to be compliant and secure?
 - What guardrails are we using to maintain compliance, protect users, and protect the company?
 - What is the escalation plan in the event of a non-compliance or security event involving the AI solution?
