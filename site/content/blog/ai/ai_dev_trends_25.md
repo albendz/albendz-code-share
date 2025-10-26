@@ -23,6 +23,11 @@ Going back to *engineers as AI managers*: each phase requires to develop skills 
 
 This trend matches what I’m seeing companies do to make AI more effective. Companies are going beyond having a code assistant available to building autonomous agents running as part of automated processes. I’ve also noticed that the most effective AI users are getting better at describing tasks, context, and scope for the AI such that it is able to successfully complete tasks. That leads us to the second trend.
 
+**The speakers and talks that inspired this topic:**
+
+* "Using AI to Become More Productive at Work" by [Tamine Mokdissi](https://www.linkedin.com/in/tamine-mokdissi/)
+* "Agents, Teams, and the Future of Work" by [Lorraine Bardeen](https://www.linkedin.com/in/lorraine-bardeen/)
+
 ### Using AI is a Skill
 
 From the beginning of LLMs being available to consumers, people have said “just ask AI and it will do it for you”. This led to ["AI Slop"](https://en.wikipedia.org/wiki/AI_slop) and complaints that it takes longer to fix the AI code than to write it yourself. There is a repeating pattern:
@@ -37,6 +42,10 @@ The missing piece: using AI is a skill. Whether or not you want to use AI, you n
 A critical point: AI users have to understand both the problem and solution in order to use AI effectively. Junior engineers, new coders, or non-coders who do not have the knowledge or skills to tell the AI how to build a good solution are surprised when it turns out their code is slop.
 Companies and teams are sending out regular reminders that you are still responsible for the code AI is writing for you, just like as a manager, you are responsible for the actions taken by your team.
 
+**The speakers and talks that inspired this topic:**
+
+* "The Skills Shift: Preparing People and Platforms for the AI Economy" by [Oona King](https://www.linkedin.com/in/oona-king-sheher-00ba8414) and [Linda Aiello](https://events.techfutures.com/2025/agenda/speakers/Linkedin.com/in/linda-aiello-1a51353)
+
 ### AI Finds the Next Bottleneck
 
 We’ve been focused on how AI can do development work and it can help us do it faster. However, when you look at the overall software delivery process, it’s not just coding. Once we start producing more code, we look to the right and find the next bottleneck - code reviews.
@@ -46,6 +55,11 @@ Okay, so let’s have AI do code reviews. Great, now we’re both writing and me
 This also works in the other direction, going left: if developers are writing code more quickly, the product team needs to produce requirements more quickly to prevent idle developers (if they're not too busy with the AI-related production issues). In this case, you can also use AI to help build requirements documents with automated data analysis and quickly filling any gaps.
 
 The point: AI only helps you deliver as fast as your next bottleneck and organizations need to look at the end-to-end gains in the software development lifecycle, not just the gains in a single phase.
+
+**The speakers and talks that inspired this topic:**
+
+* "The Human Side of AI: Unlocking Opportunity in the New Bottlenecks of Software Development" by [Rachel Laycock](https://events.techfutures.com/2025/agenda/speakers/Linkedin.com/in/rachellaycock) and [Kiran Rouzie](https://www.linkedin.com/in/kiran-rouzie-82374332)
+* "The AI Product Playbook: Leading With Customer Impact" by [Sarah Perkins](https://www.linkedin.com/in/sarahcperkinsnyc/)
 
 ### AI Governance
 
@@ -61,6 +75,13 @@ I’ve seen this play out: product teams and development teams propose an AI-bas
 - Are we using AI models and tools that have been reviewed by security and legal teams?
 
 When it comes to these rigorous processes, organizations need to consider the balance of speed and quality. If you make it too hard to use AI solutions in products or development, developers will find ways to use it anyway - now it's [*shadow AI.*](https://www.ibm.com/think/topics/shadow-ai) This means organizations need to think carefully about when these governance reviews are really needed and create fast-tracks for low-risk usecase.
+
+**The speakers and talks that inspired this topic:**
+
+* "AI Governance That Doesn't Suck: Fair, Flexible & Actually Effective" by [Shelby Tallent](https://www.linkedin.com/in/shetallent/)
+* "AI Responsibility: Culture Shift or Compliance Checklist?" by [Barbara Pender](https://www.linkedin.com/in/barbarapenderai)
+* "Smart, Safe, Scalable: Building AI-Powered Products That Last" by [Rachel Ramaswamy](https://www.linkedin.com/in/rachel-bogan/)
+
 
 ### Final Thoughts
 
