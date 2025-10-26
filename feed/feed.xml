@@ -27,6 +27,11 @@
 &lt;/ol&gt;
 &lt;p&gt;Going back to &lt;em&gt;engineers as AI managers&lt;/em&gt;: each phase requires to develop skills defining prompts, sub-tasks, and success criteria such that AI can run independently and effectively - they become AI managers.&lt;/p&gt;
 &lt;p&gt;This trend matches what I’m seeing companies do to make AI more effective. Companies are going beyond having a code assistant available to building autonomous agents running as part of automated processes. I’ve also noticed that the most effective AI users are getting better at describing tasks, context, and scope for the AI such that it is able to successfully complete tasks. That leads us to the second trend.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The speakers and talks that inspired this topic:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;quot;Using AI to Become More Productive at Work&amp;quot; by &lt;a href=&quot;https://www.linkedin.com/in/tamine-mokdissi/&quot;&gt;Tamine Mokdissi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;quot;Agents, Teams, and the Future of Work&amp;quot; by &lt;a href=&quot;https://www.linkedin.com/in/lorraine-bardeen/&quot;&gt;Lorraine Bardeen&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&quot;using-ai-is-a-skill&quot;&gt;Using AI is a Skill&lt;/h3&gt;
 &lt;p&gt;From the beginning of LLMs being available to consumers, people have said “just ask AI and it will do it for you”. This led to &lt;a href=&quot;https://en.wikipedia.org/wiki/AI_slop&quot;&gt;&amp;quot;AI Slop&amp;quot;&lt;/a&gt; and complaints that it takes longer to fix the AI code than to write it yourself. There is a repeating pattern:&lt;/p&gt;
 &lt;ol&gt;
@@ -38,11 +43,20 @@
 &lt;p&gt;The missing piece: using AI is a skill. Whether or not you want to use AI, you need to learn to define scope, instructions, and success criteria for the AI assistants and agents to be effective in your environment. Earlier this year, I was skeptical about whether AI writing code would have the efficiency benefits people were talking about. However, I also saw that engineers would be &lt;em&gt;expected&lt;/em&gt; to use AI. So, I sat down and tried using AI every time I started a task. Through trial and error, I learned how to use it more effectively and break down work such that subtasks could be done by AI independently.&lt;/p&gt;
 &lt;p&gt;A critical point: AI users have to understand both the problem and solution in order to use AI effectively. Junior engineers, new coders, or non-coders who do not have the knowledge or skills to tell the AI how to build a good solution are surprised when it turns out their code is slop.
 Companies and teams are sending out regular reminders that you are still responsible for the code AI is writing for you, just like as a manager, you are responsible for the actions taken by your team.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The speakers and talks that inspired this topic:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;quot;The Skills Shift: Preparing People and Platforms for the AI Economy&amp;quot; by &lt;a href=&quot;https://www.linkedin.com/in/oona-king-sheher-00ba8414&quot;&gt;Oona King&lt;/a&gt; and &lt;a href=&quot;https://events.techfutures.com/2025/agenda/speakers/Linkedin.com/in/linda-aiello-1a51353&quot;&gt;Linda Aiello&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&quot;ai-finds-the-next-bottleneck&quot;&gt;AI Finds the Next Bottleneck&lt;/h3&gt;
 &lt;p&gt;We’ve been focused on how AI can do development work and it can help us do it faster. However, when you look at the overall software delivery process, it’s not just coding. Once we start producing more code, we look to the right and find the next bottleneck - code reviews.&lt;/p&gt;
 &lt;p&gt;Okay, so let’s have AI do code reviews. Great, now we’re both writing and merging code faster. Now what about managing releases? The new bottleneck is deployments, especially if you’re on a team that does weekly or less frequent deploys. On top of that, there are more changes per deployment, more risk in each deployment, and higher complexity debugging production issues that result from deployments. At some point, you find where the humans can’t keep up or where quality starts to take a hit.&lt;/p&gt;
 &lt;p&gt;This also works in the other direction, going left: if developers are writing code more quickly, the product team needs to produce requirements more quickly to prevent idle developers (if they&#39;re not too busy with the AI-related production issues). In this case, you can also use AI to help build requirements documents with automated data analysis and quickly filling any gaps.&lt;/p&gt;
 &lt;p&gt;The point: AI only helps you deliver as fast as your next bottleneck and organizations need to look at the end-to-end gains in the software development lifecycle, not just the gains in a single phase.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The speakers and talks that inspired this topic:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;quot;The Human Side of AI: Unlocking Opportunity in the New Bottlenecks of Software Development&amp;quot; by &lt;a href=&quot;https://events.techfutures.com/2025/agenda/speakers/Linkedin.com/in/rachellaycock&quot;&gt;Rachel Laycock&lt;/a&gt; and &lt;a href=&quot;https://www.linkedin.com/in/kiran-rouzie-82374332&quot;&gt;Kiran Rouzie&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;quot;The AI Product Playbook: Leading With Customer Impact&amp;quot; by &lt;a href=&quot;https://www.linkedin.com/in/sarahcperkinsnyc/&quot;&gt;Sarah Perkins&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&quot;ai-governance&quot;&gt;AI Governance&lt;/h3&gt;
 &lt;p&gt;Speaking of bottlenecks, we have my favorite delivery timeline wildcard: security and privacy reviews. Pretty much any application that has identifiable user data in any form is going to need a security review, legal review, and compliance plan regardless of whether it uses AI or not. As AI moves away from being a POC tool, we’re formalizing responsible and compliant uses of AI.&lt;/p&gt;
 &lt;p&gt;I’ve seen this play out: product teams and development teams propose an AI-based solution and they are surprised to find out the new rigor needed to launch that product - if they even can. Here are some of the things we are now required to take into consideration:&lt;/p&gt;
@@ -55,8 +69,37 @@ Companies and teams are sending out regular reminders that you are still respons
 &lt;li&gt;Are we using AI models and tools that have been reviewed by security and legal teams?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;When it comes to these rigorous processes, organizations need to consider the balance of speed and quality. If you make it too hard to use AI solutions in products or development, developers will find ways to use it anyway - now it&#39;s &lt;a href=&quot;https://www.ibm.com/think/topics/shadow-ai&quot;&gt;&lt;em&gt;shadow AI.&lt;/em&gt;&lt;/a&gt; This means organizations need to think carefully about when these governance reviews are really needed and create fast-tracks for low-risk usecase.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The speakers and talks that inspired this topic:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;quot;AI Governance That Doesn&#39;t Suck: Fair, Flexible &amp;amp; Actually Effective&amp;quot; by &lt;a href=&quot;https://www.linkedin.com/in/shetallent/&quot;&gt;Shelby Tallent&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;quot;AI Responsibility: Culture Shift or Compliance Checklist?&amp;quot; by &lt;a href=&quot;https://www.linkedin.com/in/barbarapenderai&quot;&gt;Barbara Pender&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;quot;Smart, Safe, Scalable: Building AI-Powered Products That Last&amp;quot; by &lt;a href=&quot;https://www.linkedin.com/in/rachel-bogan/&quot;&gt;Rachel Ramaswamy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h3&gt;
 &lt;p&gt;I am happy to see that AI is no longer being viewed as a magical solution that you can carelessly throw at any problem. The industry has passed the POC and exploration phase and moved into using AI as a fully supported, well-thought-out tool in the development process. With these emerging perspectives and investments, I have more confidence in AI being effective yet developers still having a key role in critically thinking about how to maintain AI effectiveness in large-scale software development organizations.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Applying For Jobs</title>
+    <link href="https://albendz.github.io/albendz-code-share/blog/interviews/job_applications/" />
+    <updated>2025-10-01T00:00:00Z</updated>
+    <id>https://albendz.github.io/albendz-code-share/blog/interviews/job_applications/</id>
+    <content type="html">&lt;h1 id=&quot;applying-for-jobs&quot;&gt;Applying for Jobs&lt;/h1&gt;
+&lt;p&gt;This page describes how I found and applied for jobs, tracked applications, and evaluated where to apply. I was not job hunting for an extended period of time so there
+are a lot of tools and sites I didn&#39;t end up using.&lt;/p&gt;
+&lt;p&gt;This is broken up into sections:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Finding jobs to apply to&lt;/li&gt;
+&lt;li&gt;Choosing companies to apply to&lt;/li&gt;
+&lt;li&gt;Applying to jobs&lt;/li&gt;
+&lt;li&gt;What to expect after applying&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;finding-jobs-to-apply-to&quot;&gt;Finding jobs to apply to&lt;/h2&gt;
+&lt;p&gt;I&#39;m splitting this into to ways to find jobs: seeking out jobs on your own and working with recruiters.&lt;/p&gt;
+&lt;h3 id=&quot;seeking-out-jobs-on-your-own&quot;&gt;Seeking out jobs on your own&lt;/h3&gt;
+&lt;p&gt;I primarily used LinkedIn to find job openings. I set up a few job alerts&lt;/p&gt;
+&lt;p&gt;I have a small list of companies I know I want to work for so I can proactively check
+their careers page to see what openings they have.&lt;/p&gt;
 </content>
   </entry>
   <entry>
