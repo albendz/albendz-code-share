@@ -43,26 +43,31 @@
 	
 	<url>
 		<loc>https://albendz.github.io/albendz-code-share/about/</loc>
-		<lastmod>2025-10-26</lastmod>
+		<lastmod>2025-11-10</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://albendz.github.io/albendz-code-share/blog/</loc>
-		<lastmod>2025-10-26</lastmod>
+		<lastmod>2025-11-10</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://albendz.github.io/albendz-code-share/blog/java/nullability/</loc>
+		<lastmod>2025-11-10</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://albendz.github.io/albendz-code-share/</loc>
-		<lastmod>2025-10-26</lastmod>
+		<lastmod>2025-11-10</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://albendz.github.io/albendz-code-share/tags/</loc>
-		<lastmod>2025-10-26</lastmod>
+		<lastmod>2025-11-10</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://albendz.github.io/albendz-code-share/feed/feed.xml</loc>
-		<lastmod>2025-10-26</lastmod>
+		<lastmod>2025-11-10</lastmod>
 	</url>
 </urlset>

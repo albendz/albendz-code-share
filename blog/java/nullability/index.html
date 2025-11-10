@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Nulls: Are we still losing millions of dollars with Java and Kotlin?</title>
+		<meta name="description" content="An overview of nulls, NullPointerExceptions, and nullability in Java and Kotlin.">
+		<link rel="alternate" href="/albendz-code-share/feed/feed.xml" type="application/atom+xml" title="Alicia&#39;s Blog">
+		
+		<style>/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}
+/* This is an arbitrary CSS string added to the bundle */
+/* Copied from: https://github.com/11ty/eleventy-base-blog/blob/main/public/css/index.css */
+
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--text-color: var(--color-gray-90);
+
+	--text-color-link: #bf6015;
+	--text-color-link-active: #d98225;
+	--text-color-link-visited: #7f4f24;
+
+	--background-color: #f4e5d3;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		/* --text-color-link: #5bc0eb;
+		--text-color-link-active: #9bc5e5;
+		--text-color-link-visited: #4085d6;
+
+		--background-color: #121b3b; */
+
+		/* --text-color-link: #717d96;
+		--text-color-link-active: #9ba9c6;
+		--text-color-link-visited: #2e3654;
+
+		--background-color: #0d0d0d; */
+
+	    --text-color-link: #6d6baf;
+		--text-color-link-active: #31aabf;
+		--text-color-link-visited: #3d2f5c;
+
+		--background-color: #0d0d0d;
+
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	max-width: 40em;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
+img{
+  max-width: 100%;
+}
+img[width][height] {
+  height: auto;
+}
+img[src$=".svg"] {
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+video,
+iframe {
+	width: 100%;
+	height: auto;
+}
+iframe {
+	aspect-ratio: 16/9;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main,
+footer {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+.links-nextprev {
+	display: flex;
+	justify-content: space-between;
+	gap: .5em 1em;
+	list-style: "";
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow-x: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	flex-grow: 1;
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	gap: .5em 1em;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-style: italic;
+}
+.post-metadata time {
+	margin-right: 1em;
+}</style>
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/albendz-code-share/" class="home-link">Alicia&#39;s Blog</a>
+			<nav>
+				<h2 class="visually-hidden" id="top-level-navigation-menu">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/albendz-code-share/">Home</a></li>
+					<li class="nav-item"><a href="/albendz-code-share/blog/">Archive</a></li>
+					<li class="nav-item"><a href="/albendz-code-share/about/">About</a></li>
+					<li class="nav-item"><a href="/albendz-code-share/feed/feed.xml">Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="skip">
+			<heading-anchors>
+				
+<h1 id="nulls-are-we-still-losing-millions-of-dollars-with-java-and-kotlin">Nulls: Are we still losing millions of dollars with Java and Kotlin?</h1>
+
+<ul class="post-metadata">
+	<li>Created: <time datetime="2025-11-10">10 November 2025</time></li>
+	<li><a href="/albendz-code-share/tags/java/" class="post-tag">java</a>, </li>
+	<li><a href="/albendz-code-share/tags/kotlin/" class="post-tag">kotlin</a></li>
+</ul>
+
+<h1 id="nulls-are-we-still-losing-millions-of-dollars-with-java-and-kotlin-2">Nulls: Are we still losing millions of dollars with Java and Kotlin?</h1>
+<p>For decades, the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html">NullPointerException</a> in <a href="https://www.java.com/en/">Java</a> has been known as “the million (or billion) dollar mistake”. Java first laucnhed in the mid-1990s and it included significant improvements to memory management and object-oriented features that led to its strong adoption. Unfortunately, these improvements did not include addressing null pointers. While Java has made great leaps into keeping up with modern language trends, we continue to be plagued by NPEs.</p>
+<p>In this post I will explain what NullPointerExceptions (NPEs) are in Java, how Kotlin and Java have tried to address the issue, and how Java’s Project Valhalla proposes another step towards addressing them.</p>
+<h2 id="nulls-and-null-pointers">Nulls and null pointers</h2>
+<p>What is <code>null</code>?</p>
+<p>Computer memory, specifically <a href="https://en.wikipedia.org/wiki/Random-access_memory">RAM</a> is addressed. Each memory location can be referred to by its address, usually called a pointer or reference. Blocks of information representing application objects are stored in a memory block starting at the object's pointer. Java creates and maintains these pointers whenever you create objects. You can also tell Java that you no longer need the object by setting it to null - indicating there isn't an address anymore because there isn't an object in use anymore.</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token class-name">Person</span> person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// person points to the location of the object in memory</span>
+person <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// person no longer points to anything</span></code></pre>
+<p>In this code snippet, an object of type <code>Person</code> is created and the pointer to that object is stored in the variable <code>person</code> in the first line. The second line sets the <code>person</code> variable to <code>null</code> indicating that there is no relevant <code>Person</code> object because that variable now points nowhere. It doesn’t mean the object is removed from memory, just that we don’t have the address anymore. Eventually Java's garbage collector will identify unreferenced objects and remove them from memory.</p>
+<p>When are <code>null</code>s used?</p>
+<p><code>null</code> can be used in different scenarios but in some cases, they are used to indicate the absence of something. For example:</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token keyword">private</span> <span class="token class-name">Person</span> <span class="token function">findPersonByName</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>database<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> database<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">null</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>In this code, <code>null</code> is communicating that the name provided doesn't exist in the database.</p>
+<p>Let’s look at a bit more code:</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token class-name">Person</span> person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+person <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Whenever you call a method on <code>person</code>, Java will execute the method on the object located where the variable <code>person</code> points to in memory. This works for the first print statement before the <code>person</code> is set to <code>null</code>. But what about the second case? What happens when you try to fetch data from memory when you don’t have an address?</p>
+<p>The answer: NullPointerExceptions.</p>
+<h2 id="why-are-nullpointerexceptions-bad">Why are NullPointerExceptions bad?</h2>
+<p>NullPointerExceptions can happen any time you’re handling an object without checking if it's <code>null</code> first. Failure to do so may result in NPEs that stop the running program in whatever state it’s in, potentially corrupting data or leaving the application in a bad state. Java is an <em>object-oriented</em> programming language. There are objects everywhere, all the time, and so are NPEs.</p>
+<p>One thing to note is that a NullPointerException is a type of RuntimeException or <em>unchecked</em> exception. In Java, you must declare that your method throws an exception if you have a <code>throw</code> statement in your method - but only if it's a <em>checked</em> exception (hence the name, Java checks for it). Since NPEs are <em>unchecked</em>, this means it is not declared in the method signature and the compiler won't check for correct handling of them.</p>
+<p>There are ways to apply safeguards to prevent NPEs but since NPEs can happen in any object interaction, it’s time-consuming and verbose to handle these everywhere. Here's what that looks like:</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">printPerson</span><span class="token punctuation">(</span><span class="token class-name">Person</span> person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>person <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This doesn't seem too bad except in complex code, it can be hard to make sure all possible object <code>null</code> combinations are checked and you end up with. It is also hard to unit test this complex code, leading to hard-to-detect NPEs.</p>
+<h2 id="nullability">Nullability</h2>
+<p>Nullability refers to describing something as &quot;can be <code>null</code>&quot;. Some languages can specify nullability at compile time or runtime to describe that a variable can or cannot be <code>null</code>.</p>
+<h3 id="java">Java</h3>
+<p>Java doesn’t distinguish between what can be <code>null</code> or what can’t be <code>null</code>. Outside of primitive types, anything can be <code>null</code>. This is one of the main reasons why it is hard to avoid NPEs.</p>
+<p>Over the years, there have been attempts to help manage nullability in Java and I will go over Project Lombok and Java 8's <code>Optional</code>.</p>
+<h3 id="project-lombok">Project Lombok</h3>
+<p><a href="https://projectlombok.org/">Project Lombok</a> is a Java library to make writing Java more pleasant by taking care of common patterns with annotations. One of those cases is Java <code>null</code> checking. Here’s the vanilla Java code if you want to protect against NPEs:</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">printPersonName</span><span class="token punctuation">(</span><span class="token class-name">Person</span> person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>person <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token comment">// Cannot be null</span>
+		<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"Person is null when expected to be not null"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Here’s how Lombok saves some work:</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">printPersonName</span><span class="token punctuation">(</span><span class="token annotation punctuation">@NonNull</span> <span class="token class-name">Person</span> person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>By default, Lombok’s <a href="https://projectlombok.org/features/NonNull">@NonNull</a> will rethrow an NPE but it can be configured to throw IllegalArgumentExceptions instead.</p>
+<p>So that’s an improvement: first, the null check is written automatically just by adding the annotation and second, this code communicates that it expects non-null input. However, this is still a runtime check and you'll need to wait for your code to be deployed to find out if you missed any annotations.</p>
+<h4 id="java-optional">Java Optional</h4>
+<p>Java added the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">Optional</a> class in Java 8 as a way to help with NPEs. Optionals are a way to communicate that a variable may or may not be present.</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> myString <span class="token operator">=</span> <span class="token class-name">Optional</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Has value "Hello"</span>
+<span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> myMissingString <span class="token operator">=</span> <span class="token class-name">Optional</span><span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Value is not present</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>myString<span class="token punctuation">.</span><span class="token function">isPresent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// Will print</span>
+  <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>myString<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>myMissingString<span class="token punctuation">.</span><span class="token function">isPresent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// Will not print</span>
+  <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>myMissingString<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">:</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Problematic code</span>
+<span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> myMisusedOptional <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// Asking for an NPE</span></code></pre>
+<p>Much like Lombok’s annotation, Java Optionals are able to communicate “this could be null” and it forces code writers to resolve the Optional value before the value can be used. Unfortunately, you can still set the value of an Optional to <code>null</code> and get an NPE, putting us back at square 1.</p>
+<h2 id="nullability-in-kotlin-the-answer-to-null-pointer-exceptions">Nullability in Kotlin: The answer to null pointer exceptions?</h2>
+<p>About 15 years after Java, <a href="https://kotlinlang.org/">Kotlin</a> came into the picture as a JVM (Java Virtual Machine) language. Kotlin and Java both run on the JVM, though Kotlin is not limited to running in the JVM. I will stay focused on JVM Kotlin for this post and, in that context, Java and Kotlin can be interchanged to produce Java bytecode that runs on the JVM.</p>
+<p>Kotlin supports declaring a variable as nullable or non-nullable. What’s even better is that Kotlin is non-nullable by default and this is a compile time check. Kotlin does this by requiring a <code>?</code> at the end of a declaration. When code is written well, this means you can’t build code without handling the <code>null</code> possibility:</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token keyword">var</span> nonNullName<span class="token operator">:</span> <span class="token class-name">String</span> <span class="token operator">=</span> <span class="token string">"Jim"</span> <span class="token comment">// Non-nullable</span>
+<span class="token function">println</span><span class="token punctuation">(</span>nonNullName<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token comment">// All good</span>
+nonNullName <span class="token operator">=</span> <span class="token keyword">null</span> <span class="token comment">// results in a compile time error</span>
+
+<span class="token keyword">var</span> nullableName<span class="token operator">:</span> <span class="token class-name">String</span><span class="token operator">?</span> <span class="token operator">=</span> <span class="token string">"Jane"</span> <span class="token comment">// Nullable</span>
+<span class="token function">println</span><span class="token punctuation">(</span>nullableName<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token comment">// Does not compile because the null case must be handled</span>
+<span class="token function">println</span><span class="token punctuation">(</span>nullableName<span class="token operator">?</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token comment">// Does compile due to use of ? to handle the null case</span>
+nullableName <span class="token operator">=</span> <span class="token keyword">null</span> <span class="token comment">// allowed</span></code></pre>
+<p>Now we’ve gotten to the main point I want to make in this post:</p>
+<blockquote>
+<p>If you’re using Kotlin nullability, you can avoid most* accidental NullPointerExceptions and keep your billion dollars.</p>
+</blockquote>
+<p><em>And</em>, despite this critical language feature, <strong>developers still choose to opt-in to NPEs</strong>.</p>
+<p>*The asterisk here comes back to JVM Kotlin and Java interoperability. If Kotlin code is calling Java code, the compiler doesn’t have a way to know if the Java parameters or return types are nullable or not and you can get unexpected NPEs. You can still use <code>?</code> on Java properties or return types to have defensive programming but the compiler will not remind you to do so.</p>
+<p>Back to losing million in Kotlin: how and why are developers choosing to expose their software to NPEs when it’s (mostly) avoidable?</p>
+<p>Kotlin supports “force not null” / <code>!!</code> if you want to skip null safety checks:</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token keyword">var</span> name<span class="token operator">:</span> <span class="token class-name">String</span><span class="token operator">?</span> <span class="token operator">=</span> <span class="token keyword">null</span>
+name<span class="token punctuation">.</span>length <span class="token comment">// Does not compile because the null case must be handled</span>
+name<span class="token operator">?</span><span class="token punctuation">.</span>length <span class="token comment">// Does compile</span>
+name<span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">.</span>length <span class="token comment">// Throws an NPE</span></code></pre>
+<p>Since developers have to opt-in to forcing something to be not null, why are they doing this? Let's look at this code:</p>
+<pre class="language-java" tabindex="0"><code class="language-java">val postalCode<span class="token operator">:</span> <span class="token class-name">String</span><span class="token operator">?</span> <span class="token operator">=</span> person<span class="token operator">?</span><span class="token punctuation">.</span>let <span class="token punctuation">{</span> p <span class="token operator">-></span>
+  p<span class="token punctuation">.</span>address<span class="token operator">?</span><span class="token punctuation">.</span>let <span class="token punctuation">{</span> a <span class="token operator">-></span>
+    a<span class="token punctuation">.</span>postalCode<span class="token operator">?</span><span class="token punctuation">.</span>let <span class="token punctuation">{</span> pc <span class="token operator">-></span>
+	    pc
+    <span class="token punctuation">}</span> <span class="token operator">?</span><span class="token operator">:</span> run <span class="token punctuation">{</span> 
+      <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"PostalCode was null, try zipCode"</span><span class="token punctuation">)</span>
+      a<span class="token punctuation">.</span>zipCode<span class="token operator">?</span><span class="token punctuation">.</span>let <span class="token punctuation">{</span> zc <span class="token operator">-></span>
+	      zc
+      <span class="token punctuation">}</span> <span class="token operator">?</span><span class="token operator">:</span> run <span class="token punctuation">{</span> <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ZipCode was null"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token operator">?</span><span class="token operator">:</span> run <span class="token punctuation">{</span> <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Address was null"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token operator">?</span><span class="token operator">:</span> run <span class="token punctuation">{</span> <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Person was null"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+
+<span class="token comment">// OR with some possible NPEs</span>
+
+val postalCode<span class="token operator">:</span> <span class="token class-name">String</span><span class="token operator">?</span> <span class="token operator">=</span> person<span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">.</span>address<span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">.</span>postalCode <span class="token operator">?</span><span class="token operator">:</span> person<span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">.</span>address<span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">.</span>zipCode</code></pre>
+<p>Managing all the possible <code>null</code> scenarios can be tedious, messy, and overall annoying. Developers get fed up and just go back to the Java world where they’re hoping null values don’t actually show up in production to avoid this mess of <code>?.let</code> blocks.</p>
+<p>Surely, we can minimize use of nullable variables and properties though, can't we? Unfortunately, there are cases where you can end up with a million levels deep of <code>?.let</code>:</p>
+<ol>
+<li>You have nullable fields by design. Ex. A person’s address may not be specified and you have to handle nullability of all child fields</li>
+<li>You’re interoperating with Java code where you have to check everything for null all the time</li>
+<li>You’re using a serialization/deserialization library that requires everything to be nullable</li>
+</ol>
+<p>The rule that I follow here: Never use <code>!!</code> in production code, even if you're sick of those <code>?.let</code> blocks.</p>
+<p>Test code is an exception where you can reasonably use <code>!!</code> . If you do end up with an NPE when running your tests, that is catching a bug on its own.</p>
+<h2 id="another-attempt-at-nullability-in-java-project-valhalla">Another attempt at Nullability in Java: Project Valhalla</h2>
+<p>I will wrap up by going back to Java and talking about Project Valhalla. <a href="https://openjdk.org/projects/valhalla/">Project Valhalla</a> is an in-development project in Java that proposes value types and some nullability support.</p>
+<h3 id="value-objects">Value Objects</h3>
+<p>Value  objects or classes from Valhalla are meant to support primitive-like objects where the value of the object is assigned once on creation and remains unchanged. Java considers two value objects as the same if the values of their fields are the same. Their declaration is similar with the note that primitive properties on value objects are final in order to support Java identifying they are equivalent by the primitive properties.</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token comment">// Plain old Java objects</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Coordinate</span> <span class="token punctuation">{</span>
+  <span class="token keyword">final</span> <span class="token keyword">private</span> <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+  <span class="token keyword">final</span> <span class="token keyword">private</span> <span class="token keyword">int</span> y<span class="token punctuation">;</span>
+
+  <span class="token keyword">public</span> <span class="token class-name">Coordinate</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Value objects </span>
+value <span class="token keyword">class</span> <span class="token class-name">Coordinate</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> <span class="token keyword">int</span> x<span class="token punctuation">;</span> <span class="token comment">// these are implicitly final</span>
+  <span class="token keyword">private</span> <span class="token keyword">int</span> y<span class="token punctuation">;</span>
+
+  <span class="token keyword">public</span> <span class="token class-name">Coordinate</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="valhalla-nullability">Valhalla Nullability</h3>
+<p>Back to NPEs, Valhalla also proposes support to indicate whether a value class variable can be <code>null</code> or not. This will be a compile time error, much like with Kotlin’s nullability. Good progress for Java!</p>
+<p>Below is an example of the proposed syntax using the previous Coordinate example:</p>
+<pre class="language-java" tabindex="0"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">movePawn</span><span class="token punctuation">(</span><span class="token class-name">Coordinate</span><span class="token operator">!</span> start<span class="token punctuation">,</span> <span class="token class-name">Coordinate</span><span class="token operator">!</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">movePawn</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Coordinate</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Compile time error</span></code></pre>
+<p>Find out more about this JEP here: https://openjdk.org/jeps/8316779</p>
+<p>One last thing about Valhalla - it also includes a proposal to extend this to other objects using ! and ? except this would be another runtime check instead of compile time: https://openjdk.org/jeps/8303099</p>
+<h2 id="kotlin-is-great-and-java-isnt-dead">Kotlin is Great and Java isn't Dead</h2>
+<p>Kotlin nullability support is one of my favorite Kotlin language features. As a Java and Kotlin developer, I can appreciate what a difference it makes to prevent NPEs at compile time. Java has difficulty overcoming this costly issue; however, Java is not dead. Java continues to evolve towards writing more resilient and higher quality code to keep up with the other modern programming languages.</p>
+
+<ul class="links-nextprev"><li class="links-nextprev-prev">← Previous<br> <a href="/albendz-code-share/blog/ai/ai_dev_trends_25/">AI in Software Development 2025</a></li>
+</ul>
+
+			</heading-anchors>
+		</main>
+
+		<footer>
+			<p><em>Built with <a href="https://www.11ty.dev/">Eleventy v3.1.2</a></em></p>
+		</footer>
+
+		<!-- This page `/blog/java/nullability/` was built on 2025-11-10T01:13:14.109Z -->
+		<script type="module" src="/albendz-code-share/dist/cC8wS6ZjFU.js"></script>
+	</body>
+</html>
