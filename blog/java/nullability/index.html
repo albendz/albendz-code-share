@@ -494,12 +494,11 @@ header {
 <h1 id="nulls-are-we-still-losing-millions-of-dollars-with-java-and-kotlin">Nulls: Are we still losing millions of dollars with Java and Kotlin?</h1>
 
 <ul class="post-metadata">
-	<li>Created: <time datetime="2025-11-10">10 November 2025</time></li>
+	<li>Created: <time datetime="2025-11-11">11 November 2025</time></li>
 	<li><a href="/albendz-code-share/tags/java/" class="post-tag">java</a>, </li>
 	<li><a href="/albendz-code-share/tags/kotlin/" class="post-tag">kotlin</a></li>
 </ul>
 
-<h1 id="nulls-are-we-still-losing-millions-of-dollars-with-java-and-kotlin-2">Nulls: Are we still losing millions of dollars with Java and Kotlin?</h1>
 <p>For decades, the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html">NullPointerException</a> in <a href="https://www.java.com/en/">Java</a> has been known as “the million (or billion) dollar mistake”. Java first laucnhed in the mid-1990s and it included significant improvements to memory management and object-oriented features that led to its strong adoption. Unfortunately, these improvements did not include addressing null pointers. While Java has made great leaps into keeping up with modern language trends, we continue to be plagued by NPEs.</p>
 <p>In this post I will explain what NullPointerExceptions (NPEs) are in Java, how Kotlin and Java have tried to address the issue, and how Java’s Project Valhalla proposes another step towards addressing them.</p>
 <h2 id="nulls-and-null-pointers">Nulls and null pointers</h2>
@@ -514,7 +513,7 @@ person <span class="token operator">=</span> <span class="token keyword">null</s
     <span class="token keyword">if</span> <span class="token punctuation">(</span>database<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> database<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-        <span class="token keyword">null</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <p>In this code, <code>null</code> is communicating that the name provided doesn't exist in the database.</p>
@@ -541,7 +540,7 @@ person <span class="token operator">=</span> <span class="token keyword">null</s
 <h3 id="java">Java</h3>
 <p>Java doesn’t distinguish between what can be <code>null</code> or what can’t be <code>null</code>. Outside of primitive types, anything can be <code>null</code>. This is one of the main reasons why it is hard to avoid NPEs.</p>
 <p>Over the years, there have been attempts to help manage nullability in Java and I will go over Project Lombok and Java 8's <code>Optional</code>.</p>
-<h3 id="project-lombok">Project Lombok</h3>
+<h4 id="project-lombok">Project Lombok</h4>
 <p><a href="https://projectlombok.org/">Project Lombok</a> is a Java library to make writing Java more pleasant by taking care of common patterns with annotations. One of those cases is Java <code>null</code> checking. Here’s the vanilla Java code if you want to protect against NPEs:</p>
 <pre class="language-java" tabindex="0"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">printPersonName</span><span class="token punctuation">(</span><span class="token class-name">Person</span> person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token keyword">if</span> <span class="token punctuation">(</span>person <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -649,12 +648,12 @@ value <span class="token keyword">class</span> <span class="token class-name">Co
 <span class="token punctuation">}</span>
 
 <span class="token function">movePawn</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Coordinate</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Compile time error</span></code></pre>
-<p>Find out more about this JEP here: https://openjdk.org/jeps/8316779</p>
-<p>One last thing about Valhalla - it also includes a proposal to extend this to other objects using ! and ? except this would be another runtime check instead of compile time: https://openjdk.org/jeps/8303099</p>
+<p>Find out more about this JEP here: <a href="https://openjdk.org/jeps/8316779">https://openjdk.org/jeps/8316779</a></p>
+<p>One last thing about Valhalla - it also includes a proposal to extend this to other objects using ! and ? except this would be another runtime check instead of compile time: <a href="https://openjdk.org/jeps/8303099">https://openjdk.org/jeps/8303099</a></p>
 <h2 id="kotlin-is-great-and-java-isnt-dead">Kotlin is Great and Java isn't Dead</h2>
 <p>Kotlin nullability support is one of my favorite Kotlin language features. As a Java and Kotlin developer, I can appreciate what a difference it makes to prevent NPEs at compile time. Java has difficulty overcoming this costly issue; however, Java is not dead. Java continues to evolve towards writing more resilient and higher quality code to keep up with the other modern programming languages.</p>
 
-<ul class="links-nextprev"><li class="links-nextprev-prev">← Previous<br> <a href="/albendz-code-share/blog/ai/ai_dev_trends_25/">AI in Software Development 2025</a></li>
+<ul class="links-nextprev"><li class="links-nextprev-prev">← Previous<br> <a href="/albendz-code-share/blog/interviews/personal_project_cheatsheet/">Personal STAR Interview Cheat Sheet</a></li>
 </ul>
 
 			</heading-anchors>
@@ -664,7 +663,7 @@ value <span class="token keyword">class</span> <span class="token class-name">Co
 			<p><em>Built with <a href="https://www.11ty.dev/">Eleventy v3.1.2</a></em></p>
 		</footer>
 
-		<!-- This page `/blog/java/nullability/` was built on 2025-11-10T01:13:14.109Z -->
+		<!-- This page `/blog/java/nullability/` was built on 2025-11-11T15:38:49.568Z -->
 		<script type="module" src="/albendz-code-share/dist/cC8wS6ZjFU.js"></script>
 	</body>
 </html>

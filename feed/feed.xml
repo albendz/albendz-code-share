@@ -5,7 +5,7 @@
   <subtitle>Alicia&#39;s blog about tech and the tech industry.</subtitle>
   <link href="https://albendz.github.io/albendz-code-share/feed/feed.xml" rel="self" />
   <link href="https://albendz.github.io/albendz-code-share/albendz-code-share" />
-  <updated>2025-11-10T01:12:34Z</updated>
+  <updated>2025-11-11T15:38:31Z</updated>
   <id>https://albendz.github.io/albendz-code-share/albendz-code-share</id>
   <author>
     <name>Alicia Bendz</name>
@@ -13,10 +13,9 @@
   <entry>
     <title>Nulls: Are we still losing millions of dollars with Java and Kotlin?</title>
     <link href="https://albendz.github.io/albendz-code-share/blog/java/nullability/" />
-    <updated>2025-11-10T01:12:34Z</updated>
+    <updated>2025-11-11T15:38:31Z</updated>
     <id>https://albendz.github.io/albendz-code-share/blog/java/nullability/</id>
-    <content type="html">&lt;h1 id=&quot;nulls-are-we-still-losing-millions-of-dollars-with-java-and-kotlin&quot;&gt;Nulls: Are we still losing millions of dollars with Java and Kotlin?&lt;/h1&gt;
-&lt;p&gt;For decades, the &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html&quot;&gt;NullPointerException&lt;/a&gt; in &lt;a href=&quot;https://www.java.com/en/&quot;&gt;Java&lt;/a&gt; has been known as “the million (or billion) dollar mistake”. Java first laucnhed in the mid-1990s and it included significant improvements to memory management and object-oriented features that led to its strong adoption. Unfortunately, these improvements did not include addressing null pointers. While Java has made great leaps into keeping up with modern language trends, we continue to be plagued by NPEs.&lt;/p&gt;
+    <content type="html">&lt;p&gt;For decades, the &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html&quot;&gt;NullPointerException&lt;/a&gt; in &lt;a href=&quot;https://www.java.com/en/&quot;&gt;Java&lt;/a&gt; has been known as “the million (or billion) dollar mistake”. Java first laucnhed in the mid-1990s and it included significant improvements to memory management and object-oriented features that led to its strong adoption. Unfortunately, these improvements did not include addressing null pointers. While Java has made great leaps into keeping up with modern language trends, we continue to be plagued by NPEs.&lt;/p&gt;
 &lt;p&gt;In this post I will explain what NullPointerExceptions (NPEs) are in Java, how Kotlin and Java have tried to address the issue, and how Java’s Project Valhalla proposes another step towards addressing them.&lt;/p&gt;
 &lt;h2 id=&quot;nulls-and-null-pointers&quot;&gt;Nulls and null pointers&lt;/h2&gt;
 &lt;p&gt;What is &lt;code&gt;null&lt;/code&gt;?&lt;/p&gt;
@@ -30,7 +29,7 @@ person &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
     &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;database&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; database&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In this code, &lt;code&gt;null&lt;/code&gt; is communicating that the name provided doesn&#39;t exist in the database.&lt;/p&gt;
@@ -57,7 +56,7 @@ person &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span clas
 &lt;h3 id=&quot;java&quot;&gt;Java&lt;/h3&gt;
 &lt;p&gt;Java doesn’t distinguish between what can be &lt;code&gt;null&lt;/code&gt; or what can’t be &lt;code&gt;null&lt;/code&gt;. Outside of primitive types, anything can be &lt;code&gt;null&lt;/code&gt;. This is one of the main reasons why it is hard to avoid NPEs.&lt;/p&gt;
 &lt;p&gt;Over the years, there have been attempts to help manage nullability in Java and I will go over Project Lombok and Java 8&#39;s &lt;code&gt;Optional&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;project-lombok&quot;&gt;Project Lombok&lt;/h3&gt;
+&lt;h4 id=&quot;project-lombok&quot;&gt;Project Lombok&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;https://projectlombok.org/&quot;&gt;Project Lombok&lt;/a&gt; is a Java library to make writing Java more pleasant by taking care of common patterns with annotations. One of those cases is Java &lt;code&gt;null&lt;/code&gt; checking. Here’s the vanilla Java code if you want to protect against NPEs:&lt;/p&gt;
 &lt;pre class=&quot;language-java&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;printPersonName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Person&lt;/span&gt; person&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;person &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
@@ -165,10 +164,117 @@ value &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span cl
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;token function&quot;&gt;movePawn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Coordinate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// Compile time error&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Find out more about this JEP here: https://openjdk.org/jeps/8316779&lt;/p&gt;
-&lt;p&gt;One last thing about Valhalla - it also includes a proposal to extend this to other objects using ! and ? except this would be another runtime check instead of compile time: https://openjdk.org/jeps/8303099&lt;/p&gt;
+&lt;p&gt;Find out more about this JEP here: &lt;a href=&quot;https://openjdk.org/jeps/8316779&quot;&gt;https://openjdk.org/jeps/8316779&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;One last thing about Valhalla - it also includes a proposal to extend this to other objects using ! and ? except this would be another runtime check instead of compile time: &lt;a href=&quot;https://openjdk.org/jeps/8303099&quot;&gt;https://openjdk.org/jeps/8303099&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;kotlin-is-great-and-java-isnt-dead&quot;&gt;Kotlin is Great and Java isn&#39;t Dead&lt;/h2&gt;
 &lt;p&gt;Kotlin nullability support is one of my favorite Kotlin language features. As a Java and Kotlin developer, I can appreciate what a difference it makes to prevent NPEs at compile time. Java has difficulty overcoming this costly issue; however, Java is not dead. Java continues to evolve towards writing more resilient and higher quality code to keep up with the other modern programming languages.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Personal STAR Interview Cheat Sheet</title>
+    <link href="https://albendz.github.io/albendz-code-share/blog/interviews/personal_project_cheatsheet/" />
+    <updated>2025-11-11T15:38:31Z</updated>
+    <id>https://albendz.github.io/albendz-code-share/blog/interviews/personal_project_cheatsheet/</id>
+    <content type="html">&lt;p&gt;When interviewing for a technical role, you will be asked to provide examples of previous projects either directly or within the context of a behavioral question. In this post I will go over how to build a “cheat sheet” for your personal projects to help you make the biggest impact in your interviews. This post will not tell you how to answer STAR questions and describe a specific technique to help in these interviews.&lt;/p&gt;
+&lt;h2 id=&quot;behavioral-or-past-project-interviews&quot;&gt;Behavioral or past-project interviews&lt;/h2&gt;
+&lt;p&gt;Behavioral or STAR (Situation Task Action Result) interviews ask you to provide an example of a situation where you took some action as well as what you achieved. Here are examples of questions I received as part of an interview preparation package from my most recent job hunt:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tell me about a project you’ve executed recently that you are proud of&lt;/li&gt;
+&lt;li&gt;Tell me about a time when you had to work with a difficult stakeholder&lt;/li&gt;
+&lt;li&gt;Tell me about a time when you had to go over the project timeline&lt;/li&gt;
+&lt;li&gt;What is an example of a project where you had to work with different types of stakeholders?&lt;/li&gt;
+&lt;li&gt;What is an example of a project where you’ve had to make tough decisions?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Past-project or project showcase interviews are interviews where you&#39;re asked to present a previous project you worked on either in a short, verbal form or as a presentation via slides or a write-up.&lt;/p&gt;
+&lt;p&gt;In both of these cases, the context (S of STAR) and impact (R of STAR) are key to highlighting your experiences. A common mistake in these interviews is not providing sufficient, hard data to make your answer convincing and relevant. Part of a good interview preparation plan is to get these numbers and be able to provide them immediately during the interview.&lt;/p&gt;
+&lt;h2 id=&quot;the-cheat-sheet&quot;&gt;The Cheat Sheet&lt;/h2&gt;
+&lt;p&gt;You can create a cheat sheet of project context and impact to help you build and quickly recall supporting data for your interviews. My cheat sheet is copied on to 2 large post-its on my monitor during interviews. Example cheat sheet:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Project&lt;/th&gt;
+&lt;th&gt;Role&lt;/th&gt;
+&lt;th&gt;Project team size&lt;/th&gt;
+&lt;th&gt;Project Timeline&lt;/th&gt;
+&lt;th&gt;Impact&lt;/th&gt;
+&lt;th&gt;Collaborators&lt;/th&gt;
+&lt;th&gt;Scale&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CICD&lt;/td&gt;
+&lt;td&gt;Technical lead&lt;/td&gt;
+&lt;td&gt;3 engingeers&lt;/td&gt;
+&lt;td&gt;3 months&lt;/td&gt;
+&lt;td&gt;0.5 million /year&lt;/td&gt;
+&lt;td&gt;Manager, Product, QA, Leadership&lt;/td&gt;
+&lt;td&gt;20 deploys per year -&amp;gt; 20 deploys per week&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Wishlist&lt;/td&gt;
+&lt;td&gt;Design and delivery&lt;/td&gt;
+&lt;td&gt;5 engineers&lt;/td&gt;
+&lt;td&gt;6 months&lt;/td&gt;
+&lt;td&gt;10 million/year&lt;/td&gt;
+&lt;td&gt;Lead, Manager&lt;/td&gt;
+&lt;td&gt;2 million customers, 200 RPS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Security Committee&lt;/td&gt;
+&lt;td&gt;Security Lead&lt;/td&gt;
+&lt;td&gt;50 person org&lt;/td&gt;
+&lt;td&gt;Continuous/2 years&lt;/td&gt;
+&lt;td&gt;Legal Compliance&lt;/td&gt;
+&lt;td&gt;Legal, Managers, QA&lt;/td&gt;
+&lt;td&gt;3 reviews per month&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Save as Draft&lt;/td&gt;
+&lt;td&gt;Implementation&lt;/td&gt;
+&lt;td&gt;4 engineers&lt;/td&gt;
+&lt;td&gt;2 months&lt;/td&gt;
+&lt;td&gt;100k/year&lt;/td&gt;
+&lt;td&gt;Lead, Manager&lt;/td&gt;
+&lt;td&gt;10k customers,10 wishlists per day&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Definitions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Project&lt;/strong&gt;: a name for the project you can remember&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Role&lt;/strong&gt;: Roughly your responsibilities - did you design, lead, code, etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Project team size&lt;/strong&gt;: present your team size for who you worked with regularly to deliver the project. This is particularly important for lead roles to provide a signal of the size of your leadership, influence, and ability to delegate.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Project timeline&lt;/strong&gt;: describe how long the project took as well as what your starting point and end point was. For example, &amp;quot;I was on this project for 6 months and I worked on it from design to launch&amp;quot; or &amp;quot;I was on this project for 2 months and was brought on midway through implementation to get the project back on track through to launch&amp;quot;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Financial or business impact&lt;/strong&gt;: an estimate of the money saved, made, or general business impact of the final product.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Collaborations&lt;/strong&gt;: other roles you interacted with external to the core project team. This could be organization technical leaders like directors or principal engineers, QA team, UX team, legal team, stakeholders, product experts, customer support - anyone that isn&#39;t on your core team.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scale&lt;/strong&gt;: how many customers you have, how much traffic you have, or any other measure to help describe how much usage, scope, or users the project impacted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is an example:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I worked on a project to migrate my team&#39;s delivery process from a manual, bi-weekly release to a &lt;em&gt;CI/CD&lt;/em&gt; (&lt;strong&gt;project name&lt;/strong&gt;) pipeline for my team of 5 engineers over the course of &lt;em&gt;3 months&lt;/em&gt; (&lt;strong&gt;project length&lt;/strong&gt;). I initiated the project as the &lt;em&gt;technical lead&lt;/em&gt; (&lt;strong&gt;role&lt;/strong&gt;) and continued through to implementation, delegating tasks to &lt;em&gt;2 other engineers on my team of 5&lt;/em&gt; (&lt;strong&gt;project team size&lt;/strong&gt;). I worked with my &lt;em&gt;manager and technical leadership&lt;/em&gt; (&lt;strong&gt;collaborators&lt;/strong&gt;) to get buy-in for the project and the &lt;em&gt;operations&lt;/em&gt; (&lt;strong&gt;collaborators&lt;/strong&gt;) team to ensure optimal use of internal tooling. Overall, this ended up saving &lt;em&gt;2 days of developer time per sprint, the equivalent of 10 dev weeks per year&lt;/em&gt; (&lt;strong&gt;impact&lt;/strong&gt;) by &lt;em&gt;supporting 20 deployments a week from 20 deployments a year&lt;/em&gt; (&lt;strong&gt;scale&lt;/strong&gt;).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;how-do-i-get-this-data&quot;&gt;How do I get this data?&lt;/h2&gt;
+&lt;p&gt;The best way to get this data is to note it down while you&#39;re working on the project or as a project retrospective. However, if you&#39;ve already left your job and are trying to look back to get these numbers you can:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do your best to recall the entire project as a whole to jog your memory on the details&lt;/li&gt;
+&lt;li&gt;Reach out to old coworkers to help you remember the project context (without putting them at risk of sharing confidential data)&lt;/li&gt;
+&lt;li&gt;Find public information about the project you worked on&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some tips to coming up with financial numbers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Convert saved developer time into money saved per year by using hours saved + average salary&lt;/li&gt;
+&lt;li&gt;Look up tech blogs or conference talks related to the same or similar topic and convert their impact numbers to map to your project&lt;/li&gt;
+&lt;li&gt;Do domain specific research to find market numbers to describe potential impact&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are cases where financial numbers don&#39;t work like with regulatory compliance and human safety. You can actually find data on fines for non-compliance but often if you just say &amp;quot;regulatory compliance&amp;quot; or &amp;quot;human safety&amp;quot;, that&#39;s enough.&lt;/p&gt;
+&lt;p&gt;If you&#39;re worried about what is or isn&#39;t public information, you can go to your company&#39;s blogs and press releases to identify what&#39;s safe to share. Here are some examples from my career:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.apollographql.com/blog/how-wayfair-achieved-graphql-success-with-federated-graphql&quot;&gt;Wayfair supplier numbers&lt;/a&gt;: &amp;quot;Wayfair is one of the world‘s leading home goods brands, offering 14 million items from more than 11,000 global suppliers&amp;quot; for my work on Wayfair&#39;s supplier APIs.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.aboutamazon.com/news/workplace/amazon-workplace-safety-performance-2024&quot;&gt;Amazon safety numbers&lt;/a&gt;: &amp;quot;Over the past five years, the rate of MSD [musculoskeletal disorder] recordable incident rates at Amazon has improved 32%, but they still make up about 57% of all recordable injuries at Amazon&amp;quot; for my work on Amazon&#39;s employee health and safety ergonomic risk assessments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;good-luck&quot;&gt;Good luck!&lt;/h2&gt;
+&lt;p&gt;With some math, memory, and creativity, you can come up with a cheat sheet of context and impact numbers that can highlight your professional experiences and turn you into a stand-out candidate. Best of luck on your next interviews!&lt;/p&gt;
 </content>
   </entry>
   <entry>
