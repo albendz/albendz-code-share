@@ -5,8 +5,6 @@ date: Created
 tags: java,kotlin
 ---
 
-# Nulls: Are we still losing millions of dollars with Java and Kotlin?
-
 For decades, the [NullPointerException](https://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html) in [Java](https://www.java.com/en/) has been known as “the million (or billion) dollar mistake”. Java first laucnhed in the mid-1990s and it included significant improvements to memory management and object-oriented features that led to its strong adoption. Unfortunately, these improvements did not include addressing null pointers. While Java has made great leaps into keeping up with modern language trends, we continue to be plagued by NPEs.
 
 In this post I will explain what NullPointerExceptions (NPEs) are in Java, how Kotlin and Java have tried to address the issue, and how Java’s Project Valhalla proposes another step towards addressing them.
@@ -33,7 +31,7 @@ private Person findPersonByName(String name) {
     if (database.contains(name)) {
         return database.get(name);
     } else {
-        null
+        return null;
     }
 }
 ```
@@ -82,7 +80,7 @@ Java doesn’t distinguish between what can be `null` or what can’t be `null`.
 
 Over the years, there have been attempts to help manage nullability in Java and I will go over Project Lombok and Java 8's `Optional`.
 
-### Project Lombok
+#### Project Lombok
 
 [Project Lombok](https://projectlombok.org/) is a Java library to make writing Java more pleasant by taking care of common patterns with annotations. One of those cases is Java `null` checking. Here’s the vanilla Java code if you want to protect against NPEs:
 
@@ -240,9 +238,9 @@ public static boolean movePawn(Coordinate! start, Coordinate! end) {
 movePawn(null, new Coordinate(2, 3)); // Compile time error
 ```
 
-Find out more about this JEP here: https://openjdk.org/jeps/8316779
+Find out more about this JEP here: [https://openjdk.org/jeps/8316779](https://openjdk.org/jeps/8316779)
 
-One last thing about Valhalla - it also includes a proposal to extend this to other objects using ! and ? except this would be another runtime check instead of compile time: https://openjdk.org/jeps/8303099
+One last thing about Valhalla - it also includes a proposal to extend this to other objects using ! and ? except this would be another runtime check instead of compile time: [https://openjdk.org/jeps/8303099](https://openjdk.org/jeps/8303099)
 
 ## Kotlin is Great and Java isn't Dead
 
